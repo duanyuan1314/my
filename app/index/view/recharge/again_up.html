@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>证件上传</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+</head>
+<body ng-controller="upload_realname_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">证件上传</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <style>
+            .layui-upload-file{display: none!important;opacity: .01;}
+            .upload_container {
+                padding: 10px;
+                width: 100%;
+            }
+
+            .upload_container h4 {
+                color: #Fff;
+                font-size: 1rem;
+                text-align: center;
+                padding: 10px 0;
+                font-weight: 100;
+            }
+
+            .positive_box,
+            .back_box {
+                width: 80%;
+                margin: 20px auto;
+                height: 9rem;
+                background: #fff;
+                border: 2px solid #F7561E;
+                border-radius: 5px;
+                display: flex;
+                align-content: center;
+                align-items: center;
+            }
+
+            .positive_box>div,
+            .back_box>div {
+                width: 10rem;
+                margin: 0 auto;
+                position: relative;
+                height:6rem;
+            }
+
+            .positive_box>div>div,
+            .back_box>div>div {
+                position: absolute;
+                width: 33%;
+                height: 50%;
+                left: 32%;
+                bottom: 30%;
+            }
+
+            .positive_box>div>div img,
+            .back_box>div>div img,
+            .positive_box>div img,
+            .back_box>div img {
+                width: 100%;
+                height: 100%
+            }
+            .prompt_container {
+                background: #303540;
+                padding: 0 5px;
+                text-align: center;
+                width: 100%;
+                padding-bottom: 30px;
+            }
+
+            .prompt_title {
+                font-size: 0.9rem;
+                color: #Fff;
+                margin: 0;
+                padding: 10px;
+                border-bottom: 1px solid #3E455C;
+                text-align: left;
+            }
+
+            .prompt_container .mui-col-xs-3 {
+                text-align: center;
+                padding: 3px;
+            }
+
+            .prompt_container .mui-col-xs-3 p {
+                color: #Fff;
+                font-size: 0.7rem;
+                text-align: center;
+            }
+
+            .prompt_container .mui-col-xs-3 p .mui-icon-checkmarkempty {
+                color: green;
+            }
+
+            .prompt_container .mui-col-xs-3 p .mui-icon-closeempty {
+                color: red;
+                width: 20px;
+                vertical-align: sub;
+            }
+
+            .prompt_container .prompt_img {
+                width: 70px;
+                height: 47px;
+                margin: 0 auto;
+            }
+
+            .prompt_container .submit_btn {
+                width: 90%;
+                margin: 10px auto;
+                height: 40px;
+                background: #ff4923;
+                border: 0;
+                color: #fff;
+                font-size: 1.1rem;
+                border-radius: 8px;
+            }
+
+            #pop_into .gift_box {
+                width: 45%;
+                margin-top: 10px;
+            }
+            .mui-row{
+            	margin-top: 15px;
+            }
+        </style>
+        <div class="upload_container">
+            <h4>请上传
+                <span class="or_text">{$arr.real_name}</span>的身份证正反面照片</h4>
+            <div class="positive_box" ng-click="upload_photo()" >
+                <div>
+                    <img {if condition="$arr.zcard" }src="{$arr.zcard}" {else /}src="__STATIC__/index/img/recharge/upload/id_card_1.png" {/if}  id="demo1" />
+                    <div id="upimg1" {if condition="$arr.zcard" }style="display:none;" {/if} >
+                        <img src="__STATIC__/index/img/recharge/upload/camera.png"   />
+                    </div>
+                    <input type="hidden" id="zcard" name="image" value="{$arr.zcard}" >
+                </div>
+            </div>
+            <div class="back_box" ng-click="upload_photos()" >
+                <div>
+                    <img {if condition="$arr.fcard" }src="{$arr.fcard}" {else /}src="__STATIC__/index/img/recharge/upload/id_card_2.png" {/if} id="demo2" />
+                    <div id="upimg2" {if condition="$arr.fcard" }style="display:none;" {/if} >
+                        <img src="__STATIC__/index/img/recharge/upload/camera.png"   />
+                    </div>
+                    <input type="hidden" id="fcard" name="image" value="{$arr.fcard}" id="demo2" >
+                </div>
+            </div>
+        </div>
+        <div class="prompt_container">
+            <h5 class="prompt_title">请拍摄身份证原件</h5>
+            <div class="mui-row">
+                <div class="mui-col-xs-3">
+                    <img src="__STATIC__/index/img/recharge/upload/prompt_1.png" class="prompt_img" alt="" />
+                    <p>
+                        <i class="mui-icon mui-icon-checkmarkempty"></i>标准</p>
+                </div>
+                <div class="mui-col-xs-3">
+                    <img src="__STATIC__/index/img/recharge/upload/prompt_2.png" class="prompt_img" alt="" />
+
+                    <p>
+                        <i class="mui-icon mui-icon-closeempty"></i>变宽缺失</p>
+                </div>
+                <div class="mui-col-xs-3">
+                    <img src="__STATIC__/index/img/recharge/upload/prompt_3.png" class="prompt_img" alt="" />
+                    <p>
+                        <i class="mui-icon mui-icon-closeempty"></i>照片模糊</p>
+                </div>
+                <div class="mui-col-xs-3">
+                    <img src="__STATIC__/index/img/recharge/upload/prompt_4.png" class="prompt_img" alt="" />
+                    <p>
+                        <i class="mui-icon mui-icon-closeempty"></i>闪光强烈</p>
+                </div>
+            </div>
+            <button class="submit_btn" >
+                确认并提交
+            </button>
+        </div>
+    </div>
+    <div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        <div class="pop_container">
+            <img src="__STATIC__/index/img/recharge/real_name_pass.png" alt="" class="gift_box" />
+            <h4>恭喜您，提交成功</h4>
+            <button class="pop_btn" ng-click="close_pop()">确定</button>
+        </div>
+        <div class="close_container" ng-click="close_pop()">
+            <!-- <i class="mui-icon mui-icon-close"></i> -->
+        </div>
+    </div>
+    <div id="photo_menu" class="mui-popover mui-popover-bottom mui-popover-action ">
+        <!-- 可选择菜单 -->
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <p  id="layui-upload" class="mui-text-center">从相册选一张</p>
+            </li>
+          
+        </ul>
+        <!-- 取消菜单 -->
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <p ng-click="close_menu()" class="mui-text-center">取消</p>
+            </li>
+        </ul>
+    </div>
+    <div id="photo_menus" class="mui-popover mui-popover-bottom mui-popover-action ">
+        <!-- 可选择菜单 -->
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <p id="layui-uploads" class="mui-text-center" >从相册选一张</p>
+            </li>
+        </ul>
+        <!-- 取消菜单 -->
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <p ng-click="close_menus()" class="mui-text-center">取消</p>
+            </li>
+        </ul>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__ADMIN_JS__/layui/layui.js?v={:config('hisiphp.version')}"></script>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('upload_realname_controller', ['$scope', '$timeout', function ($scope, $timeout) {
+
+            $scope.goPage = function (path) {
+                mui.openWindow({
+                    url: path
+                });
+            }
+            $scope.submit_form = function () {
+                mui('#pop_into').popover('show');
+            }
+            $scope.close_pop = function () {
+                mui('#pop_into').popover('hide');
+            }
+            $scope.upload_photo = function () {
+                mui('#photo_menu').popover('toggle');
+            }
+            $scope.upload_photos = function () {
+                mui('#photo_menus').popover('toggle');
+            }
+            $scope.galleryImg = function () {
+                mui.toast('选了从本地选择', {
+                    duration: 'long',
+                    type: 'div'
+                });
+                mui('#photo_menu').popover('toggle');
+            }
+
+            $scope.getImage = function () {
+                mui.toast('选了自己拍一张', {
+                    duration: 'long',
+                    type: 'div'
+                });
+                mui('#photo_menu').popover('toggle');
+            }
+
+            $scope.close_menu = function () {
+                mui.toast('取消了选择', {
+                    duration: 'long',
+                    type: 'div'
+                });
+                mui('#photo_menu').popover('toggle');
+            }
+            $scope.close_menus = function () {
+                mui.toast('取消了选择', {
+                    duration: 'long',
+                    type: 'div'
+                });
+                mui('#photo_menus').popover('toggle');
+            }
+        }]);
+    </script>
+</body>
+
+</html>
+<script>
+    layui.use(['upload'], function () {
+        var $ = layui.jquery, layer = layui.layer, upload = layui.upload;
+        /**
+         * 附件上传url参数说明
+         * @param string $from 来源
+         * @param string $group 附件分组,默认sys[系统]，模块格式：m_模块名，插件：p_插件名
+         * @param string $water 水印，参数为空默认调用系统配置，no直接关闭水印，image 图片水印，text文字水印
+         * @param string $thumb 缩略图，参数为空默认调用系统配置，no直接关闭缩略图，如需生成 500x500 的缩略图，则 500x500多个规格请用";"隔开
+         * @param string $thumb_type 缩略图方式
+         * @param string $input 文件表单字段名
+         */
+        upload.render({
+            elem: '#layui-upload'
+            , url: '{:url("user/upload")}'
+            , method: 'post'
+            , before: function (input) {
+                //layer.msg('文件上传中...', { time: 3000000 });
+            }, done: function (res, index, upload) {
+                var obj = this.item;
+                if (res.code == 0) {
+                    layer.msg(res.msg);
+                    return false;
+                } else {
+                    //layer.msg(res.msg, { time: 2000 });
+                    $('#demo1').attr('src', res.data.file);
+                    $('#upimg1').css('display','none');
+                    $('#zcard').attr('value', res.data.file);
+                    mui('#photo_menu').popover('hide');
+                }
+
+            }
+            , error: function () {
+                layer.closeAll('loading');
+                layer.msg('网络异常，请稍后重试！');
+            }
+        });
+        upload.render({
+            elem: '#layui-uploads'
+            , url: '{:url("user/upload")}'
+            , method: 'post'
+            , before: function (input) {
+                //layer.msg('文件上传中...', { time: 3000000 });
+            }, done: function (res, index, upload) {
+                var obj = this.item;
+                if (res.code == 0) {
+                    layer.msg(res.msg);
+                    return false;
+                } else {
+                    //layer.msg(res.msg, { time: 2000 });
+                    $('#demo2').attr('src', res.data.file);
+                    $('#upimg2').css('display', 'none');
+                    $('#fcard').attr('value', res.data.file);
+                    mui('#photo_menus').popover('hide');
+                }
+
+            }
+            , error: function () {
+                layer.closeAll('loading');
+                layer.msg('网络异常，请稍后重试！');
+            }
+        });
+    });
+    $('.submit_btn').click(function () {
+        /* 身份证正面 */
+        var zcard = $("#zcard").val();
+        /* 身份证反面 */
+        var fcard = $("#fcard").val();
+        if(zcard ==''){
+            layer.msg('请上传身份证正面');
+        }else if(fcard == ''){
+            layer.msg('请上传身份证反面');
+        }else{
+             $.ajax({
+                type: 'POST',
+                dataType: "json",
+                url: "{:url('recharge/again_up')}",
+                data: { zcard: zcard, fcard: fcard },
+                success: function (re) {
+                    if (re.code == 1) {
+                        loading();
+                    } else {
+                        layer.msg(re.msg, { time: 2000 });
+                    }
+                }
+            });
+        }
+       
+    })
+    function loading() {
+            mui('#pop_into').popover('show');
+            var home_second = 3;
+            var homeTimer;
+            var homeTimer = setInterval(function () {
+                home_second--;
+                if (home_second <= 0) {
+                    window.clearInterval(homeTimer);
+                    //执行跳转操作
+                    location.href = "{:url('recharge/real_card')}";
+                }
+            }, 1000)
+    }
+</script>

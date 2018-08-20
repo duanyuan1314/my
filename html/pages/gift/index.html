@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>礼品</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/commen.css" />
+		<link rel="stylesheet" href="../../css/gift/gift.css" />
+	</head>
+
+	<body ng-controller="gift_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">油卡兑换</h1>
+			<!--<span id="b_select_btn" class="mui-pull-right" ng-click="pop_b_select()"><i class="mui-icon mui-icon-bars"></i></span>-->
+		</header>
+		<!--<div id="b_select_container" class="mui-popover">
+			<button>测试</button>			
+			<button>测试</button>			
+		</div>-->
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item" href="../home/index.html">
+				
+				<img class="show_img" src="../../img/tab/home.png" alt="" />
+			</a>
+			<a class="mui-tab-item" href="../recharge/index.html">
+				<img class="show_img" src="../../img/tab/recharge.png" alt="" />
+			</a>
+			<a class="mui-tab-item" href="index.html">
+				<img class="show_img" src="../../img/tab/gift.gif" alt="" />
+			</a>
+			<a class="mui-tab-item" href="../my/index.html">
+				<img class="show_img" src="../../img/tab/my.png" alt="" />
+			</a>
+		</nav>
+		<div id="pullrefresh" class="mui-content">
+			<div class="baner_container">
+				<div class="fragment_info mui-clearfix">
+					<div class="fragment_box mui-pull-left" ng-click="goPage('debris_balance.html')">
+						<img src="../../img/gift/fragment.png" alt="" /><span>120</span><img src="../../img/gift/plus.png" alt="" />
+					</div>
+					<div class="history_box mui-pull-right" ng-click="goPage('history.html')">
+						<div class="history_icon">
+							<img src="../../img/gift/history_icon.png" alt="" />
+						</div>
+						<span>历史</span>
+					</div>
+				</div>
+			</div>
+			<div class="card_type">
+				<div class="oils_name mui-text-center">
+					<img src="../../img/gift/zsh.png" alt="" />
+				</div>
+				<div class="card_list mui-clearfix">
+					<div class="card_option">
+						<p class="mui-clearfix"><span class="or_text">100元</span>加油卡<span class="mui-pull-right">全国通用</span></p>
+						<img src="../../img/gift/card.png" class="card_img" alt="" />
+						<p class="mui-clearfix">
+							<img src="../../img/gift/fragment.png" alt="" />
+							<span class="or_text">1000</span>
+							<button class="exchange_btn" ng-click="no_address()">立即兑换</button>
+						</p>
+					</div>
+					<div class="card_option">
+						<p class="mui-clearfix"><span class="or_text">500元</span>加油卡<span class="mui-pull-right">全国通用</span></p>
+						<img src="../../img/gift/card.png" class="card_img" alt="" />
+						<p class="mui-clearfix">
+							<img src="../../img/gift/fragment.png" alt="" />
+							<span class="or_text">5000</span>
+							<button class="exchange_btn" ng-click="goPage('../my/address/admin_address.html')">立即兑换</button>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="card_type">
+				<div class="oils_name mui-text-center">
+					<img src="../../img/gift/zsy.png" alt="" />
+				</div>
+				<div class="card_list mui-clearfix">
+					<div class="card_option">
+						<p class="mui-clearfix"><span class="or_text">100元</span>加油卡<span class="mui-pull-right">全国通用</span></p>
+						<img src="../../img/gift/card.png" class="card_img" alt="" />
+						<p class="mui-clearfix">
+							<img src="../../img/gift/fragment.png" alt="" />
+							<span class="or_text">1000</span>
+							<button class="exchange_btn" ng-click="submit_order()">立即兑换</button>
+						</p>
+					</div>
+					<div class="card_option">
+						<p class="mui-clearfix"><span class="or_text">500元</span>加油卡<span class="mui-pull-right">全国通用</span></p>
+						<img src="../../img/gift/card.png" class="card_img" alt="" />
+						<p class="mui-clearfix">
+							<img src="../../img/gift/fragment.png" alt="" />
+							<span class="or_text">5000</span>
+							<button class="exchange_btn">立即兑换</button>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="card_type">
+				<div class="oils_name mui-text-center">
+					<img src="../../img/gift/smlb.png" alt="" />
+				</div>
+				<div class="card_list mui-clearfix">
+					<div class="card_option">
+						<img src="../../img/gift/jqqd.png" alt="" class="qd_img" />
+						<!--<p class="mui-clearfix"><span class="or_text">100元</span>加油卡<span class="mui-pull-right">全国通用</span></p>
+						<img src="../../img/gift/card.png" class="card_img" alt="" />
+						<p class="mui-clearfix">
+							<img src="../../img/gift/fragment.png" alt="" />
+							<span class="or_text">1000</span>
+							<button class="exchange_btn">立即兑换</button>
+						</p>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        	<div class="pop_container">
+        		<img src="../../img/gift/address.png" alt="" class="gift_box" />
+        		<h4>您还未添加收货地址</h4>
+        		<button class="pop_btn" ng-click="goPage('../my/address/add_address.html')">添加我的收货地址</button>
+        	</div>
+        	<div class="close_container" ng-click="close_pop(1)">
+        		<i class="mui-icon mui-icon-close"></i>
+        	</div>
+        </div>
+        <div id="pop_into_2" class="mui-popover mui-popover-action mui-popover-bottom">
+        	<div class="pop_container">
+        		<img src="../../img/my/machine.png" alt="" class="gift_box" />
+        		<h4>恭喜您，兑换成功</h4>
+        		<p>成功兑换100元中国石油加油卡</p>
+        		<button class="pop_btn" ng-click="goPage('../my/address/admin_address.html')">再逛逛</button>
+        	</div>
+        	<div class="close_container" ng-click="close_pop(2)">
+        		<i class="mui-icon mui-icon-close"></i>
+        	</div>
+        </div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/angular.min.js"></script>
+		<script src="../../js/gift/gift.js"></script>
+		<script src="../../js/config.js"></script>
+		<script src="../../js/config.js"></script>
+	</body>
+
+</html>

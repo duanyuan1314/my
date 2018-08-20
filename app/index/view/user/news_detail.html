@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>消息中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <style type="text/css">
+        a {
+            color: #fff;
+            font-size: 12px;
+        }
+        a:active {
+            color: #fff;
+        }
+
+        .articleBox {
+            font-size: 14px;
+            color: #fff;
+            padding: 0 15px;
+        }
+
+        .articleTitle {
+            margin: 20px 0 10px;
+            color: #fff;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .time {
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            margin: 5px 0 10px;
+        }
+        .articleContent {            color: #fff;
+            text-indent: 22px;
+        }         .articleContent p{         	color: #fff;         	text-indent: 22px;         }
+        .articleContent img {
+            width: 95%;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body ng-controller="newCenter_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h4 class="mui-title">消息中心</h4>
+    </header>
+    <div class="mui-content">
+        <!--文章-->
+        <div class="articleBox">
+            <h4 class="articleTitle"> {$arr.title} </h4>
+            <p class="time">{$arr.creat_time}</p>
+            <div class="articleContent">
+                {$arr.content}
+            </div>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+</body>
+
+</html>

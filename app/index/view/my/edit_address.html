@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>编辑地址</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link href="__STATIC__/index/css/my/address/mui.picker.css" rel="stylesheet" />
+    <link href="__STATIC__/index/css/my/address/mui.poppicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/address/add_address.css" />
+</head>
+
+<body ng-controller="add_address_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">编辑地址</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <form  >
+            <input type="hidden" id="address_id"  value="{$det.id}"  >
+            <div class="form_container">
+                <div class="input_container">
+                    <div class="input_box mui-clearfix">
+                        <div class="mui-pull-left wh_text">
+                            收货人：
+                        </div>
+                        <div class="mui-pull-left short_box">
+                            <input type="text" class="request" name="receiver" value="{$det.receiver}" placeholder="请填写收货人" id="receiver" />
+                        </div>
+                    </div>
+                    <div class="input_box mui-clearfix">
+                        <div class="mui-pull-left wh_text">
+                            手机号码：
+                        </div>
+                        <div class="mui-pull-left short_box">
+                            <input type="text" class="request" name="phone" value="{$det.phone}" placeholder="请填写手机号码" id="phone" />
+                        </div>
+                    </div>
+                    <div class="input_box mui-clearfix">
+                        <div class="mui-pull-left wh_text">
+                            备用号码：
+                        </div>
+                        <div class="mui-pull-left">
+                            <input type="text" name="spare" value="{$det.spare}" placeholder="选填" id="spare" />
+                        </div>
+                    </div>
+                    <div class="input_box mui-clearfix">
+                        <div class="mui-pull-left wh_text">
+                            所在地区：
+                        </div>
+                        <div class="mui-pull-left" ng-click="chooseArea()" style="min-height: 50px;">
+                            <div name="city_ids" id="select_address" style="min-height: 50px;font-size: 14px;color: #fff">{$det.city_ids}</div>
+                        </div>
+                    </div>
+                    <div class="input_box mui-clearfix">
+                        <div class="mui-pull-left wh_text">
+                            详细地址：
+                        </div>
+                        <div class="mui-pull-left">
+                            <input type="text" class="request" name="address" value="{$det.address}" placeholder="街道、小区、门牌号等" id="address" />
+                        </div>
+                    </div>
+                   <!--  <div class="select_contacts">
+                        <p>
+                            <img src="__STATIC__/index/img/my/contacts.png" alt="" />
+                        </p>
+                        <p>选联系人</p>
+                    </div> -->
+                </div>
+                <div class="input_container mui-clearfix">
+                    <div class="input_box mui-clearfix">
+                        <div class="mui-pull-left wh_text">
+                            设为默认地址：
+                        </div>
+                         <div class="mui-pull-left switch_box">
+                            <div class="testswitch mui-pull-right ">
+                                <input class="testswitch-checkbox" {if condition="$det.isSelect eq 1" }checked{/if}  id="onoffswitch" type="checkbox" >
+                                <label class="testswitch-label" for="onoffswitch" >
+                                    <span class="testswitch-inner"></span>
+                                    <span class="testswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="submit_btn"  onclick="btnok()"  >保存并使用</button>
+            </div>
+        </form>
+    </div>
+    <div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        <div class="pop_container" style="height: 180px;">
+            <img src="__STATIC__/index/img/recharge/real_name_pass.png" alt="" class="gift_box" style="width: 40%;margin-top: 15px;" />
+            <h4 style="margin-top: 20px;" >恭喜您，编辑成功</h4>
+        </div>
+        <div class="close_container" ng-click="close_pop()">
+            <i class="mui-icon mui-icon-close"></i>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/my/address/mui.picker.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/my/address/mui.poppicker.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/my/address/city.data-3.js"></script>
+    <script src="__STATIC__/index/js/my/address/add_address.js"></script>
+    <script src="__STATIC__/layer/layer.js"></script>
+</body>
+</html>
+<script>
+
+    $(function(){
+            $(".request").on("input",function(e){
+                var type = check();
+                if(type == 1){
+                    $(".submit_btn").css("background","#f7561e"); 
+                    $(".submit_btn").css("color", "#fff");  
+                }else{
+                    $(".submit_btn").css("background","#23262e");
+                }
+            });   
+        });
+    function check()
+    {   
+        var type =1;
+         $('.request').each(function(){  
+                if($(this).val()==''){
+                    type =0;
+                }           
+            });
+         return type;
+    }
+
+    function btnok() {
+        var reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+        var receiver = $("#receiver").val();
+        var address_id = $("#address_id").val();
+        var select_address = $("#select_address").text();
+        var spare = $("#spare").val();
+        var address = $("#address").val();
+        var status = $("#onoffswitch").is(':checked');
+        if (status) {
+            var ischeck = 1;
+        } else {
+            var ischeck = 0;
+        }
+        var phone = $.trim($("#phone").val());
+        var address = $("#address").val();
+        var flag = reg.test(phone);
+        if (receiver == '') {
+            layer.msg('收货人不能为空');
+        } else if (!flag) {
+            layer.msg('请输入有效的手机号码!');
+        } else if (select_address == '') {
+            layer.msg('请选着所在地区');
+        } else if (address == '') {
+            layer.msg('请输入详细地址');
+        } else {
+            $.post("{:url('my/editSave')}", {id:address_id,receiver: receiver, city_ids: select_address, spare: spare, phone: phone, isSelect: ischeck, address: address },
+                function (data) {
+                    if (data.code == 1) {
+                        loading(data.url);
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                });
+        }
+
+    }
+    function loading(url) {
+        mui('#pop_into').popover('show');
+        var home_second = 3;
+        var homeTimer;
+        var homeTimer = setInterval(function () {
+            home_second--;
+            if (home_second <= 0) {
+                window.clearInterval(homeTimer);
+                //执行跳转操作
+                if( url !=''){
+                    location.href= url;
+                }else{
+                    location.href = "{:url('my/address')}";
+                }
+            }
+        }, 1000)
+    }
+</script>

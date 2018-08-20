@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>排行榜</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/commen.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/home/rank.css"/>
+	</head>
+
+	<body ng-controller="rank_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">最佳榜单</h1>
+		</header>
+		<div class="mui-content">
+			<div id="pullrefresh">
+				<div class="best_list">
+					<div class="star_bg">
+						<div class="best_rank mui-clearfix">
+							<div>
+								<div class="head_portrait"></div>
+								<div class="user_head"></div>
+								<div class="user_info">
+									<p>樱花粉</p>
+									<p><span>10210</span>算力</p>
+								</div>
+							</div>
+							<div>
+								<div class="head_portrait"></div>
+								<div class="user_head"></div>
+								<div class="user_info">
+									<p>樱花粉</p>
+									<p><span>10210</span>算力</p>
+								</div>
+							</div>
+							<div>
+								<div class="head_portrait"></div>
+								<div class="user_head"></div>
+								<div class="user_info">
+									<p>樱花粉</p>
+									<p><span>10210</span>算力</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="other_bg">
+			        	<div class="user_rank mui-clearfix">
+			        		<div class="rank_num">
+			        			100
+			        		</div>
+			        		<div class="user_head">
+			        			<div class="head_img"></div>
+			        		</div>
+			        		<div class="user_name">
+			        			这里是用户的名字
+			        		</div>
+			        		<div class="user_asset">
+			        			<span>1000</span>算力
+			        		</div>
+			        	</div>
+		        	</div>
+		        	<div class="all_rank">
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			4
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			5
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			6
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			7
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			8
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			9
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			10
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			11
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			12
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			13
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			14
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			15
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+	        	<div class="user_rank mui-clearfix other_rank">
+	        		<div class="rank_num">
+	        			16
+	        		</div>
+	        		<div class="user_head">
+	        			<div class="head_img"></div>
+	        		</div>
+	        		<div class="user_name">
+	        			这里是用户的名字
+	        		</div>
+	        		<div class="user_asset">
+	        			<span>1000</span>算力
+	        		</div>
+	        	</div>
+        	</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/angular.min.js"></script>
+	<script src="../../js/home/rank.js"></script>
+
+</html>

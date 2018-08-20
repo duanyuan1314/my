@@ -1,0 +1,114 @@
+.form_title {
+	padding:5px 15px;
+	color: #677091;
+	font-size: 16px;
+	font-weight: 100;
+}
+.form_title img{
+	width:25px;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+.input_container {
+	background: #303540;
+	color: #677091;
+	padding: 0 10px;
+	margin-bottom: 10px;
+}
+
+.input_container .input_box {
+	line-height: 50px;
+}
+
+.input_container .input_box+.input_box {
+	border-top: 1px dashed #677091;
+}
+
+.input_container .input_box>div:first-child {
+	text-align: left;
+	font-size: 16px;
+}
+
+.input_container .input_box>div:last-child {
+	width: 72%;
+}
+
+.input_container .input_box input {
+	background: transparent;
+	color: #fff;
+	font-size: 14px;
+	padding: 5px;
+	width: 100%;
+	border:0;
+	margin: 0;
+}
+
+.input_container .verif_code input {
+	width: 50%;
+}
+
+.key_btn {
+	background: transparent;
+	color: #677091;
+	border: 1px solid #677091;
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+.submit_btn{
+	width: 90%;
+	background: #F7561E;
+	color: #Fff;
+	font-size: 18px;
+	letter-spacing: 5px;
+	border:0;
+	position: absolute;
+	bottom: 10px;
+	left: 5%;
+	height: 45px;
+}
+
+
+#pop_into .pop_container {
+	height: 240px;
+	color: #333;
+}
+
+#pop_into .pop_container p {
+	color: #333;
+}
+
+#pop_into .gift_box {
+	width: 125px;
+	margin: 15px auto;
+}
+
+#pop_into .pop_btn {
+	width: 50%;
+	margin-top: 20px;
+}
+
+/*
+ * 输入框placeholder颜色
+ */
+
+::-webkit-input-placeholder {
+	/* WebKit browsers */
+	color: #424B60;
+}
+
+:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #424B60;
+}
+
+::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #424B60;
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10+ */
+	color: #424B60;
+}

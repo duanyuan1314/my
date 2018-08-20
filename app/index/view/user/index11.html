@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html ng-app="app" style="background-color: #2a2d36;">
+
+<head>
+    <meta charset="utf-8">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/my.css" />
+</head>
+
+<body ng-controller="my_controller" style="background-color: #2a2d36;">
+    <nav class="mui-bar mui-bar-tab" style="z-index: 10000;">
+        <a class="mui-tab-item" href="{:url('index/index')}">
+            <img class="show_img" src="__STATIC__/index/img/tab/home.png" alt="" />
+        </a>
+        <a class="mui-tab-item" href="{:url('recharge/index')}">
+            <img class="show_img" src="__STATIC__/index/img/tab/recharge.png" alt="" />
+        </a>
+        <a class="mui-tab-item" href="{:url('gift/index')}">
+            <img class="show_img" src="__STATIC__/index/img/tab/gift.png" alt="" />
+        </a>
+        <a class="mui-tab-item" href="{:url('user/index')}">
+            <img class="show_img" src="__STATIC__/index/img/tab/my.gif" alt="" />
+        </a>
+    </nav>
+    <div class="mui-content">
+        <div id="pullrefresh">
+            <div class="user_content">
+                <div class="user_photo">
+                    <div class="info_container">
+                        <div class="photo_circle" ng-click="goPage('{:url('user/setting')}')" >
+                             {if condition="$user.avatar eq ''" }
+                                <img src="{$Think.const.OSS_AVATAR}" class="user_photo_img" style="width:65px;height:65px;border-radius:50%;" /> 
+                                {else/}
+                                <img src="{$user.avatar}" alt="" class="user_photo_img" style="width:65px;height:65px;border-radius:50%;" />
+                             {/if}
+                            <div class="photo_bg"></div>
+                            <span class="user_sign">
+                                 {if condition="$user.title_top eq ''" } 暂无称号 {else /} {$user.title_top} {/if}
+                            </span>
+                        </div>
+                        <p class="wh_text mui-text-center user_name" ng-click="goPage('{:url('user/change_info')}')" >
+                             {$user.name}
+                        </p>
+                        <p class="wh_text mui-text-center"style="padding-bottom: 5px;">
+                           	 {$user.runaddress}
+                        </p>
+                        <div class="user_exp mui-clearfix">
+                            <div class="mui-pull-left wh_text">
+                                LV{$user.grade}
+                            </div>
+                            <div class="progress_bg mui-pull-left">
+                                <div class="progress_length" style="color: rgba(255,255,255,0);">{$percentage}</div>
+                                <p class="wh_text">
+                                    <span>{$user.exp}</span>&nbsp;/&nbsp;经验值</p>
+                            </div>
+                            <div class="mui-pull-right or_text">
+                                <img src="__STATIC__/index/img/my/rocket.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab_container">
+                        <ul class="mui-clearfix">
+                            <li ng-click="goPage('{:url('user/bean_blance')}')" >
+                                <p class="or_text maxWidth">{$user.jifen}</p> 
+                                <p class="wh_text">乐豆</p>
+                            </li>
+                            <li ng-click="goPage('{:url('run/index')}')" >
+                                <p class="or_text maxWidth">{$user.run}</p>
+                                <p class="wh_text">
+                                    RUN
+                                </p>
+                            </li>
+                            <li ng-click="goPage('{:url('user/title')}')" >
+                                <p class="or_text">
+                                    <img src="__STATIC__/index/img/my/crow.png" alt="" />
+                                </p>
+                                <p class="wh_text">
+                                  {if condition="$user.title_top eq ''" } 购买称号 {else /} {$user.title_top} {/if}
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item_list">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('user/prize')}')" >
+                            <a class="mui-navigate-right">
+                                订单管理
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('user/growth')}')" >
+                            <a class="mui-navigate-right">
+                                成长道具
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                 <div class="item_list">
+                    <ul class="mui-table-view">
+                    	<li class="mui-table-view-cell" ng-click="goPage('{:url('user/news')}')" >
+                            <a class="mui-navigate-right  infors">
+                                消息中心
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('user/mypack')}')" >
+                            <a class="mui-navigate-right  infors">
+                                我的背包
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="item_list">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('user/contact')}')" >
+                            <a class="mui-navigate-right">
+                                 意见反馈
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('user/qrcode')}')" >
+                            <a class="mui-navigate-right">
+                                邀请好友
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="item_list">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('user/setting')}')">
+                            <a class="mui-navigate-right">
+                                设置
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/my/account/login.js"></script>
+    <script src="__STATIC__/index/js/my/my.js"></script>
+    <script>
+        mui('nav').on('tap', 'a', function () {
+            document.location.href = this.href;
+        });
+             //经验值
+        var exp = $('.progress_length').html()*100;
+        if(exp > 0 && exp <= 9){
+        	$('.progress_length').css('width','9%');
+        }else{
+        	 $('.progress_length').css('width',exp+'%');
+        }
+           /* 监听文章状态 */
+    $.ajax({
+        type: "post",
+        url: "{:url('user/checkstatus')}",
+        success: function (res) {
+            if (res.code == 1) {
+                $('.infors').removeClass('redDot');
+            } else {
+                $('.infors').addClass('redDot');
+            }
+        },
+    });
+    </script>
+</body>
+</html>

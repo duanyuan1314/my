@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>碎片余额</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/commen.css" />
+		<link rel="stylesheet" href="../../css/gift/install.css" />
+	</head>
+
+	<body ng-controller="install_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">兑换记录</h1>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="tab_nav">
+				<div class="mui-segmented-control">
+					<a class="mui-control-item mui-active" href="#item1">已完成</a>
+					<a class="mui-control-item" href="#item2">待发货</a>
+					<a class="mui-control-item" href="#item3">待收货</a>
+				</div>
+			</div>
+			<div>
+				<div id="item1" class="mui-control-content mui-active">
+					<div class="order_info">
+						<div class="order_top">
+							<h5 class="mui-clearfix"><span>快递小哥正在飞奔赶来的路上</span><b class="or_text mui-pull-right">已完成</b></h5>
+						</div>
+						<div class="order_mid mui-clearfix">
+							<div class="media_left mui-pull-left">
+								<img src="../../img/gift/card.png" alt="" />
+							</div>
+							<div class="media_mid mui-pull-left">
+								<p>碎片兑换  中国石化100元加 油卡 全国通用</p>
+							</div>
+							<div class="media_right mui-pull-left">
+								<p><img src="../../img/gift/fragment.png" alt="" /><span class="or_text">1000</span></p>
+								<p class="wh_text">x1</p>
+							</div>
+						</div>
+						<div class="order_bottom">
+							<p class="gray_text mui-text-right">订单编号：<span>453113131132212</span></p>
+							<p class="gray_text mui-text-right">兑换时间：<span>2018-04-25  22:06:12</span></p>
+						</div>
+					</div>
+					<div class="order_info">
+						<div class="order_top">
+							<h5 class="mui-clearfix"><span>快递小哥正在飞奔赶来的路上</span><b class="or_text mui-pull-right">已完成</b></h5>
+						</div>
+						<div class="order_mid mui-clearfix">
+							<div class="media_left mui-pull-left">
+								<img src="../../img/gift/card.png" alt="" />
+							</div>
+							<div class="media_mid mui-pull-left">
+								<p>碎片兑换  中国石化100元加 油卡 全国通用</p>
+							</div>
+							<div class="media_right mui-pull-left">
+								<p><img src="../../img/gift/fragment.png" alt="" /><span class="or_text">1000</span></p>
+								<p class="wh_text">x1</p>
+							</div>
+						</div>
+						<div class="order_bottom">
+							<p class="gray_text mui-text-right">订单编号：<span>453113131132212</span></p>
+							<p class="gray_text mui-text-right">兑换时间：<span>2018-04-25  22:06:12</span></p>
+						</div>
+					</div>
+				</div>
+				<div id="item2" class="mui-control-content">
+					<div class="order_info">
+						<div class="order_top">
+							<h5 class="mui-clearfix"><span>快递小哥正在飞奔赶来的路上</span><b class="or_text mui-pull-right">待发货</b></h5>
+						</div>
+						<div class="order_mid mui-clearfix">
+							<div class="media_left mui-pull-left">
+								<img src="../../img/gift/card.png" alt="" />
+							</div>
+							<div class="media_mid mui-pull-left">
+								<p>碎片兑换  中国石化100元加 油卡 全国通用</p>
+							</div>
+							<div class="media_right mui-pull-left">
+								<p><img src="../../img/gift/fragment.png" alt="" /><span class="or_text">1000</span></p>
+								<p class="wh_text">x1</p>
+							</div>
+						</div>
+						<div class="order_bottom">
+							<p class="gray_text mui-text-right">订单编号：<span>453113131132212</span></p>
+							<p class="gray_text mui-text-right">兑换时间：<span>2018-04-25  22:06:12</span></p>
+						</div>
+					</div>
+					<div class="order_info">
+						<div class="order_top">
+							<h5 class="mui-clearfix"><span>快递小哥正在飞奔赶来的路上</span><b class="or_text mui-pull-right">待发货</b></h5>
+						</div>
+						<div class="order_mid mui-clearfix">
+							<div class="media_left mui-pull-left">
+								<img src="../../img/gift/card.png" alt="" />
+							</div>
+							<div class="media_mid mui-pull-left">
+								<p>碎片兑换  中国石化100元加 油卡 全国通用</p>
+							</div>
+							<div class="media_right mui-pull-left">
+								<p><img src="../../img/gift/fragment.png" alt="" /><span class="or_text">1000</span></p>
+								<p class="wh_text">x1</p>
+							</div>
+						</div>
+						<div class="order_bottom">
+							<p class="gray_text mui-text-right">订单编号：<span>453113131132212</span></p>
+							<p class="gray_text mui-text-right">兑换时间：<span>2018-04-25  22:06:12</span></p>
+						</div>
+					</div>
+				</div>
+				<div id="item3" class="mui-control-content">
+					<div class="order_info">
+						<div class="order_top">
+							<h5 class="mui-clearfix"><span>快递小哥正在飞奔赶来的路上</span><b class="or_text mui-pull-right">待收货</b></h5>
+						</div>
+						<div class="order_mid mui-clearfix">
+							<div class="media_left mui-pull-left">
+								<img src="../../img/gift/card.png" alt="" />
+							</div>
+							<div class="media_mid mui-pull-left">
+								<p>碎片兑换  中国石化100元加 油卡 全国通用</p>
+							</div>
+							<div class="media_right mui-pull-left">
+								<p><img src="../../img/gift/fragment.png" alt="" /><span class="or_text">1000</span></p>
+								<p class="wh_text">x1</p>
+							</div>
+						</div>
+						<div class="order_bottom">
+							<p class="gray_text mui-text-right">订单编号：<span>453113131132212</span></p>
+							<p class="gray_text mui-text-right">兑换时间：<span>2018-04-25  22:06:12</span></p>
+						</div>
+					</div>
+					<div class="order_info">
+						<div class="order_top">
+							<h5 class="mui-clearfix"><span>快递小哥正在飞奔赶来的路上</span><b class="or_text mui-pull-right">待收货</b></h5>
+						</div>
+						<div class="order_mid mui-clearfix">
+							<div class="media_left mui-pull-left">
+								<img src="../../img/gift/card.png" alt="" />
+							</div>
+							<div class="media_mid mui-pull-left">
+								<p>碎片兑换  中国石化100元加 油卡 全国通用</p>
+							</div>
+							<div class="media_right mui-pull-left">
+								<p><img src="../../img/gift/fragment.png" alt="" /><span class="or_text">1000</span></p>
+								<p class="wh_text">x1</p>
+							</div>
+						</div>
+						<div class="order_bottom">
+							<p class="gray_text mui-text-right">订单编号：<span>453113131132212</span></p>
+							<p class="gray_text mui-text-right">兑换时间：<span>2018-04-25  22:06:12</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/angular.min.js"></script>
+		<script src="../../js/gift/install.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>成长道具</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+	</head>
+	<style>
+		#pullrefresh {
+			background-image: url(__STATIC__/index/img/my/prop/prop_bg.png)!important;
+			height: auto;
+			background-size: cover!important;
+			background-repeat: no-repeat!important;
+			background-position: top!important;
+			padding-bottom: 40px;
+		}
+		
+		.mui-bar-nav {
+			background: transparent;
+		}
+		
+		.prop_list {
+			width: 75%;
+			margin: 300px auto 0 auto;
+			border: 1px solid transparent;
+		}
+		
+		.list_item {
+			margin: 40px 10px;
+		}
+		
+		.left_object {
+			width: 40%;
+		}
+		
+		.right_object {
+			width: 60%;
+		}
+		
+		.left_object img {
+			width: 80%;
+		}
+		
+		.right_object>p {
+			padding: 0.005rem;
+			margin: 5px 0;
+			font-weight: 600;
+		}
+		
+		.right_object>p:first-child {
+			font-size: 0.7rem;
+			color: #Fff;
+		}
+		
+		.right_object>p:nth-child(2) {
+			font-size: 1.2rem;
+			color: #FFD621;
+		}
+		
+		.right_object>p:nth-child(3) {
+			font-size: 0.8rem;
+			color: #fff;
+		}
+		
+		.right_object>p:nth-child(3) b {
+			font-size: 1.4rem;
+		}
+		
+		.go_buy {
+			padding: 2px 10px;
+			background: #FFD621;
+			color: #Fff;
+			border: 0;
+			font-size: 0.7rem;
+			border-radius: 20px;
+		}
+		
+		.go_buy .mui-icon {
+			font-size: 16px;
+		}
+		
+		.returnA {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+		}
+		
+		.returnA img {
+			width: inherit;
+			height: inherit;
+			margin: 10px;
+		}
+		
+		.mui-popup-button:first-child {
+			color: #333 !important;
+			border-radius: 0 0 0 5px !important;
+		}
+		
+		.mui-popup-button:last-child {
+			border-radius: 0 0 5px !important;
+			background: #F7561E;
+			color: #FFF !important;
+		}
+		
+		.mui-popup-inner {
+			border-radius: 5px 5px 0 0 !important;
+		}
+		
+		.mui-popup {
+			border-radius: 0 !important;
+		}
+	</style>
+
+	<body ng-controller="growth_prop_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-pull-left returnA" onclick="javascript :history.back(-1);"><img src="__STATIC__/index/img/my/prop/returnBtn.png" /></a>
+		</header>
+
+		<div id="pullrefresh" class="mui-content">
+			<div class="prop_list">
+				{volist name="data" id="vo" key="k" } {if condition ="$k%2 eq 1" }
+				<div class="list_item mui-clearfix">
+					<div class="left_object mui-text-center mui-pull-left">
+						<img src="{$vo.url}">
+					</div>
+					<div class="right_object mui-pull-left">
+						<p class='mui-ellipsis'>加快成长速度 双倍经验 </p>
+						<p class='mui-ellipsis'>{$vo.name}</p>
+						<p class='mui-ellipsis'>
+							<i>狂欢价：</i>
+							<b>{$vo.ledou}</b>
+						</p>
+						<button class="go_buy" data="{$vo.id}">点击购买
+                                <i class="mui-icon mui-icon-arrowright"></i>
+                            </button>
+					</div>
+				</div>
+				{else /}
+				<div class="left_item mui-clearfix">
+					<div class="right_object mui-pull-left">
+						<p class='mui-ellipsis'>加快成长速度 双倍经验 </p>
+						<p class='mui-ellipsis'>{$vo.name}</p>
+						<p class='mui-ellipsis'>
+							<i>狂欢价：</i>
+							<b>{$vo.ledou}</b>
+						</p>
+						<button class="go_buy" data="{$vo.id}">点击购买
+                                <i class="mui-icon mui-icon-arrowright"></i>
+                            </button>
+					</div>
+					<div class="left_object mui-text-center mui-pull-left">
+						<img class="" src="{$vo.url}">
+					</div>
+				</div>
+				{/if} {/volist}
+			</div>
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+		<script src="__STATIC__/index/js/angular.min.js"></script>
+		<script src="__STATIC__/index/js/my/assets/growth_prop.js"></script>
+		<script src="__STATIC__/layer/layer.js"></script>
+	</body>
+
+</html>
+<script>
+	mui('.right_object').on('tap','.go_buy',function() {
+		var id = $(this).attr('data');
+		var btnArray = ['否', '是'];
+		mui.confirm('购买之后无法退换，您确定要购买吗？', '是否确认', btnArray, function(e) {
+			if(e.index == 1) {
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: "{:url('user/tools_save')}",
+					data: {
+						id: id
+					},
+					success: function(re) {
+						if(re.code == 1) {
+							layer.msg(re.msg, {
+								time: 1000
+							}, function() {
+								//操作事件
+								location.href = "{:url('user/index')}";
+							})
+						} else {
+							layer.msg(re.msg, {
+								time: 1000
+							}, function() {
+								//操作事件
+								location.href = "{:url('recharge/index')}";
+							})
+						}
+					}
+				});
+			}
+		});
+	})
+</script>

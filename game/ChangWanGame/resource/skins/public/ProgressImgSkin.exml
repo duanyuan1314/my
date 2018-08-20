@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ProgressImgSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="ProgressBg_png" x="41" y="14"/>
+	<e:Image id="Bar" source="ProgressBar_png" x="50" y="20" anchorOffsetX="0"/>
+	<e:Image source="ProgressIcon_png" x="0" y="0"/>
+</e:Skin>

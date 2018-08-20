@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>新添钱包地址</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<style type="text/css">
+			a {
+				color: #fff !important;
+			}
+			
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				margin: 20px 15px;
+			}
+			
+			ul li {
+				margin-bottom: 20px !important;
+			}
+			
+			input {
+				margin-bottom: 0 !important;
+			}
+			
+			
+			input::-webkit-input-placeholder,
+			textarea::-webkit-input-placeholder {
+				color: #677091;
+			}
+			
+			input:-moz-placeholder,
+			textarea:-moz-placeholder {
+				color: #677091;
+			}
+			
+			input::-moz-placeholder,
+			textarea::-moz-placeholder {
+				color: #677091;
+			}
+			
+			input:-ms-input-placeholder,
+			textarea:-ms-input-placeholder {
+				color: #677091;
+			}
+			
+			
+			.zyLi {
+				color: #AFB4BD;
+				font-size: 14px;
+			}
+			
+			.addBtn {
+				display: block;
+				height: 50px;
+				background-color: #e55600;
+				color: #fff;
+				text-align: center;
+				line-height: 50px;
+				border-radius: 3px;
+				font-size: 16px;
+			}
+			
+			.mui-input-row select,
+			.addressBox ul input
+			 {
+				background-color: #2c313b !important;
+				color: #fff;
+				height: 37px;
+				padding: 0 15px;
+				font-size: 16px;
+				border: none !important;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+			}
+			
+			.mui-input-row select {
+				color: #677091;
+			}
+			
+			.mui-popup-button:first-child {
+				color: #333 !important;
+				border-radius: 0 0 0 5px !important;
+			}
+			
+			.mui-popup-button:last-child {
+				border-radius: 0 0 5px !important;
+				background: #F7561E;
+				color: #FFF !important;
+			}
+			
+			.mui-popup-inner {
+				border-radius: 5px 5px 0 0 !important;
+			}
+			
+			.mui-popup {
+				border-radius: 0 !important;
+			}
+			
+			.mui-popup-input input {
+				height: 35px !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h4 class="mui-title">新添钱包地址</h4>
+		</header>
+		<div id="addAddress" class="mui-content">
+
+			<div class="addressBox">
+				<ul>
+					<div class="mui-input-row">
+						<select name="select" id="mySelect">
+							<option value="0">--全部币种--</option>
+							<option value="1">RUN</option>
+						</select>
+						<!-- <span class="mui-icon mui-icon-arrowdown mui-pull-right"></span> -->
+					</div>
+					<li>
+						<input type="text" placeholder="请填写标识，如：火币网，离线钱包" id="name" />
+					</li>
+					<li>
+						<input type="text" placeholder="输入钱包地址" id="runads" />
+					</li>
+					<!--   <li>
+                    <input type="number" placeholder="输入交易密码" />
+                </li> -->
+					<li class="zyLi">
+						<strong>注意：</strong>请正确添加转出币种的提币地址，否则提币无法到账，由此造成的损失，本平台概不负责。
+					</li>
+					<li>
+						<a class="addBtn" onclick="btnok()">
+							确认添加
+						</a>
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+		<script src="__STATIC__/layer/layer.js"></script>
+		<!--   <script type="text/javascript">
+        mui.init();
+    </script> -->
+	</body>
+
+</html>
+<script>
+	mui.init();
+
+	function btnok() {
+		var bi_id = $("#mySelect").val();
+		var runads = $("#runads").val();
+		var name = $("#name").val();
+		if(bi_id == '0') {
+			layer.msg('请选着币种');
+		} else if(runads == '') {
+			layer.msg('请输入钱包地址');
+		} else {
+			$.post("{:url('run/checkpass')}",
+				function(data) {
+					if(data.code == 1) {
+						mui.prompt('请输入交易密码', '请输入交易密码', ' ', function(e) {
+							if(e.index == 1) {
+								//获取弹框的input值；
+								var jiaoyi = $('.mui-popup-input input').val();
+								$.ajax({
+									type: 'POST',
+									dataType: "json",
+									url: "{:url('run/addsave')}",
+									data: {
+										bi_id: bi_id,
+										runaddress: runads,
+										name: name,
+										jiaoyi: jiaoyi
+									},
+									success: function(re) {
+										if(re.code == 1) {
+											layer.msg(re.msg, {
+												time: 1000
+											}, function() {
+												//操作事件
+												window.location.href = "{:url('run/runlist')}";
+											})
+										} else {
+											layer.msg(re.msg, {
+												time: 2000
+											});
+										}
+									}
+								});
+							}
+						})
+					} else {
+						var btnArray = ['否', '是'];
+						mui.confirm('交易密码设置不可修改，是否继续', '是否继续', btnArray, function(e) {
+							if(e.index == 1) {
+								window.location.href = "{:url('user/jiaoyi')}";
+							} else {
+								return false;
+							}
+						});
+					}
+				});
+		}
+
+	}
+</script>

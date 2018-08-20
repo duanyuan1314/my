@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>礼品</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<link rel="stylesheet" href="__STATIC__/index/css/gift/gift.css" />
+	</head>
+
+	<body ng-controller="gift_controller">
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">油卡兑换</h1>
+			 <img src="__STATIC__/index/img/home/threeDot.png" class="mui-pull-right" id="b_select_btn" ng-click="pop_b_select()" style="width: 20px; height: 4px;margin-top: 20px;"/>
+		</header>
+		<div id="b_select_container" class="mui-popover">
+		<button><a href="{:url('user/news')}" class="infors">消息中心</a></button>
+		<button class="shareBtn">分享</button>
+    </div>
+		<nav class="mui-bar mui-bar-tab" style="z-index: 10000;">
+			<a class="mui-tab-item" href="{:url('index/index')}">
+				<img class="show_img" src="__STATIC__/index/img/tab/home.png" alt="" />
+			</a>
+			<a class="mui-tab-item" href="{:url('recharge/index')}">
+				<img class="show_img" src="__STATIC__/index/img/tab/recharge.png" alt="" />
+			</a>
+			<a class="mui-tab-item" href="{:url('gift/index')}">
+				<img class="show_img" src="__STATIC__/index/img/tab/gift.gif" alt="" />
+			</a>
+			<a class="mui-tab-item" href="{:url('user/index')}">
+				<img class="show_img" src="__STATIC__/index/img/tab/my.png" alt="" />
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="pullrefresh">
+				<div style="padding-bottom: 50px;">
+					<div class="baner_container">
+						<div class="fragment_info mui-clearfix">
+							<div class="fragment_box mui-pull-left">
+								<div ng-click="goPage('debris_balance.html')">
+									<img src="__STATIC__/index/img/gift/fragment.png" alt="" />
+									<span>{$userary['haschip']}</span> </div>
+								<img src="__STATIC__/index/img/gift/plus.png" alt="" onclick="show_pop3()" />
+							</div>
+							<div class="history_box mui-pull-right" onclick="show_prompt()">
+								<div class="history_icon">
+									<img src="__STATIC__/index/img/gift/history_icon.png" alt="" />
+								</div>
+								<span>规则</span>
+							</div>
+						</div>
+					</div>
+					<div class="card_type">
+						<div class="oils_name mui-text-center">
+							<img src="__STATIC__/index/img/gift/zsh.png" alt="" />
+						</div>
+						<div class="card_list mui-clearfix">
+							{volist name="list" id="row"}
+							<div class="card_option">
+								<p class="mui-clearfix">
+									<span class="or_text slh" style="color:#F7561E !important;">{$row.name}</span>
+									<span class="mui-pull-right">全国通用</span>
+								</p>
+								<img  data-echo="__STATIC__/index/img/gift/card.png" src="__STATIC__/index/img/home/yk_loading.png" class="card_img" alt="" />
+								<p class="mui-clearfix">
+									<img src="__STATIC__/index/img/gift/fragment.png" alt="" />
+									<span class="or_text special_or_text">{$row.examout}</span>
+									<button class="exchange_btn" data="{$row.id}">立即兑换</button>
+								</p>
+							</div>
+							{/volist}
+						</div>
+					</div>
+
+					<!--增加的中石油加油卡-->
+					<div class="card_type">
+						<div class="oils_name mui-text-center">
+							<img src="__STATIC__/index/img/gift/zsy.png" alt="" />
+						</div>
+						<div class="card_list mui-clearfix">
+							{volist name="arr" id="row"}
+							<div class="card_option">
+								<p class="mui-clearfix">
+									<span class="or_text slh" style="color:#F7561E !important;">{$row.name}</span>
+									<span class="mui-pull-right">全国通用</span>
+								</p>
+								<img  data-echo="__STATIC__/index/img/gift/card.png" src="__STATIC__/index/img/home/yk_loading.png" class="card_img" alt="" />
+								<p class="mui-clearfix">
+									<img src="__STATIC__/index/img/gift/fragment.png" alt="" />
+									<span class="or_text special_or_text">{$row.examout}</span>
+									<button class="exchange_btn" data="{$row.id}">立即兑换</button>
+								</p>
+							</div>
+							{/volist}
+						</div>
+					</div>
+					<div class="card_type">
+						<div class="oils_name mui-text-center">
+							<img src="__STATIC__/index/img/gift/smlb.png" alt="" />
+						</div>
+						<div class="card_list mui-clearfix">
+							<div class="card_option">
+								<img src="__STATIC__/index/img/gift/jqqd.png" alt="" class="qd_img" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="appurl" value="{$url}" />
+		<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="pop_container">
+				<img src="__STATIC__/index/img/gift/address.png" alt="" class="gift_box" />
+				<h4>您还未添加收货地址</h4>
+				<button class="pop_btn" ng-click="goPage('{:url('my/add_address','fromtype=1')}')">添加我的收货地址</button>
+			</div>
+			<div class="close_container" ng-click="close_pop(1)">
+				<i class="mui-icon mui-icon-close"></i>
+			</div>
+		</div>
+		<!--新增的兑换弹窗-->
+		<div id="pop_promt" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="pop_contant2">
+				<img src="../../../static/index/img/gift/pop_confirmClose.png" / class="pop_close" onclick="close_prompt()">-
+
+				<ul>
+					<li>
+						<span>1</span>
+						<p>用户在游戏中随机获得平台奖励的礼 品碎片以100:1的面额进行兑换礼品</p>
+					</li>
+					<li>
+						<span>2</span>
+						<p>兑换成功礼品将以邮寄方式寄往所填 写地址中</p>
+					</li>
+					<li>
+						<span>3</span>
+						<p>因相关条文规定，兑换用户需上传实 名信息</p>
+					</li>
+					<li>
+						<span>4</span>
+						<p>等级在5级以上的用户每天可兑换一 次礼品，等级在10级以上者每天可兑 换2次。等级在20级以上用户每天可 兑换3次。25级以上用户每天兑换不限次数。(兑换面额不做限制)</p>
+					</li>
+					<li>
+						<span>5</span>
+						<p>如等级不到的用户可使用乐豆去成长 道具购买礼品兑换道具进行兑换</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!--新增的碎片规则弹窗-->
+		<div id="pop_into3" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="pop_contant"> <img src="../../../../static/index/img/gift/pop_confirmClose.png" alt="" onclick="hide_pop3()" /> </div>
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+		<script src="__STATIC__/index/js/angular.min.js"></script>
+		<script src="__STATIC__/index/js/gift/gift.js"></script>
+		 <script src="__STATIC__/index/js/config.js"></script> 
+		<script src="__STATIC__/layer/layer.js"></script>
+		<script src="__STATIC__/index/js/home/echo.min.js"></script>
+		<script>
+	$(function() {
+		mui('.card_option').on('tap','.exchange_btn',function() {
+			var id = $(this).attr("data");
+			var lc_url = "{:url('gift/confirm_order')}";
+			location.href = lc_url + '?id=' + id;
+			/* $.ajax({
+				type: "post",
+				data: { id: id },
+				url: "{:url('gift/checkaddress')}",
+				success: function(res) {
+					if(res.code == 1) {
+						location.href = lc_url + '?id=' + id;
+					} else if(res.code == 2){
+						 layer.msg('认证信息正在审核中，请耐心等待！');
+					} else if (res.code == 3) {
+						 layer.msg('玩游戏升级,赢取更多机会');
+						var url = "{:url('index/index')}";
+						loading(url);
+					} else if (res.code == 4) {
+						layer.msg('当前的等级不足,请前去升级');
+						var url = "{:url('index/index')}";
+						loading(url);
+					}else{
+						location.href="{:url('user/prize_confirm')}";
+					}
+				},
+			}); */
+
+		})
+	})
+	function loading(url) {
+			var home_second = 2;
+			var homeTimer;
+			var homeTimer = setInterval(function () {
+				home_second--;
+				if (home_second <= 0) {
+					window.clearInterval(homeTimer);
+					//执行跳转操作
+					location.href = url;
+				}
+			}, 1000)
+	}
+		/* 监听文章状态 */
+	$.ajax({
+		type: "post",
+		url: "{:url('user/checkstatus')}",
+		success: function (res) {
+			if (res.code == 1) {
+				$('.infors').removeClass('redDot');
+			} else {
+				$('.infors').addClass('redDot');
+			}
+		},
+	});
+</script>
+		<script type="text/javascript">
+				Echo.init({
+                    offset: 0,
+                    throttle: 0
+                 });
+	        var p = 0;
+			var t = 0;
+			$(window).scroll(function(e) {
+				p = $(this).scrollTop();
+				if(t <= p) {
+					 //下滚  
+					$("header").hide(); 
+				} else {
+					 //上滚  
+					$("header").show(); 
+				}
+				setTimeout(function() {
+					t = p;
+				}, 0);
+			});
+			function show_pop3() {
+				mui('#pop_into3').popover('show');
+				mui('#pop_promt').popover('hide');
+			};
+
+			function hide_pop3() {
+				mui('#pop_into3').popover('hide');
+			}
+			mui('nav').on('tap', 'a', function() {
+				document.location.href = this.href;
+			});
+
+			function show_prompt() {
+				mui('#pop_promt').popover('show');
+					mui('#pop_into3').popover('hide');
+			}
+
+			function close_prompt() {
+				mui('#pop_promt').popover('hide');
+			}
+		</script>
+	</body>
+
+</html>
+

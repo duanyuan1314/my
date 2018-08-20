@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>找回密码</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<link rel="stylesheet" href="../../../css/commen.css" />
+		<link rel="stylesheet" href="../../../css/my/account/retrieve.css" />
+	</head>
+
+	<body ng-controller="retrieve_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="account_container">
+				<h4 class="mui-text-center">找回密码</h4>
+				<div class="mui-clearfix phone_box form_line">
+					<input type="text" class="input_case" id="phone_input" name="phone_input" placeholder="请输入手机号" />
+					<button class="send_code" ng-click="getTestCode()"ng-bind="description" ng-disabled="canClick"></button>
+				</div>
+				<div class="mui-clearfix form_line">
+					<input type="text" class="input_case" name="pass_code" placeholder="请输入验证码" />
+				</div>
+				<div class="mui-clearfix form_line phone_box">
+					<input type="password" class="input_case" name="pass_word" placeholder="请输入新密码（6-20位英文或数字）" />
+				</div>
+				<button class="register_btn" ng-click="submit_form()">提交</button>
+			</div>
+		</div>
+		<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="pop_container">
+				<img src="../../../img/my/register.png" alt="" class="gift_box" />
+				<h4>恭喜您，修改成功</h4>
+				<button class="pop_btn" ng-click="goPage('../../recharge/real_name.html')" ng-bind="go_login"></button>
+			</div>
+			<div class="close_container" ng-click="close_pop()">
+				<i class="mui-icon mui-icon-close"></i>
+			</div>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/angular.min.js"></script>
+		<script src="../../../js/my/account/retrieve.js"></script>
+	</body>
+
+</html>

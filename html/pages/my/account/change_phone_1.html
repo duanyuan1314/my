@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>更换手机号</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<link rel="stylesheet" href="../../../css/commen.css" />
+		<link rel="stylesheet" href="../../../css/my/account/change_phone_1.css" />
+	</head>
+
+	<body ng-controller="change_phone_1_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">更换手机号</h1>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="change_password">
+				<p class="into_title">您当前手机号为：+86 185****1148。更换手机后，下次登 录需使用新手机号。 </p>
+				<div class="mui-clearfix">
+					<span class="wh_text mui-pull-left">+86</span>
+					<input type="text" class="init_input mui-pull-left" placeholder="输入新的手机号" />
+				</div>
+				<button class="btn btn_orange" ng-click="goPage('change_phone_2.html')">下一步</button>
+			</div>
+		</div>
+		<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="pop_container">
+				<img src="../../../img/my/register.png" alt="" class="gift_box" />
+				<h4>修改密码成功</h4>
+				<p style="padding: 10px 0;">请使用新登录密码登录</p>
+				<button class="pop_btn" ng-click="close_pop()">我知道了</button>
+			</div>
+			<div class="close_container" ng-click="close_pop()">
+				<i class="mui-icon mui-icon-close"></i>
+			</div>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/angular.min.js"></script>
+		<script src="../../../js/my/account/change_phone_1.js"></script>
+	</body>
+
+</html>

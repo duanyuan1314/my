@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>排行榜</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/index/css/home/rank.css"/>
+	</head>	<style>		html, body{			background: #57bcf7;		}		.best_rank>div p span{			margin-right: 2px;		}		.best_rank>div .user_info{			left: 23px;		}		.best_rank>div:last-child .user_info, .best_rank>div:first-child .user_info{			left: 18px;		}	</style>
+	<body ng-controller="rank_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">最佳榜单</h1>
+		</header>
+		<div class="mui-content" style="height: 100%;">
+			<div id="pullrefresh" style="height: auto;">
+				<div class="best_list">
+					<div class="star_bg">
+							<div class="best_rank mui-clearfix">
+								{empty name="toplisttwo"}
+								<div>
+									<div class="head_portrait"></div>
+									<div class="user_head" style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;">
+									</div>
+									<div class="user_info">
+										<p>虚位以待</p>
+										<p style="font-size: 0.7rem;">
+											<span style="font-size: 0.7rem;"></span>乐豆</p>
+									</div>
+								</div>
+								{else /} {volist name="toplisttwo" id="vo"}
+								<div>
+									<div class="head_portrait"></div>
+									<div class="user_head" {if condition="$vo.avatar eq ''" }style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;"
+									 {else /}style="background-image: url({$vo.avatar});background-size:60px 60px;" {/if}>
+									</div>
+									<div class="user_info">
+										<p>{$vo['name']}</p>
+										<p style="font-size: 0.7rem;">
+											<span style="font-size: 0.7rem;">{$vo['sum']}</span>乐豆</p>
+									</div>
+								</div>
+								{/volist} {/empty} {empty name="toplistone"}
+								<div>
+									<div class="head_portrait"></div>
+									<div class="user_head" style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;">
+									</div>
+									<div class="user_info">
+										<p>虚位以待</p>
+										<p style="font-size: 0.7rem;">
+											<span style="font-size: 0.7rem;"></span>乐豆</p>
+									</div>
+								</div>
+								{else /} {volist name="toplistone" id="vo"}
+								<div>
+									<div class="head_portrait"></div>
+									<div class="user_head" {if condition="$vo.avatar eq ''" }style="background-image: url({$Think.const.OSS_AVATAR});background-size:70px 70px;"
+									 {else /}style="background-image: url({$vo.avatar});background-size:70px 70px;" {/if}>
+									</div>
+									<div class="user_info">
+										<p>{$vo.name}</p>
+										<p style="font-size: 0.7rem;">
+											<span style="font-size: 0.7rem;">{$vo['sum']}</span>乐豆</p>
+									</div>
+								</div>
+								{/volist} {/empty} {empty name="toplistree"}
+								<div>
+									<div class="head_portrait"></div>
+									<div class="user_head" style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;">
+									</div>
+									<div class="user_info">
+										<p>虚位以待</p>
+										<p style="font-size: 0.7rem;">
+											<span style="font-size: 0.7rem;"></span>乐豆</p>
+									</div>
+								</div>
+								{else /} {volist name="toplistree" id="vo"}
+								<div>
+									<div class="head_portrait"></div>
+									<div class="user_head" {if condition="$vo.avatar eq ''" }style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;"
+									 {else /}style="background-image: url({$vo.avatar});background-size:60px 60px;" {/if}>
+									</div>
+									<div class="user_info">
+										<p>{$vo.name}</p>
+										<p style="font-size: 0.7rem;">
+											<span style="font-size: 0.7rem;">{$vo.sum}</span>乐豆</p>
+									</div>
+								</div>
+								{/volist} {/empty}
+							</div>
+					</div>
+					<div class="other_bg" {if condition="$det['rownum'] eq '-1'" } style="display:none;" {/if} >
+			        	<div class="user_rank clear_float">
+			        		<div class="rank_num">
+			        			{$det['rownum']}
+			        		</div>
+			        		<div class="user_head">
+			        			<div class="head_img" {if condition="$det['avatar'] eq ''" }style="background-image: url({$Think.const.OSS_AVATAR});background-size:40px
+								40px;" {else /}style="background-image: url({$det['avatar']});background-size:40px 40px;" {/if}>
+								</div>
+			        		</div>
+			        		<div class="user_name">
+			        			{$det['name']}
+			    
+			        		</div>
+			        		<div class="user_asset">
+			        			<span style="font-size: 0.7rem;">{$det['sum']}</span><span style="float:right;color:black;font-size: 0.7rem;">乐豆</span>
+			        		</div>
+			        	</div>
+		        	</div>
+		        	<div class="all_rank">
+		        		<?php foreach($list as $k=>$v){ ?>
+		        			 <div class="user_rank clear_float other_rank" >
+				        		<div class="rank_num">
+				        			{$k+1}
+				        		</div>
+				        		<div class="user_head">
+				        			<div class="head_img"{if condition="$v['avatar'] eq ''" }style="background-image: url({$Think.const.OSS_AVATAR});background-size:40px
+									40px;" {else /}style="background-image: url({$v['avatar']});background-size:40px 40px;" {/if}>
+									</div>
+				        		</div>
+				        		<div class="user_name" >
+				        			{$v['name']}
+				        		</div>
+				        		<div class="user_asset">
+				        			<span style="font-size: 0.7rem;">{$v['sum']}</span><span style="float:right;color:black;font-size: 0.7rem;" >乐豆</span>
+				        		</div>
+				        	</div>
+		        		<?php } ?>
+        	</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="__STATIC__/index/js/mui.min.js"></script>
+	<script src="__STATIC__/index/js/jquery.min.js"></script>
+	<script src="__STATIC__/index/js/angular.min.js"></script>
+	<script src="__STATIC__/index/js/home/rank.js"></script>
+</html>

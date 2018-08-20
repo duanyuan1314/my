@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <title>更换手机号</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/account/change_phone_1.css" />
+</head>
+<body ng-controller="change_phone_1_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">更换手机号</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="change_password">
+            <p class="into_title">您当前手机号为：+86  {$user.phone}。更换手机后，下次登 录需使用新手机号。 </p>
+            <input type="hidden"  id="old_phone" value="{$user.phone}" />
+            <div class="mui-clearfix">
+                <span class="wh_text mui-pull-left">+86</span>
+                <input type="text" class="init_input mui-pull-left" placeholder="输入新的手机号"  id="change_phone" />
+            </div>
+            <button class="btn btn_orange"  >下一步</button>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/my/account/change_phone_1.js"></script>
+    <script src="__STATIC__/layer/layer.js"></script>
+</body>
+
+</html>
+<script>
+     $('.btn_orange').click(function () {
+        var reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+        var old_phone = $("#old_phone").val();
+        var change_phone =$("#change_phone").val();
+        var flag = reg.test(change_phone);
+         if (flag) {
+             if(old_phone == change_phone){
+                 layer.msg('当前手机号已绑定');
+             }else{
+                 window.location.href = "{:url('user/change_safe')}?phone=" + change_phone;
+             }
+         } else {
+             layer.msg('手机号不合法');
+         }
+       
+    }) 
+</script>

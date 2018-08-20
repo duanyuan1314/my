@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>碎片余额</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/gift/history.css" />
+</head>
+
+<body ng-controller="history_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">兑换记录</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="tab_nav">
+            <div class="mui-segmented-control">
+                <a class="mui-control-item mui-active" href="#item1">已完成</a>
+                <a class="mui-control-item" href="#item2">待发货</a>
+                <a class="mui-control-item" href="#item3">待收货</a>
+            </div>
+        </div>
+        <div>
+
+            <div id="item1" class="mui-control-content mui-active">
+                {empty name="ary1"}
+
+                <span style="text-align: center;display:block;font-size: 12px;margin-top:14px;">没有数据显示</span>
+                {else /} {volist name="ary1" id="row"}
+                <div class="order_info">
+                    <div class="order_top">
+                        <h5 class="mui-clearfix">
+                            <span>物品已送达</span>
+                            <b class="or_text mui-pull-right">已完成</b>
+                        </h5>
+                    </div>
+                    <div class="order_mid mui-clearfix">
+                        <div class="media_left mui-pull-left">
+                            <img src="__STATIC__/index/img/gift/card.png" alt="" />
+                        </div>
+                        <div class="media_mid mui-pull-left">
+                            <p>碎片兑换 {$row.cardname}</p>
+                        </div>
+                        <div class="media_right mui-pull-left">
+                            <p>
+                                <img src="__STATIC__/index/img/gift/fragment.png" alt="" />
+                                <span class="or_text">{$row.price}</span>
+                            </p>
+                            <p class="wh_text">x{$row.num}</p>
+                        </div>
+                    </div>
+                    <div class="order_bottom">
+                        <p class="gray_text mui-text-right">订单编号：
+                            <span>{$row.expressnum}</span>
+                        </p>
+                        <p class="gray_text mui-text-right">兑换时间：
+                            <span>{$row['addtime']|date="Y-m-d H:i:s",###} </span>
+                        </p>
+                    </div>
+                </div>
+                {/volist} {/empty}
+
+
+            </div>
+            <div id="item2" class="mui-control-content">
+                {empty name="ary2"}
+                <span style="text-align: center;display:block;font-size: 12px;margin-top:14px;">没有数据显示</span>
+                {else /} {volist name="ary2" id="row"}
+                <div class="order_info">
+                    <div class="order_top">
+                        <h5 class="mui-clearfix">
+                            <span>快递小哥正在飞奔赶来的路上</span>
+                            <b class="or_text mui-pull-right">待发货</b>
+                        </h5>
+                    </div>
+                    <div class="order_mid mui-clearfix">
+                        <div class="media_left mui-pull-left">
+                            <img src="__STATIC__/index/img/gift/card.png" alt="" />
+                        </div>
+                        <div class="media_mid mui-pull-left">
+                            <p>碎片兑换 {$row.cardname}</p>
+                        </div>
+                        <div class="media_right mui-pull-left">
+                            <p>
+                                <img src="__STATIC__/index/img/gift/fragment.png" alt="" />
+                                <span class="or_text">{$row.price}</span>
+                            </p>
+                            <p class="wh_text">x{$row.num}</p>
+                        </div>
+                    </div>
+                    <div class="order_bottom">
+                        <!-- <p class="gray_text mui-text-right">订单编号：
+                                    <span>453113131132212</span>
+                                </p> -->
+                        <p class="gray_text mui-text-right">兑换时间：
+                            <span>{$row['addtime']|date="Y-m-d H:i:s",###}</span>
+                        </p>
+                    </div>
+                </div>
+                {/volist} {/empty}
+
+            </div>
+            <div id="item3" class="mui-control-content">
+                {empty name="ary3"}
+                <span style="text-align: center;display:block;font-size: 12px;margin-top:14px;">没有数据显示</span>
+                {else /} {volist name="ary3" id="row"}
+                <div class="order_info">
+                    <div class="order_top">
+                        <h5 class="mui-clearfix">
+                            <span>快递小哥正在飞奔送货</span>
+                            <b class="or_text mui-pull-right">待收货</b>
+                        </h5>
+                    </div>
+                    <div class="order_mid mui-clearfix">
+                        <div class="media_left mui-pull-left">
+                            <img src="__STATIC__/index/img/gift/card.png" alt="" />
+                        </div>
+                        <div class="media_mid mui-pull-left">
+                            <p> {$row.cardname}</p>
+                        </div>
+                        <div class="media_right mui-pull-left">
+                            <p>
+                                <img src="__STATIC__/index/img/gift/fragment.png" alt="" />
+                                <span class="or_text">{$row.price}</span>
+                            </p>
+                            <p class="wh_text">x{$row.num}</p>
+                        </div>
+                    </div>
+                    <div class="order_bottom">
+                        <p class="gray_text mui-text-right">订单编号：
+                            <span>{$row.expressnum}</span>
+                        </p>
+                        <p class="gray_text mui-text-right">兑换时间：
+                            <span>{$row['addtime']|date="Y-m-d H:i:s",###}</span>
+                        </p>
+                    </div>
+                </div>
+                {/volist} {/empty}
+
+
+            </div>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/gift/history.js"></script>
+</body>
+
+</html>

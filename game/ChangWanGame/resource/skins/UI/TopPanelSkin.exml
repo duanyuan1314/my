@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="TopPanelSkin" width="750" height="90" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="btnBack" source="back_png" left="30" top="30"/>
+	<e:Image id="btnRule" source="rule_png" right="30" top="30"/>
+</e:Skin>

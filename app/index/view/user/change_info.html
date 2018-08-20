@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>修改信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/account/change_info.css" />
+</head>
+<style>
+    .layui-upload-file {
+        display: none !important;
+        opacity: .01;
+    }
+</style>
+
+<body ng-controller="change_info_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="form_container">
+            <div class="photo_circle" ng-click="upload_photo()">
+                 {if condition="$user.avatar eq ''" }
+                    <img src="__STATIC__/index/img/my/upload_icon.png" alt="" />
+                 {else/}
+                    <img src="{$user.avatar}" alt="" class="uploadImg" />
+                 {/if}
+            </div>
+            <p class="mui-text-center wh_text" ng-click="upload_photo()">
+                <span>上传头像</span>
+            </p>
+            <!--  <img src="" id="demo1"  width="36" height="36" > -->
+            {if condition="$user.avatar eq ''" }
+               <input type="hidden" id="avatar" name="image" value="{$Think.const.OSS_AVATAR}" >
+             {else/}
+               <input type="hidden" id="avatar" name="image" value="{$user.avatar}" >
+             {/if}
+            <div class="form_box">
+                <p class="wh_text">昵称</p>
+                <input type="text" id="change_name" placeholder="请输入昵称" value="{$user.name}" />
+                <hr />
+                <p class="gray_text pop_text">昵称请控制在4-30个字符，支持中英文、数字</p>
+                <p class="wh_text mui-text-center">换一个昵称</p>
+                <button class="submit_btn" ng-disabled="disabled">完成</button>
+            </div>
+        </div>
+        <div id="photo_menu" class="mui-popover mui-popover-bottom mui-popover-action">
+            <!-- 可选择菜单 -->
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell">
+                    <p class="mui-text-center" id="layui-upload">从相册选一张</p>
+                    <!--  <input  type="file" accept="image/*" name="file" multiple="multiple" > -->
+                </li>
+                <!-- <li class="mui-table-view-cell">
+                    <p ng-click="getImage()" class="mui-text-center">自己拍一张</p>
+                </li> -->
+            </ul>
+            <!-- 取消菜单 -->
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell">
+                    <p ng-click="close_menu()" class="mui-text-center">取消</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div data-role="fieldcontain">
+        <div id="localImag">
+            <img id="preview" width="-1" height="-1" style="display: none" />
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/my/account/change_info.js"></script>
+    <script src="__ADMIN_JS__/layui/layui.js?v={:config('hisiphp.version')}"></script>
+</body>
+
+</html>
+<script>
+    layui.use(['upload'], function () {
+        var $ = layui.jquery, layer = layui.layer, upload = layui.upload;
+        /**
+         * 附件上传url参数说明
+         * @param string $from 来源
+         * @param string $group 附件分组,默认sys[系统]，模块格式：m_模块名，插件：p_插件名
+         * @param string $water 水印，参数为空默认调用系统配置，no直接关闭水印，image 图片水印，text文字水印
+         * @param string $thumb 缩略图，参数为空默认调用系统配置，no直接关闭缩略图，如需生成 500x500 的缩略图，则 500x500多个规格请用";"隔开
+         * @param string $thumb_type 缩略图方式
+         * @param string $input 文件表单字段名
+         */        var imgHtml = '<img src="">'
+        upload.render({
+            elem: '#layui-upload'
+            , url: '{:url("user/upimg")}'
+            , method: 'post'
+            , accept: 'image/*'
+            , before: function (input) {
+                //layer.msg('文件上传中...', { time: 3000000 });
+            }, done: function (res, index, upload) {
+                var obj = this.item;
+                if (res.code == 0) {
+                    layer.msg(res.msg);
+                    return false;
+                } else {
+                    //layer.msg(res.msg);
+                   /*  layer.msg(res.msg, { time: 2000 }); */
+                    //layer.closeAll();
+                    $('#demo1').attr('src', res.src); 
+                    $('.photo_circle img:eq(0)').hide();
+                    $('.photo_circle').append(imgHtml); 
+                    $('.photo_circle img:eq(1)').attr('src', res.src).addClass('uploadImg'); $('#avatar').attr('value', res.src);
+                    mui('#photo_menu').popover('hide');
+                }
+
+            }
+            , error: function () {
+                layer.closeAll('loading');
+                layer.msg('网络异常，请稍后重试！');
+            }
+        });
+    });
+    $('.submit_btn').click(function () {
+        /* 头像 */
+        var avatar = $("#avatar").val();
+        /* 昵称 */
+        var name = $("#change_name").val();
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "{:url('user/change_info')}",
+            data: { avatar: avatar, name: name },
+            success: function (re) {
+                if (re.code == 1) {
+                    layer.msg(re.msg, { time: 1000 }, function () {
+                        //操作事件
+                        window.location.href = "{:url('user/index')}";
+                    })
+                } else {
+                    layer.msg(re.msg, { time: 2000 });
+                }
+            }
+        });
+    })
+</script>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>账户与安全</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/account/safe.css" />
+</head>
+<body ng-controller="safe_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">账户与安全</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="user_content">
+            <div class="item_list">
+                <ul class="mui-table-view">
+                 {switch name="$user.isCheck" }
+                     {case value="5"}
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('recharge/real_name')}')">
+                            <a class="mui-navigate-right">
+                                实名认证
+                                <div class="mui-pull-right">
+                                    去认证
+                                </div>
+                            </a>
+                        </li>
+                     {/case}
+                     {case value="1"}
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('recharge/real_card')}')" >
+                            <a class="mui-navigate-right">
+                                实名认证
+                                <div class="mui-pull-right">
+                                 完善证件照
+                                </div>
+                            </a>
+                        </li>
+                    {/case}
+                    {case value="2"}
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('recharge/real_card')}')">
+                            <a class="mui-navigate-right">
+                                实名认证
+                                <div class="mui-pull-right">
+                                     证件审核中
+                                </div>
+                            </a>
+                        </li>
+                    {/case}
+                    {case value="3"}
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('recharge/real_card')}')">
+                            <a class="mui-navigate-right">
+                                实名认证
+                                <div class="mui-pull-right" style="color:#4cd964" >
+                                     审核通过
+                                </div>
+                            </a>
+                        </li>
+                    {/case}
+                    {case value="4"}
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('recharge/real_card')}')" >
+                            <a class="mui-navigate-right">
+                                实名认证
+                                <div class="mui-pull-right">
+                                    审核未通过
+                                </div>
+                            </a>
+                        </li>
+                    {/case}
+                    {case value="6"}
+                        <li class="mui-table-view-cell" ng-click="goPage('{:url('recharge/real_card')}')" >
+                            <a class="mui-navigate-right">
+                                实名认证
+                                <div class="mui-pull-right">
+                                     证件重审中
+                                </div>
+                            </a>
+                        </li>
+                    {/case}
+                  {/switch}
+                </ul>
+            </div>
+            <div class="item_list">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell" ng-click="goPage('{:url('user/change_pass')}')" >
+                        <a class="mui-navigate-right">
+                            登录密码
+                            <div class="mui-pull-right">
+                                修改
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+             <div class="item_list">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell" ng-click="goPage('{:url('user/jiaoyi')}')" >
+                        <a class="mui-navigate-right">
+                             交易密码
+                            <div class="mui-pull-right">
+                                修改
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="item_list">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell" ng-click="goPage('{:url('user/change_phone')}')" >
+                        <a class="mui-navigate-right">
+                            绑定手机
+                            <div class="mui-pull-right phoneNum" >{$user.phone}</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/my/account/safe.js"></script>
+</body>
+
+</html>
+<script type="text/javascript">
+
+     var subNum = $('.phoneNum').html().substring(1,10);
+    var rePhone = $('.phoneNum').html().replace(subNum,'*********');
+    $('.phoneNum').html(rePhone);
+   
+
+</script>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>RUN</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<style type="text/css">
+			ul,
+			button {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			.mui-input-row select,
+			.runBox input {
+				background-color: #2c313b !important;
+				color: #fff;
+				height: 37px;
+				padding: 0 15px;
+				font-size: 16px;
+				border: none !important;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+			}
+			
+			.mui-input-row select {
+				color: #677091;
+			}
+			
+			.whiteColor {
+				color: #fff;
+			}
+			
+			.redColor {
+				color: #ee3b3b;
+			}
+			
+			.greenColor {
+				color: #1eae58;
+			}
+			
+			.runBox {
+				margin: 20px 15px;
+			}
+			
+			.runBox p {
+				margin-bottom: 20px;
+			}
+			
+			.mui-input-row {
+				position: relative;
+				margin-bottom: 10px;
+			}
+			
+			.mui-icon-arrowdown {
+				color: #fff;
+				position: absolute;
+				top: 8px;
+				right: 15px;
+			}
+			
+			ul li {
+				margin-bottom: 20px;
+				color: #fff;
+			}
+			
+			input::-webkit-input-placeholder,
+			textarea::-webkit-input-placeholder {
+				color: #677091;
+			}
+			
+			input:-moz-placeholder,
+			textarea:-moz-placeholder {
+				color: #677091;
+			}
+			
+			input::-moz-placeholder,
+			textarea::-moz-placeholder {
+				color: #677091;
+			}
+			
+			input:-ms-input-placeholder,
+			textarea:-ms-input-placeholder {
+				color: #677091;
+			}
+			
+			.hyyzmLi {
+				position: relative;
+			}
+			
+			.hyyzmLi input {
+				height: 44px;
+			}
+			
+			.hqyzmBox {
+				position: absolute;
+				right: 0;
+				top: 0;
+				display: inline-block;
+				height: 44px;
+				line-height: 44px;
+				width: 120px;
+				text-align: center;
+				background-color: green;
+				outline: none;
+				border: none;
+				color: #fff;
+			}
+			
+			.rollOutBtn {
+				height: 50px;
+				background-color: #e55600;
+				color: #fff;
+				border-radius: 5px;
+				text-align: center;
+				line-height: 50px;
+				font-size: 16px;
+			}
+			
+			.mui-popup-button:first-child {
+				color: #333 !important;
+				border-radius: 0 0 0 5px !important;
+			}
+			
+			.mui-popup-button:last-child {
+				border-radius: 0 0 5px !important;
+				background: #F7561E;
+				color: #FFF !important;
+			}
+			
+			.mui-popup-inner {
+				border-radius: 5px 5px 0 0 !important;
+			}
+			
+			.mui-popup {
+				border-radius: 0 !important;
+			}
+			
+			.mui-popup-input input {
+				height: 35px !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href="{:url('user/index')}"></a>
+			<h4 class="mui-title">RUN</h4>
+			<a class="mui-icon mui-pull-right" href="{:url('run/runlog')}">
+				<img src="__STATIC__/index/img/my/log_b.png" />
+			</a>
+		</header>
+		<div id="run" class="mui-content">
+			<div class="runBox">
+				<p class="whiteColor"> 可用余额：
+					<span class="redColor useMoney">{$user.run}</span>
+				</p>
+				<p class="whiteColor">绑定手机号：+86 {$phone}</p>
+				<div class="mui-input-row">
+					<select name="select" id="mySelect">
+						<option value="0">--选择钱包地址--</option>
+						{volist name="data" id="vo" }
+						<option value="{$vo.id}">{$vo.name}</option>
+						{/volist}
+						<option value="tianjia">新增钱包地址</option>
+					</select>
+					<!-- <span class="mui-icon mui-icon-arrowdown mui-pull-right"></span> -->
+				</div>
+				<ul>
+					<li>
+						<input type="number" id="amout" placeholder="转出数量(50~100000)" />
+						<input type="hidden" id="phone" value="{$user.phone}" />
+					</li>
+					<!-- <li>
+                    <input type="number" id="trade_password" maxlength="6" placeholder="交易密码" oninput="if(value.length>6) value=value.slice(0,6)"
+                    />
+                </li> -->
+					<li class="hyyzmLi">
+						<input type="text" id="code" placeholder="获取验证码" value="" />
+						<button class="hqyzmBox">获取验证码</button>
+					</li>
+					<li>
+						<p class="rollOutBtn" onclick="btnok()">
+							确认转出
+						</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+		<script src="__STATIC__/layer/layer.js"></script>
+		<script language="javascript" type="text/javascript">
+			$(document).ready(function() {
+				$("select option[value=0]").attr("selected", "selected");
+				$('#mySelect').change(function() {
+					var status = $(this).val();
+					if(status == 'tianjia') {
+						window.location.href = "{:url('run/runlist')}";
+					}
+				})
+			})
+		</script>
+		<script type="text/javascript">
+			mui.init();
+			//	发送短信
+			mui('.hyyzmLi').on('tap', '.hqyzmBox', function() {
+				//调用
+				var reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+				var phone = $("#phone").val();
+				var purse_id = $("#mySelect").val();
+				var amout = $("#amout").val();
+				var flag = reg.test(phone);
+				if(purse_id == '0') {
+					layer.msg('请选着钱包地址');
+				} else if(amout == '') {
+					layer.msg('请输入转出数量');
+				} else if(amout < 50) {
+					layer.msg('请输入正确数额');
+				} else if(!flag) {
+					layer.msg('请输入有效的手机号码!');
+				} else {
+					$.post("{:url('run/sendCode')}", {
+							phone: phone
+						},
+						function(data) {
+							if(data.code == 1) {
+								layer.msg(data.msg, {
+									time: 1000
+								}, function() {
+									//操作事件
+									sendTime();
+								})
+							} else {
+								layer.msg(data.msg);
+							}
+						});
+				}
+			});
+			//倒计时函数
+			function sendTime() {
+				$('.hqyzmBox').text("59s后重试").attr('disabled', 'disabled');
+				var code_second = 58;
+				var timerHandler;
+				timerHandler = setInterval(function() {
+					if(code_second <= 0) {
+						window.clearInterval(timerHandler); //当执行的时间59s,结束时，取消定时器    
+						code_second = 58;
+						$('.hqyzmBox').text('发送验证码').removeAttr('disabled');
+					} else {
+						$('.hqyzmBox').text(code_second + "s后重试").attr('disabled', 'disabled');
+						code_second--;
+					}
+				}, 1000)
+			}
+
+			function btnok() {
+				var purse_id = $("#mySelect").val();
+				var code = $("#code").val();
+				var amout = $("#amout").val();
+				var phone = $("#phone").val();
+				if(purse_id == '0') {
+					layer.msg('请选着钱包地址');
+				} else if(amout == '') {
+					layer.msg('请输入转出数量');
+				} else if(amout < 50) {
+					layer.msg('请输入正确数额');
+				} else if(code == '') {
+					layer.msg('请输入验证码');
+				} else {
+					$.post("{:url('run/checkjiaoyi')}", {
+							code: code,
+							amout: amout,
+							phone: phone
+						},
+						function(data) {
+							if(data.code == 1) {
+								mui.prompt('请输入交易密码', '请输入交易密码', ' ', function(e) {
+									if(e.index == 1) {
+										//获取弹框的input值；
+										var jiaoyi = $('.mui-popup-input input').val();
+										$.ajax({
+											type: 'POST',
+											dataType: "json",
+											async: true,
+											url: "{:url('run/run_log')}",
+											data: {
+												purse_id: purse_id,
+												amout: amout,
+												jiaoyi: jiaoyi
+											},
+											success: function(re) {
+												if(re.code == 1) {
+													layer.msg(re.msg, {
+														time: 1000
+													}, function() {
+														//操作事件
+														window.location.href = "{:url('user/index')}";
+													})
+												} else {
+													layer.msg(re.msg, {
+														time: 2000
+													});
+												}
+											}
+										});
+									}
+								})
+							} else if(data.code == 2) {
+								var btnArray = ['否', '是'];
+								mui.confirm('交易密码设置不可修改，是否继续', '是否继续', btnArray, function(e) {
+									if(e.index == 1) {
+										window.location.href = "{:url('user/jiaoyi')}";
+									} else {
+										return false;
+									}
+								});
+							} else {
+								layer.msg(data.msg, {
+									time: 2000
+								});
+							}
+						});
+				}
+
+			}
+		</script>
+	</body>
+
+</html>

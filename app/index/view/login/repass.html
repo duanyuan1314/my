@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>找回密码</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/account/retrieve.css" />
+</head>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/my/account/retrieve.js"></script>
+
+<script src="__STATIC__/layer/layer.js"></script>
+<script type="text/javascript">
+    function getCode()
+    {
+        var reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+        var phone = $("#phone_input").val();
+        var flag = reg.test(phone);
+        if(flag){
+            $.post("{:url('login/sendCode')}", { phone: phone,type:1},
+               function(data){
+                 send_timer();
+                 layer.msg(data['msg']);
+            });
+        }else{
+            layer.msg('手机号不合法');
+        }
+    }
+     function send_timer() {
+            $('.send_code').text("59s后重试").attr('disabled', 'disabled');
+            var code_second = 58;
+            var timerHandler;
+            timerHandler = setInterval(function () {
+                if (code_second <= 0) {
+                    window.clearInterval(timerHandler); //当执行的时间59s,结束时，取消定时器    
+                    code_second = 58;
+                    $('.send_code').text('发送验证码').removeAttr('disabled');
+                } else {
+                    $('.send_code').text(code_second + "s后重试").attr('disabled', 'disabled');
+                    code_second--;
+                }
+            }, 1000)
+    }
+    function cclick()
+    {
+        var phone = $("#phone_input").val();
+        var password = $('#password').val();
+        var code = $("#code").val();
+        $.post("{:url('/index/login/setPwd')}", { code:code, phone: phone, password: password },
+           function(data){
+            if(data.code==1){
+                loading();
+            }else{
+                layer.msg(data.msg);
+            }
+        });
+    }
+    function loading() {
+            mui('#pop_into').popover('show');
+            var home_second = 4;
+            var homeTimer;
+            var homeTimer = setInterval(function () {
+                home_second--;
+                $('.go_home').text("即将跳转登录页（" + home_second + "s）");
+                if (home_second <= 0) {
+                    window.clearInterval(homeTimer);
+                    //执行跳转操作
+                    location.href = "{:url('login/index')}";
+                }
+            }, 1000)
+     }
+       
+</script>
+<body ng-controller="retrieve_controller">
+    <header class="mui-bar mui-bar-nav" style="background: #32353d;">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="account_container">
+            <h4 class="mui-text-center">找回密码</h4>
+            <div class="mui-clearfix phone_box form_line">
+                <input type="text" class="input_case" id="phone_input" name="phone_input" placeholder="请输入手机号" />
+                <button class="send_code"  onclick="getCode()" >发送验证码</button>
+            </div>
+            <div class="mui-clearfix form_line">
+                <input type="text" id ="code" class="input_case" name="pass_code" placeholder="请输入验证码" />
+            </div>
+            <div class="mui-clearfix form_line phone_box">
+                <input type="password" id="password" class="input_case" name="pass_word" placeholder="请输入新密码（6-20位英文或数字）" />
+            </div>
+            <button class="register_btn" onclick="cclick()"  >提交</button>
+        </div>
+    </div>
+    <div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        <div class="pop_container">
+            <img src="__STATIC__/index/img/my/register.png" alt="" class="gift_box" />
+            <h4>恭喜您，修改成功</h4>
+            <p class="go_home">即将跳转登录页（4s）</p>
+        </div>
+        <div class="close_container" ng-click="close_pop()" >
+            <i class="mui-icon mui-icon-close"></i>
+        </div>
+    </div>
+<script type="text/javascript">
+	     $('#password').on('focus',function(){
+            	if($('#phone_input').val() != '' && $('#code').val() != '' ){
+            		$('.register_btn').addClass('changeColor');
+            	}
+            });
+                  $('#password').on('blur',function(){
+                  	if($('#phone_input').val() != '' && $('#code').val() != '' && $('#password').val() != ''){
+                  		return false;
+            	}
+            		$('.register_btn').removeClass('changeColor');
+            });
+</script>
+</body>
+
+</html>

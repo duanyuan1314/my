@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/commen.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/home/home.css"/>
+	</head>
+
+	<body ng-controller="home_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">乐分畅游</h1>
+			<span id="b_select_btn" class="mui-pull-right" ng-click="pop_b_select()"><i class="mui-icon mui-icon-more"></i></span>
+		</header>
+		<div id="b_select_container" class="mui-popover">
+			<button>测试1</button>
+			<button>测试2</button>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item" ng-click="goPage('index.html')">
+				<img class="show_img" src="../../img/tab/home.gif" alt="" />
+			</a>
+			<a class="mui-tab-item" ng-click="goPage('../recharge/index.html')">
+				<img class="show_img" src="../../img/tab/recharge.png" alt="" />
+			</a>
+			<a class="mui-tab-item" ng-click="goPage('../gift/index.html')">
+				<img class="show_img" src="../../img/tab/gift.png" alt="" />
+			</a>
+			<a class="mui-tab-item" ng-click="goPage('../my/index.html')">
+				<img class="show_img" src="../../img/tab/my.png" alt="" />
+			</a>
+		</nav>
+		<div class="mui-content" id="quotation_container">
+			<div id="pullrefresh">
+				<div class="mui-scroll" style="position: inherit;">
+					<div class="mui-slider">
+						<div class="mui-slider-group mui-slider-loop">
+							<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<a href="#">
+									<img src="../../img/home/lunbo_1.png">
+								</a>
+							</div>
+							<div class="mui-slider-item">
+								<a href="#">
+									<img src="../../img/home/lunbo_1.png">
+								</a>
+							</div>
+							<div class="mui-slider-item">
+								<a href="#">
+									<img src="../../img/home/lunbo_1.png">
+								</a>
+							</div>
+							<div class="mui-slider-item">
+								<a href="#">
+									<img src="../../img/home/lunbo_1.png">
+								</a>
+							</div>
+							<div class="mui-slider-item">
+								<a href="#">
+									<img src="../../img/home/lunbo_1.png">
+								</a>
+							</div>
+							<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+							<div class="mui-slider-item mui-slider-item-duplicate">
+								<a href="#">
+									<img src="../../img/home/lunbo_1.png">
+								</a>
+							</div>
+						</div>
+						<div class="mui-slider-indicator">
+							<div class="mui-indicator mui-active"></div>
+							<div class="mui-indicator"></div>
+							<div class="mui-indicator"></div>
+							<div class="mui-indicator"></div>
+						</div>
+					</div>
+				</div>
+				
+					<div class="luck_top">
+						<div class="luck_title mui-pull-left">
+							幸运榜
+						</div>
+						<div id="luck_detail">
+							<ul id="luck_list" ng-class="{anim:animate==true}">
+								<li ng-repeat='item in luck_list' ng-bind="item.msg" class="width_over"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="best_list">
+						<div class="btn_title">
+							<button class="more_btn" ng-click="goPage()">更多 <i class="mui-icon mui-icon-arrowright"></i></button>
+						</div>
+						<div class="star_bg">
+							<div class="best_rank mui-clearfix">
+								<div>
+									<div class="head_portrait"></div>
+									<div class="user_head"></div>
+									<div class="user_info">
+										<p>樱花粉</p>
+										<p><span>10210</span>算力</p>
+									</div>
+								</div>
+								<div>
+									<div class="head_portrait"></div>
+									<div class="user_head"></div>
+									<div class="user_info">
+										<p>樱花粉</p>
+										<p><span>10210</span>算力</p>
+									</div>
+								</div>
+								<div>
+									<div class="head_portrait"></div>
+									<div class="user_head"></div>
+									<div class="user_info">
+										<p>樱花粉</p>
+										<p><span>10210</span>算力</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="all_game">
+						<div class="game_rank">
+							<div class="rank_icon"></div>
+							<div class="opra_container">
+								<div class="game_icon"></div>
+								<p class="width_over"><b>超能争霸</b></p>
+								<p class="width_over">酷炫特效震撼来袭</p>
+								<p class="getin_btn"></p>
+							</div>
+							<div class="mask_layer"></div>
+						</div>
+						<div class="game_rank">
+							<div class="rank_icon"></div>
+							<div class="opra_container">
+								<div class="media_div">
+									<div class="game_icon"></div>
+								</div>
+								<div class="media_div">
+									<p class="width_over"><b>超能争霸</b></p>
+									<p class="width_over">酷炫特效震撼来袭</p>
+								</div>
+								<div class="media_div">
+									<p class="getin_btn"></p>
+								</div>
+							</div>
+							<div class="mask_layer"></div>
+						</div>
+						<div class="game_rank">
+							<div class="rank_icon"></div>
+							<div class="opra_container">
+								<div class="media_div">
+									<div class="game_icon"></div>
+								</div>
+								<div class="media_div">
+									<p class="width_over"><b>超能争霸</b></p>
+									<p class="width_over">酷炫特效震撼来袭</p>
+								</div>
+								<div class="media_div">
+									<p class="getin_btn"></p>
+								</div>
+							</div>
+							<div class="mask_layer"></div>
+						</div>
+					</div>
+					<div class="open_list">
+						<div class="game_list" ng-show="all_game==true">
+							<div class="game_info">
+								<div class="game_icon"></div>
+								<p class="width_over">压话题</p>
+								<p class="width_over">热点趣味精彩</p>
+							</div>
+							<div class="game_info">
+								<div class="game_icon"></div>
+								<p class="width_over">压话题</p>
+								<p class="width_over">热点趣味精彩</p>
+							</div>
+							<div class="game_info">
+								<div class="game_icon"></div>
+								<p class="width_over">压话题</p>
+								<p class="width_over">热点趣味精彩</p>
+							</div>
+						</div>
+						<button class="more_btn" ng-click="show_all_game($event)">
+	    			全部游戏
+	    			<i class="mui-icon mui-icon-arrowdown"></i>
+	    		</button>
+					</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/angular.min.js"></script>
+	<script src="../../js/home/home.js"></script>
+</html>

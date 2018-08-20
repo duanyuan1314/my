@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>审核未通过</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <style type="text/css">
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        a {
+            color: #fff;
+            font-size: 12px;
+        }
+
+        a:active {
+            color: #fff;
+        }
+
+        .realFailBox {
+            height: 325px;
+            margin-top: 7px;
+            padding: 0 16px;
+            background: #2E323C;
+        }
+
+        .failImgBox {
+            margin: 0 auto 29px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        #realFail .realFailBox .whiteColor {
+            color: #fff;
+            font-size: 12px;
+        }
+
+        .failImgBox img {
+            width: 60px;
+            height: 52px;
+            margin: 20px 0 15px;
+        }
+
+        .tsUl li {
+            margin-bottom: 15px;
+        }
+
+        .resubmitBtn {
+            display: block;
+            height: 40px;
+            background: red;
+            border-radius: 20px;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            font-size: 18px;
+            margin: 30px 0;
+            background: -webkit-linear-gradient(right, #FF7748, #FF3413);
+            background: linear-gradient(right, #FF7748, #FF3413);
+            background: -moz-linear-gradient(right, #FF7748, #FF3413);
+        }
+    </style>
+</head>
+
+<body ng-controller="realFail_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h4 class="mui-title">审核未通过</h4>
+    </header>
+    <div id="realFail" class="mui-content">
+        <div class="realFailBox">
+            <!--审核未通过logo-->
+            <div class="failImgBox">
+                <img src="__STATIC__/index/img/recharge/realFailImg.png" alt="" />
+                <p class="whiteColor">
+                    审核未通过
+                </p>
+            </div>
+            <!--提示-->
+            <ul class="tsUl">
+                <li class="whiteColor">很抱歉，您的证件上传未通过审核</li>
+                <li class="whiteColor">备注：{$user.refuse}
+                </li>
+            </ul>
+            <!--重新提交按钮-->
+            <a class="resubmitBtn">
+                重新提交
+            </a>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script type="text/javascript">
+        mui('.realFailBox').on('tap', '.resubmitBtn', function () {
+            //跳转页面
+            document.location.href = 'again_up.html';
+        })
+    </script>
+</body>
+
+</html>

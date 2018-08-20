@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>修改信息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<link rel="stylesheet" href="../../../css/commen.css" />
+		<link rel="stylesheet" href="../../../css/my/account/change_info.css" />
+	</head>
+
+	<body ng-controller="change_info_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="form_container">
+				<div class="photo_circle" ng-click="upload_photo()">
+					<img src="../../../img/my/upload_icon.png" alt="" />
+				</div>
+				<p class="mui-text-center wh_text" ng-click="upload_photo()"><span>上传头像</span></p>
+				<div class="form_box">
+					<p class="wh_text">昵称</p>
+					<input type="text" id="change_name" placeholder="请输入昵称" ng-model="param.name" />
+					<hr />
+					<p class="gray_text pop_text">昵称请控制在4-30个字符，支持中英文、数字</p>
+					<p class="wh_text mui-text-center">换一个昵称</p>
+					<button class="submit_btn" ng-click="submit_btn()" ng-disabled="disabled">完成</button>
+				</div>
+			</div>
+			<div id="photo_menu" class="mui-popover mui-popover-bottom mui-popover-action ">
+			    <!-- 可选择菜单 -->
+			    <ul class="mui-table-view">
+			      <li class="mui-table-view-cell">
+			        <p ng-click="galleryImg()" class="mui-text-center">从相册选一张</p>
+			      </li>
+			      <li class="mui-table-view-cell">
+			        <p ng-click="getImage()" class="mui-text-center">自己拍一张</p>
+			      </li>
+			    </ul>
+			    <!-- 取消菜单 -->
+			    <ul class="mui-table-view">
+			      <li class="mui-table-view-cell">
+			        <p ng-click="close_menu()" class="mui-text-center">取消</p>
+			      </li>
+			    </ul>
+			</div>
+		</div>
+		<form name="formHead" method="post" action="" id="formHead" enctype="multipart/form-data" target="uploadfrm">  
+  
+        <div>  
+            <div>  
+                <input type="file" name="file_head" id="file_head" onchange="javascript:setImagePreview();" />  
+            </div>  
+            <div>  
+                <div id="DivUp" style="display: none">  
+                    <input type="submit" data-inline="true" id="BtnUp" value="确认上传" data-mini="true" />  
+                </div>  
+            </div>  
+        </div>  
+    </form>  
+    <div data-role="fieldcontain">  
+        <div id="localImag">  
+            <img id="preview" width="-1" height="-1" style="display: none" />  
+        </div>  
+    </div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/angular.min.js"></script>
+		<script src="../../../js/my/account/change_info.js"></script>
+	</body>
+
+</html>

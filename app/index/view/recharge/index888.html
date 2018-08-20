@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<title>充值</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+	<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+	<link rel="stylesheet" href="__STATIC__/index/css/recharge/recharge.css" />
+</head>
+<body ng-controller="recharge_controller">
+	<header class="mui-bar mui-bar-nav">
+		<!-- <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);" ></a> -->
+		<h1 class="mui-title">充值</h1>
+		 <a  href="{:url('user/news')}" class="mui-icon mui-icon-chat infors"></a> 
+	</header>
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item" href="{:url('index/index')}">
+			<img class="show_img" src="__STATIC__/index/img/tab/home.png" alt="" />
+		</a>
+		<a class="mui-tab-item" href="{:url('recharge/index')}">
+			<img class="show_img" src="__STATIC__/index/img/tab/recharge.gif" alt="" />
+		</a>
+		<a class="mui-tab-item" href="{:url('gift/index')}">
+			<img class="show_img" src="__STATIC__/index/img/tab/gift.png" alt="" />
+		</a>
+		<a class="mui-tab-item" href="{:url('user/index')}">
+			<img class="show_img" src="__STATIC__/index/img/tab/my.png" alt="" />
+		</a>
+	</nav>	
+	<div class="mui-content">				
+		<div id="pullrefresh">			
+			<div style="padding-bottom: 50px;">				
+				<div class="user_asset">						
+					<div class="asset_bowl mui-clearfix">							
+						<p>									
+							<span ng-click="goPage('exchange.html')">充值卡充值</span>	
+						</p>							
+						<h3 ng-click="goPage('{:url('user/bean_blance')}')">{$ledou['jifen']}</h3>				
+						<h4 ng-click="goPage('{:url('user/bean_blance')}')">乐豆余额</h4>	
+					</div>					
+				</div>					
+                     {switch name="$ledou.isCheck" }
+                         {case value="5"}
+                            <div class="real_name mui-text-center" ng-click="goPage('real_name.html')" >
+                                <img src="__STATIC__/index/img/recharge/real_name.png" alt="" />
+                            </div>
+                        {/case} 
+                        {case value="1"}
+                            <div class="real_name mui-text-center" ng-click="goPage('{:url('recharge/real_card')}')"  >
+                                <img src="__STATIC__/index/img/recharge/real_name.png" alt="" />
+                            </div>
+                        {/case}
+                        {case value="2"}
+                            <div class="real_name mui-text-center" ng-click="goPage('{:url('recharge/real_card')}')" >
+                                <img src="__STATIC__/index/img/recharge/real_name.png" alt="" />
+                            </div>
+                        {/case} 
+                        {case value="3"}
+                            <div class="real_name mui-text-center" ng-click="goPage('{:url('recharge/real_card')}')">
+                                <img src="__STATIC__/index/img/recharge/real_name.png" alt="" />
+                            </div>
+						{/case}
+						{case value="4"}
+							<div class="real_name mui-text-center" ng-click="goPage('{:url('recharge/real_card')}')">
+								<img src="__STATIC__/index/img/recharge/real_name.png" alt="" />
+							</div>
+						{/case}
+						{case value="6"}
+							<div class="real_name mui-text-center" ng-click="goPage('{:url('recharge/real_card')}')">
+								<img src="__STATIC__/index/img/recharge/real_name.png" alt="" />
+							</div>
+						{/case}
+                     {/switch}
+					<div class="select_option mui-clearfix">				
+					{volist name="list" id="vo"}							
+						<div class="option" ng-class="{ active: user_size == '{$vo.ledou}' }" ng-click="select_size({$vo.ledou},{$vo.cash},$event)" >					
+							<p style="font-size: 0.9rem;">乐豆									
+								<span>{$vo.ledou}</span>&nbsp;个</p>					
+							<p style="font-size: 0.7rem;">售价:								
+							<span>{$vo.cash}</span>元</p>		
+														
+						</div>					
+					{/volist}						
+					<div class="option" ng-click="other_option($event)"> 		
+							<p class="other_option">其他面额</p>			
+					</div>				
+					</div>		
+				</div>
+		</div>	
+	</div>
+	
+	<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom" style="height: 199px;">
+		<div class="pop_container" style="width:100%;" >
+			<h4 class="pop_title">其他面额</h4>
+			<input type="text" placeholder="可填写0-1000的整数" maxlength="4" class="pop_input" id="pop_input" ng-model="pop_info.into_value" />
+			<p class="pop_info" style="font-size: 12px">共计：
+				<b ng-bind="pop_info.into_value==null?0:pop_info.into_value"></b>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;乐豆：
+				<b ng-bind="pop_info.into_value==null?0:pop_info.into_value"></b>个</p>
+			<button class="pop_btn" id="sure_submit" style="width: 100%;border-radius: 0;height: 50px;margin: 0;font-size: 18px;margin-top: 15px;" >确定充值</button>
+		</div>
+		<!--<div class="close_container" ng-click="close_pop(1)" >
+			<i class="mui-icon mui-icon-close"></i>
+		</div>-->
+	</div>
+	<div id="pop_type" class="mui-popover mui-popover-action mui-popover-bottom" >
+		<div class="pop_container" style="height:auto !important" >
+			<h4 class="pop_title">选择支付方式
+				<i class="mui-icon mui-icon-closeempty mui-pull-right" ng-click="close_pop(2)"></i>
+			</h4>
+			<div class="mui-input-row mui-radio mui-right fx_container">
+				<label class="mui-text-left">
+					<img src="__STATIC__/index/img/recharge/wx.png" alt="" style="margin-right: 18px;"/>
+					<span>微信</span>
+				</label>
+				<input name="pay_type" class="pay_type" type="radio" value="1" checked="checked">
+			</div>
+			<div class="mui-input-row mui-radio mui-right fx_container">
+				<label class="mui-text-left">
+					<img src="__STATIC__/index/img/recharge/zfb.png" alt="" />支付宝</label>
+				<input name="pay_type" class="pay_type" type="radio" value="2">
+			</div>
+			<!-- <div class="mui-input-row mui-radio mui-right fx_container">
+				<label class="mui-text-left">
+					<img src="__STATIC__/index/img/recharge/ylyj.png" alt="" />益联益家</label>
+				<input name="pay_type" class="pay_type" type="radio" value="3">
+			</div> -->
+			<button class="pop_btn" id="type_select">立即支付</button>
+		</div>
+	</div>
+	<script src="__STATIC__/index/js/mui.min.js"></script>
+	<script src="__STATIC__/index/js/jquery.min.js"></script>
+	<script src="__STATIC__/index/js/angular.min.js"></script>
+	<script src="__STATIC__/index/js/recharge/recharge.js"></script>
+	<!-- <script src="__STATIC__/index/js/config.js"></script> -->
+	<script src="__STATIC__/layer/layer.js"></script>
+	<script>
+		mui('nav').on('tap', 'a', function () {
+			document.location.href = this.href;
+		});
+	</script>
+</body>
+</html>
+<script>
+		function getRadioRes(className) {
+			var rdsObj = document.getElementsByClassName(className);
+			var checkVal = null;
+			for (i = 0; i < rdsObj.length; i++) {
+				if (rdsObj[i].checked) {
+					checkVal = rdsObj[i].value;
+				}
+			}
+			return checkVal;
+		}
+		$('#type_select').click(function () {
+			    /* 支付类型 */
+				var pay_type = getRadioRes('pay_type');
+				/* 乐豆数量 */
+				var num = scope.user_size;
+				/* 现金 */
+				var money = scope.user_price;
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: "{:url('recharge/set_order')}",
+					data: {num:num,type:pay_type,money:money},
+					success: function (re) {
+							if (re.status == 1) {
+								if (pay_type == 1) {
+									/*微信*/
+									window.location.href = "{:url('wxpay/notify')}?orderid=" + re.msg;
+								}
+								else if(pay_type == 2){
+									/*支付宝*/
+									window.location.href = "{:url('wappay/zhifupay')}?orderid=" + re.msg;
+								}else{
+
+								}
+							}
+							else {
+								layer.msg(re.msg);
+							}
+						}
+				});
+		})
+		$('#sure_submit').click(function () {
+					mui('#pop_into').popover('hide');
+					mui('#pop_type').popover('show');
+					/* 乐豆数量 */
+					var num = Number(scope.pop_info.into_value);
+					var money = num;
+					/* 现金 */
+					scope.user_size= num;
+					scope.user_price= money;
+		})
+</script>
+<script type="text/javascript">
+	/* 监听文章状态 */
+	$.ajax({
+		type: "post",
+		url: "{:url('user/checkstatus')}",
+		success: function (res) {
+			if (res.code == 1) {
+				$('.infors').removeClass('newLogo');
+			} else {
+				$('.infors').addClass('newLogo');
+			}
+		},
+	});
+</script>

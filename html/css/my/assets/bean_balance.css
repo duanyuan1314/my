@@ -1,0 +1,52 @@
+#pullrefresh {
+	background: #2a2d36;
+}
+
+.balance_box {
+	width: 100%;
+	height: 300px;
+	padding-top: 100px;
+	margin-top: 10px;
+	background-image: url(../../../img/my/yue_bg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.balance_box h4 {
+	color: #Fff;
+	text-align: center;
+	margin: 10px;
+	font-size: 24px;
+}
+
+.btn {
+	width: 80%;
+	margin: 10px auto;
+	border: 0;
+	font-size: 16px;
+	color: #fff;
+	margin-left: 10%;
+	border-radius: 20px;
+	height: 45px;
+}
+
+.btn_orange {
+	background: #EB7433;
+}
+
+.btn_line {
+	background: transparent;
+	border: 1px solid #EB7433;
+}
+
+.real_name_jump {
+	width: 100%;
+	position: absolute;
+	bottom: 20px;
+	text-align: center;
+}
+
+.real_name_jump img {
+	width: 75%;
+}

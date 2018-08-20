@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MainPanelSkin" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group1" width="750" height="246" x="0" y="1344.5" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image id="img5" x="0" y="12" scaleX="1" scaleY="1" source=""/>
+		<e:Image id="img1" x="0" y="12" scaleX="1" scaleY="1" source=""/>
+		<e:Image id="img2" x="0" y="12" scaleX="1" scaleY="1" source=""/>
+		<e:Image id="img3" x="0" y="12" scaleX="1" scaleY="1" source=""/>
+		<e:Image id="img4" x="0" y="12" scaleX="1" scaleY="1" source=""/>
+	</e:Group>
+	<e:Group id="group2" width="750" height="200" x="0" y="1595.23">
+		<e:Image x="0" y="-480" id="img6" scaleX="1" scaleY="1" source=""/>
+		<e:Image x="0" y="-480" id="img7" scaleX="1" scaleY="1" source=""/>
+		<e:Image x="0" y="-480" id="img8" scaleX="1" scaleY="1" source=""/>
+		<e:Image x="0" y="-480" id="img9" scaleX="1" scaleY="1" source=""/>
+		<e:Image id="img10" x="0" y="-480" scaleX="1" scaleY="1" source=""/>
+	</e:Group>
+	<e:Group id="obstacleGroup" width="750" height="1284" y="50">
+	</e:Group>
+	<e:Image source="main_zimukuang_png" bottom="12" horizontalCenter="0"/>
+	<e:Group id="zimuGroup" width="658" height="97" anchorOffsetY="0" anchorOffsetX="0" bottom="39" horizontalCenter="0">
+		<e:Image id="C" source="hui_C_png" x="12.96" y="13" scaleX="1" scaleY="1"/>
+		<e:Image id="H" source="hui_H_png" x="78.96" y="13"/>
+		<e:Image id="A" source="hui_A_png" x="160.96" y="13" scaleX="1" scaleY="1"/>
+		<e:Image id="N" source="hui_N_png" x="232.96" y="13"/>
+		<e:Image id="G" source="hui_G_png" x="326.96" y="12"/>
+		<e:Image id="W" source="hui_W_png" x="410.96" y="16"/>
+		<e:Image id="A1" source="hui_A_png" x="492.96" y="13" scaleX="1" scaleY="1"/>
+		<e:Image id="N1" source="hui_N_png" x="564.09" y="13"/>
+		<e:Label id="txtC" text="11" background="true" backgroundColor="0xdb2121" size="16" verticalAlign="middle" textAlign="center" width="25" height="25" y="8" x="52"/>
+		<e:Label id="txtH" text="11" x="126" y="8" background="true" backgroundColor="0xDB2121" size="16" verticalAlign="middle" textAlign="center" width="25" height="25"/>
+		<e:Label id="txtA" text="11" x="203" y="8" background="true" backgroundColor="0xDB2121" size="16" verticalAlign="middle" textAlign="center" width="25" height="25"/>
+		<e:Label id="txtN" text="11" x="297" y="8" background="true" backgroundColor="0xDB2121" size="16" verticalAlign="middle" textAlign="center" width="25" height="25"/>
+		<e:Label id="txtG" text="11" x="373" y="8" background="true" backgroundColor="0xDB2121" size="16" verticalAlign="middle" textAlign="center" width="25" height="25"/>
+		<e:Label id="txtW" text="11" x="460" y="8" background="true" backgroundColor="0xDB2121" size="16" verticalAlign="middle" textAlign="center" width="25" height="25"/>
+		<e:Label id="txtA1" text="11" x="536.09" y="8" background="true" backgroundColor="0xDB2121" size="16" verticalAlign="middle" textAlign="center" width="25" height="25"/>
+		<e:Label id="txtN1" text="11" x="625.09" y="8" background="true" backgroundColor="0xDB2121" size="16" verticalAlign="middle" textAlign="center" width="25" height="25"/>
+	</e:Group>
+	<e:Group top="54" horizontalCenter="0.5">
+		<e:Image id="proBg" source="progressBg_png" scaleX="1" scaleY="1" top="-12" horizontalCenter="0"/>
+		<e:Image id="g1" source="progressBar_png" x="13" y="-11"/>
+		<e:Image id="g2" source="progressBar_png" x="44" y="-11"/>
+		<e:Image id="g3" source="progressBar_png" x="74" y="-11" scaleX="1" scaleY="1"/>
+		<e:Image id="g4" source="progressBar_png" x="105" y="-11"/>
+		<e:Image id="g5" source="progressBar_png" x="135" y="-11"/>
+		<e:Image id="g6" source="progressBar_png" x="166" y="-11" scaleX="1" scaleY="1"/>
+		<e:Image id="proBar" source="progressMask_png" x="11.5" y="-9"/>
+	</e:Group>
+</e:Skin>

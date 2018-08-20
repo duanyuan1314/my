@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="TipsPanelSkin" width="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" height="400">
+	<e:Rect id="bg" height="112" width="422" horizontalCenter="0" fillAlpha="0.4" y="288"/>
+	<e:Label id="txtDesc" text="标签" width="401" height="88" textAlign="center" verticalAlign="middle" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0.5" size="27" y="300"/>
+</e:Skin>

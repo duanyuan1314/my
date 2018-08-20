@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>意见反馈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <style type="text/css">
+        .mui-table-view {
+            border-top: none;
+            background: #2E323C;
+        }
+
+        .ts_wz {
+            background: #2E323C;
+            outline: none;
+            resize: none;
+            border: none;
+            padding: 0;
+            color: #fff;
+            overflow-y: hidden;
+        }
+
+        textarea::-webkit-input-placeholder {
+            /* WebKit browsers */
+            color: #677091;
+        }
+
+        textarea:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #677091;
+        }
+
+        textarea::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #677091;
+        }
+
+        =textarea:-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+            color: #677091;
+        }
+
+        .ts_wz,
+        .phoneNum {
+            color: #FFF;
+            font-size: 14px;
+        }
+
+        .mui-input-group {
+            background: #2E323C;
+            margin-top: 15px;
+            padding: 5px 0;
+        }
+
+        .mui-input-group:before {
+            height: 0;
+        }
+
+        .mui-input-group:after {
+            height: 0;
+        }
+
+        .mui-input-group .mui-input-row:after {
+            height: 0;
+        }
+
+        .layui-upload-file {
+            display: none!important;
+            opacity: .01;
+        }
+
+        .warp {
+            overflow: hidden;
+        }
+
+        .warp>img {
+            width: 52px;
+            height: 52px;
+            margin-right: 15px;
+            vertical-align: bottom;
+        }
+
+        .upImgBox {
+            width: 52px;
+            height: 52px;
+            position: relative;
+            background: #353A45;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .upBg {
+            margin: 11px auto;
+            width: 31px;
+            height: 27px;
+        }
+
+        .submitBtn {
+            width: 90%;
+            height: 40px;
+            background: ;
+            text-align: center;
+            line-height: 40px;
+            font-size: 18px;
+            color: #FFF;
+            background: linear-gradient(right, #FF7748, #FF3413);
+            background: -webkit-linear-gradient(right, #FF7748, #FF3413);
+            background: -o-linear-gradient(right, #FF7748, #FF3413);
+            background: -moz-linear-gradient(right, #FF7748, #FF3413);
+            border-radius: 20px;
+            margin: 30px auto;
+        }
+
+        .upImgLi {
+            position: relative;
+        }
+
+        .upImg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        #photo_menu .mui-table-view-cell p {
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body ng-controller="feedback_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">意见反馈</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell mui-disabled">
+                <textarea class="ts_wz" onclick="this.placeholder=''" onblur="this.placeholder='亲，您遇到什么问题啦，或有什么功能建议吗？欢迎您提给 我们，谢谢！'" placeholder="亲，您遇到什么问题啦，或有什么功能建议吗？欢迎您提给 我们，谢谢！"
+                    maxlength="30"></textarea>
+                <input type="hidden" id="upimg" value="">
+                <div class="warp">
+                    <div class="upImgBox">
+                        <!--上传图片的按钮背景图-->
+                        <img src="__STATIC__/index/img/my/upImgBg.png" class="upBg" ng-click="upload_photo()" />
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="mui-input-group">
+            <div class="mui-input-row">
+                <label class="ts_wz">联系方式：</label>
+                <input type="number" class="mui-input-clear phoneNum">
+            </div>
+        </div>
+        <p class="submitBtn">
+            提交
+        </p>
+    </div>
+    <!--弹窗-->
+    <div id="photo_menu" class="mui-popover mui-popover-bottom mui-popover-action ">
+        <!-- 可选择菜单 -->
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell upImgLi">
+                <p class="mui-text-center" id="layui-upload" ng-click="galleryImg()">从相册选一张</p>
+            </li>
+        </ul>
+        <!-- 取消菜单 -->
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <p class="mui-text-center" ng-click="close_menu()">取消</p>
+            </li>
+        </ul>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__ADMIN_JS__/layui/layui.js?v={:config('hisiphp.version')}"></script>
+    <script type="text/javascript">
+        //点击提交按钮
+        $('.submitBtn').click(function () {
+            var reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+            var phoneNum = $(".phoneNum").val();
+
+            var content = $(".ts_wz").val();
+
+            var img1 = $(".img1").attr('src');
+            var img2 = $(".img2").attr('src');
+            var img3 = $(".img3").attr('src');
+
+            if (img1 != undefined) {
+                var imgurl = img1;
+            }
+            if (img2 != undefined) {
+                var imgurl = img1 + ',' + img2;
+            }
+            if (img3 != undefined) {
+                var imgurl = img1 + ',' + img2 + ',' + img3;
+            }
+            /* 图片 */
+            var upimg = $("#upimg").val();
+            /* 校验手机号 */
+            var flag = reg.test(phoneNum);
+            if (flag) {
+                if (upimg != '') {
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: "{:url('user/message')}",
+                        data: { imgurl: imgurl, phone: phoneNum,content: content },
+                        success: function (re) {
+                            if (re.code == 1) {
+                                layer.msg(re.msg, { time: 1000 }, function () {
+                                    //操作事件
+                                    window.location.href = "{:url('user/index')}";
+                                })
+                            } else {
+                                layer.msg(re.msg, { time: 2000 });
+                            }
+                        }
+                    });
+                } else {
+//                  mui.toast('请上传凭证', {
+//                      duration: 'long'
+//                  })
+                   layer.msg('请上传凭证', { time: 2000 });
+                }
+            } else {
+//              mui.toast('手机号不合法', {
+//                  duration: 'long'
+//              })
+                 layer.msg('手机号不合法', { time: 2000 });
+            }
+        })
+    </script>
+    <script type="text/javascript">
+        var app = angular.module('app', []);
+        app.controller('feedback_controller', ['$scope', '$timeout', function ($scope, $timeout) {
+            $scope.param = {};
+            //调出弹窗
+            $scope.upload_photo = function () {
+                mui('#photo_menu').popover('toggle');
+            }
+            //弹窗提示语
+            $scope.galleryImg = function () {
+
+                //              mui.toast('选了从本地选择', {
+                //
+                //                  duration: 'long',
+                //
+                //                  type: 'div'
+                //
+                //              });
+
+                mui('#photo_menu').popover('toggle');
+
+            }
+
+            $scope.close_menu = function () {
+
+                //              mui.toast('取消了选择', {
+                //
+                //                  duration: 'long',
+                //
+                //                  type: 'div'
+                //
+                //              });
+
+                mui('#photo_menu').popover('toggle');
+
+            }
+        }]);
+    </script>
+</body>
+
+</html>
+<script>   
+    var i = 0; function upImg() { i++; var imgHtml = "<img src='' class= img" + i + ">"; if (i == 3) { $('.upImgBox').hide(); } $('.warp').prepend(imgHtml); }
+    layui.use(['upload'], function () {
+        var $ = layui.jquery, layer = layui.layer, upload = layui.upload;
+        /**
+         * 附件上传url参数说明
+         * @param string $from 来源
+         * @param string $group 附件分组,默认sys[系统]，模块格式：m_模块名，插件：p_插件名
+         * @param string $water 水印，参数为空默认调用系统配置，no直接关闭水印，image 图片水印，text文字水印
+         * @param string $thumb 缩略图，参数为空默认调用系统配置，no直接关闭缩略图，如需生成 500x500 的缩略图，则 500x500多个规格请用";"隔开
+         * @param string $thumb_type 缩略图方式
+         * @param string $input 文件表单字段名
+         */
+        upload.render({
+            elem: '#layui-upload'
+            , url: '{:url("user/upimg")}'
+            , method: 'post'
+            , accept: "file"
+            , before: function (input) {
+
+            }, done: function (res, index, upload) {
+                var obj = this.item;
+                if (res.code == 0) {
+                    layer.msg(res.msg);
+                    return false;
+                } else {
+                    upImg(); $('#upimg').attr('value', res.src); $('.warp > img').eq(0).attr('src', res.src);
+                    mui('#photo_menu').popover('hide');
+                }
+            }
+            , error: function () {
+                layer.closeAll('loading');
+                layer.msg('网络异常，请稍后重试！');
+            }
+        });
+    });
+</script>

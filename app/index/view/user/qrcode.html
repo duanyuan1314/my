@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>二维码分享</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<style type="text/css">
+			
+			.mui-content {
+				padding-top: 100px !important;
+				padding: 0 15px;
+			}
+			
+			.title {
+				color: #fff;
+				font-size: 18px;
+			}
+			
+			.mui-card {
+				width: 90%;
+				height: 420px;
+				margin: 40px auto;
+				border-radius: 5px;
+			}
+			
+			.userTx {
+				width: 45px !important;
+				height: 45px !important;
+				border-radius: 50%;
+			}
+			
+			.mui-card-content,
+			.mui-card-content-inner {
+				border-bottom: none !important;
+			}
+			
+			.ewmImg {
+				width: 222px;
+				height: 222px;
+				position: relative;
+				left: 50%;
+				margin: 15px -111px;
+			}
+			
+			.footer {
+				width: 100%;
+				height: 77px;
+			}
+			
+			.footer p {
+				width: 100%;
+				letter-spacing: 2px;
+				text-align: center;
+				font-size: 16px;
+				color: #333333;
+				margin-bottom: 6px;
+			}
+			
+			@media only screen and (min-device-width:320px)and (max-device-width:359px) {
+				.mui-content {
+					padding-top: 60px !important;
+					padding: 0 15px;
+				}
+				.mui-card {
+					margin: 20px auto;
+				}
+			}
+			
+			.mui-bar-nav .shareWz {
+				color: #fff !important;
+			}
+		</style>
+	</head>
+
+	<body ng-controller="erm_share_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<a class="mui-btn-link mui-pull-right shareWz">分享</a>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<p class="title">
+				二维码名片
+			</p>
+			<div class="mui-card">
+				<div class="mui-card-header">
+					{$user.name}
+					 {if condition="$user.avatar eq ''" }
+					        <img src="{$Think.const.OSS_AVATAR}" class="userTx" /> 
+					 {else/}
+							<img src="{$user.avatar}" class="userTx" />
+					 {/if}
+				</div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<img src="{$qrcode}" class="ewmImg" />
+					</div>
+				</div>
+				<div class="footer">
+					<p>扫一扫&nbsp;有惊喜</p>
+					<p>玩转游戏赢大奖</p>
+				</div>
+			</div>
+		</div>
+
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+		<script type="text/javascript">
+			var imgSrc= document.getElementsByClassName('ewmImg')[0].src,
+			    jsonObject = {"title":"畅玩","images":[imgSrc]},
+			    jsonStr = JSON.stringify(jsonObject);
+			//判断是否为ios端访问
+			function _IsIOS() {
+				if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			
+			//判断是否为android端访问
+			function _IsAndroid() {
+				if(/(Android|Adr)/i.test(navigator.userAgent)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			
+			//点击分享,
+			mui('.mui-bar-nav').on('tap', '.shareWz', function() {
+                //调用原生方法;
+				if(_IsIOS()) {
+					window.webkit.messageHandlers.jumpToShareInterface.postMessage({"title":"畅玩","images":[imgSrc]});
+					
+				} else if(_IsAndroid()) {
+					
+					android.jumpToShareInterface(jsonStr);
+				}
+			})
+		</script>
+	</body>
+</html>

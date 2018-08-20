@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>碎片余额</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<link rel="stylesheet" href="__STATIC__/index/css/gift/debris_balance.css" />
+	</head>
+
+	<body ng-controller="debris_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">碎片余额</h1>
+		</header>
+		<div class="mui-content" style="height: 100%;overflow: hidden;">
+			<div class="user_asset" style="height: 100%;overflow: hidden;">
+				<div class="asset_bowl" style="z-index: 5;position: absolute;top: 44px;background-color:#2E323C;">
+					<div class="mui-clearfix">
+						<div class="rule_box" onclick="show_prompt()">
+							<img src="__STATIC__/index/img/gift/rule.png" alt="" /> 规则
+						</div>
+					</div>
+					<h3>{$userary.haschip}</h3>
+					<p>碎片数量</p>
+					<div class="ch_help" style="font-size: 0.8rem;">
+						称号等级越高掉落碎片的几率越高
+						<a href="{:url('user/title')}"><span class="or_text">提升称号等级</span></a>
+					</div>
+				</div>
+				<div id="pullrefresh" class="mui-scroll-wrapper" style="padding-top:225px;">
+					<div class="mui-scroll">
+						<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed get_list">
+						  <div class="noNewBox">
+                           <img src="__STATIC__/index/img/home/zwxx.png" class="zwxxImg" />
+                         <p>暂无数据</p>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--新增的弹窗-->
+		<div id="pop_promt" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="pop_contant">
+				<img src="../../../static/index/img/gift/pop_confirmClose.png" / class="pop_close" onclick="close_prompt()">-
+
+				<ul>
+					<li>
+						<span>1</span>
+						<p>用户在游戏中随机获得平台奖励的礼 品碎片以100:1的面额进行兑换礼品</p>
+					</li>
+					<li>
+						<span>2</span>
+						<p>兑换成功礼品将以邮寄方式寄往所填 写地址中</p>
+					</li>
+					<li>
+						<span>3</span>
+						<p>因相关条文规定，兑换用户需上传实 名信息</p>
+					</li>
+					<li>
+						<span>4</span>
+						<p>等级在5级以上的用户每天可兑换一 次礼品，等级在10级以上者每天可兑 换2次。等级在20级以上用户每天可 兑换3次。25级以上用户每天兑换不限次数。(兑换面额不做限制)</p>
+					</li>
+					<li>
+						<span>5</span>
+						<p>如等级不到的用户可使用乐豆去成长 道具购买礼品兑换道具进行兑换</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+		<script src="__STATIC__/index/js/angular.min.js"></script>
+		<script src="__STATIC__/index/js/gift/debris_balance.js"></script>
+		<script type="text/javascript">
+			function show_prompt() {
+				mui('#pop_promt').popover('show');
+			}
+
+			function close_prompt() {
+				mui('#pop_promt').popover('hide');
+			}
+
+			//下拉加载更多
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						auto: false,
+						contentrefresh: '正在加载...',
+						callback: function() {
+							setTimeout(function() {
+								getData();
+							}, 1500);
+						}
+					}
+				}
+			});
+
+			var page = 1,
+				imore,
+				table = document.body.querySelector('.mui-table-view'),
+				cells = document.body.querySelectorAll('.mui-table-view-cell');
+
+			function listTempleate(data) {
+
+				page++;
+
+				if(imore || data.length > 0) {
+
+					for(var i = 0; i < data.length; i++) {
+
+						var gameName = data[i].gamename, //游戏名字
+							chip = data[i].chip, //碎片
+							creatTime = data[i].creat_time, //时间
+							states = data[i].type, //消费类型
+							li = document.createElement('li'),
+							xfWz,
+							chipWz;
+
+						li.className = 'mui-table-view-cell mui-media mui-disabled';
+						//判断乐豆消费类型;
+						if(states == 0) {
+							xfWz = "礼品兑换-消耗碎片";
+							chipWz = "<span class='mui-h3 wh_text' style='font-size: 0.8rem;'>-" + chip + "</span>";
+						} else if(states == 1) {
+							xfWz = "玩游戏" + gameName + "赢取奖励";
+							chipWz = "<span class='mui-h3 or_text' style='font-size: 0.8rem;'>+" + chip + "</span>";
+						}
+
+						li.innerHTML = "<div class='mui-table'><div class='mui-table-cell mui-col-xs-8'><p class='mui-ellipsis title' style='font-size: 1rem;'>" +
+							xfWz + "</p><p class='mui-h5 mui-ellipsis' style='font-size: 0.7rem;'>" +
+							creatTime + "</p></div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span class='mui-h3 or_text' style='font-size: 0.8rem;'>" +
+							chipWz + "</span></div></div>";
+
+						table.append(li);
+					}
+				}
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(!imore);
+			}
+
+			function getData() {
+				$.ajax({
+					type: "post",
+					url: "http://game.koko360.com/index/share/debris_balance.html?page=" + page,
+					dataType: 'json',
+					success: function(data) {
+						imore = data.imore;
+						var $data = data.data;
+						if($data.length <= 0){
+							$('.noNewBox').show();
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(!imore);
+						}else{
+							listTempleate($data);
+						}
+						
+					}
+				})
+			};
+			getData();
+		</script>
+	</body>
+
+</html>

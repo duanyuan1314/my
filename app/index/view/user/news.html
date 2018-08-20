@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <title>消息中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <style type="text/css">
+        a {
+            color: #fff;
+            font-size: 12px;
+        }
+
+        a:active {
+            color: #fff;
+        }
+
+        .newList {
+            list-style: none;
+            padding: 0 15px;
+        }
+
+        .newList li {
+            margin-top: 25px;
+            color: #fff;
+        }
+
+        .time {
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .mui-card {
+            background: #303540;
+            border-radius: 5px;
+        }
+
+        .mui-card-header:after {
+            height: 0;
+        }
+
+        .mui-card-footer:before {
+            background: #3E455C;
+        }
+
+        .mui-card>div {
+            padding: 0 16px;
+            font-size: 14px;
+        }
+
+        .mui-card .mui-card-content {
+            padding-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .mui-card-content p {
+            color: #fff;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+
+        .mui-card-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tab_nav {
+            width: 100%;
+            padding: 0 10px;
+            background: #2c313b;
+            border-top: 1px solid #23262E;
+        }
+
+        .mui-segmented-control {
+            border: none;
+        }
+        .mui-segmented-control .mui-control-item {
+            border-left: none;
+            color: #677091;
+            font-size: 15px;
+        }
+        .mui-segmented-control .mui-control-item.mui-active {
+            background-color: #2c313b;
+            color: #F7561E;
+            border-bottom: 2px solid #F7561E;
+        }
+        .mui-card-media {
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .mui-card-footer {
+            color: #fff;
+        }
+
+        .mui-card-footer .iconLeft,
+        .mui-card-content .iconLeft {
+            font-size: 14px;
+        }
+
+        .noNewBox {
+            text-align: center;
+            margin-top: 86px;
+        }
+
+        .noNewBox-active {
+            display: block;
+        }
+
+        .zwxxImg {
+            width: 138px;
+            height: 128px;
+        }
+
+        .tab_nav {
+            position: fixed;
+            top: 44px;
+            z-index: 10;
+        }
+
+        #newCenter {
+            padding-top: 88px;
+        }
+    </style>
+</head>
+
+<body ng-controller="newCenter_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h4 class="mui-title">消息中心</h4>
+    </header>
+    <div class="tab_nav">
+        <div class="mui-segmented-control">
+            <a class="mui-control-item mui-active" href="#item1">系统通知</a>
+            <a class="mui-control-item" href="#item2">活动公告</a>
+            <a class="mui-control-item" href="#item3">订单消息</a>
+        </div>
+    </div>
+    <div id="newCenter" class="mui-content">
+        <!--系统通知-->
+        <div id="item1" class="mui-control-content mui-active" >
+            <ul class="newList"  >
+                 {empty name="ary1"}
+                    <div class="noNewBox">
+                        <img src="__STATIC__/index/img/home/zwxx.png" class="zwxxImg" />
+                    </div> 
+                    {else /}
+                     {volist name="ary1" id="vo"}
+                       {switch name='$vo.type'}
+                         {case value="1"}
+                            <li>
+                                <p class="time">{$vo.creat_time}</p>
+                                <div class="mui-card">
+                                    <!--页眉，放置标题-->
+                                    <div class="mui-card-header">系统通知</div>
+                                    <!--内容区-->
+                                    <div class="mui-card-content">
+                                        {$vo.content}
+                                    </div>
+                                </div>
+                            </li>
+                          {/case}
+                          {case value="2"}
+                            <li>
+                                <p class="time">{$vo.creat_time}</p>
+                                <div class="mui-card">
+                                    <!--页眉，放置标题-->
+                                    <div class="mui-card-header">系统通知</div>
+                                    <!--内容区-->
+                                    <div class="mui-card-content" style="font-size:14px;" >
+                                        {$vo.content}
+                                    </div>
+                                </div>
+                            </li>
+                          {/case}
+                          {case value="3"}
+                            <li>
+                                <p class="time">{$vo.creat_time}</p>
+                                <div class="mui-card">
+                                    <!--页眉，放置标题-->
+                                    <div class="mui-card-header">系统通知</div>
+                                    <!--内容区-->
+                                    <div class="mui-card-content" style="font-size:14px;" >
+                                        {$vo.content}
+                                    </div>
+                                </div>
+                            </li>
+                          {/case}
+                        {/switch}
+                     {/volist}
+                 {/empty}
+            </ul>
+        </div>
+        <!--活动公告-->
+        <div id="item2" class="mui-control-content" >
+            <ul class="newList">
+                <!-- <li>
+                    <p class="time">2018/7/4&nbsp;16:00</p>
+                    <div class="mui-card">
+                        <div class="mui-card-header">系统通知</div>
+                        <div class="mui-card-content">
+                            您的兑换订单416516554165，共一件，100元全国通
+                        </div>
+                        <div class="mui-card-footer">
+                            <a href="javascript:;">
+                                查看详情
+                                <i class="mui-icon mui-icon-arrowright iconLeft"></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>  -->
+                 {empty name="ary2" }
+                    <div class="noNewBox">
+                        <img src="__STATIC__/index/img/home/zwxx.png" class="zwxxImg" />
+                    </div>
+                    {else /}
+                    {volist name="ary2" id="vo"}
+                        <li>
+                            <p class="time">{$vo.creat_time}</p>
+                            <div class="mui-card">
+                                <div class="mui-card-header mui-card-media" style="height: 120px;background-image: url({$vo.image});"></div>
+                                <div class="mui-card-content">
+                                    <p class="iconLeft">{$vo.title}</p>
+                                    <p>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;{$vo['description']|mb_substr=0,200,'utf-8'}
+                                    </p>
+                                </div>
+                                <div class="mui-card-footer" >
+                                    <a href="{:url('user/news_detail')}?id={$vo.id}" >
+                                         查看详情
+                                        <i class="mui-icon mui-icon-arrowright iconLeft"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                     {/volist}
+                 {/empty}
+            </ul>
+        </div>
+        <!--订单消息-->
+        <div id="item3" class="mui-control-content" >
+            <ul class="newList">
+                 {empty name="ary3" }
+                    <div class="noNewBox">
+                        <img src="__STATIC__/index/img/home/zwxx.png" class="zwxxImg" />
+                    </div>
+                    {else /}
+                    {volist name="ary3" id="vo" }
+                        <li>
+                            <p class="time">{$vo.creat_time}</p>
+                            <div class="mui-card">
+                                <!--页眉，放置标题-->
+                                <div class="mui-card-header">订单消息</div>
+                                <!--内容区-->
+                                <div class="mui-card-content">
+                                    {$vo.content}
+                                </div>
+                            </div>
+                        </li>
+                    {/volist}
+                 {/empty}
+            </ul>
+            <!--暂无消息图标-->
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/layer/layer.js"></script>
+</body>
+
+</html>
+<script type="text/javascript">
+    /* 监听文章状态 */
+    $.ajax({
+        type: "post",
+        url: "{:url('user/changestatus')}",
+        success: function (res) {
+        },
+    });
+</script>

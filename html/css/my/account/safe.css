@@ -1,0 +1,32 @@
+#pullrefresh {
+	background: #2a2d36;
+}
+
+.mui-navigate-right .mui-pull-right{
+	margin-right: 25px;
+}
+
+.item_list {
+	width: 100%;
+	margin: 10px auto;
+	background: #2E323C;
+}
+
+.mui-table-view-cell>a:not(.mui-btn).mui-active {
+	background: inherit;
+}
+
+.item_list .mui-table-view-cell+.mui-table-view-cell {
+	border-top: 1px solid #3E455C;
+}
+
+.item_list .mui-table-view-cell a {
+	font-size: 14px;
+}
+
+.item_list .mui-navigate-right:after,
+.item_list .mui-push-left:after,
+.item_list .mui-push-right:after {
+	color: #677091;
+	font-size: 26px;
+}

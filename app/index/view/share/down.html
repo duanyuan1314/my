@@ -1,0 +1,219 @@
+<html lang="zh_CN"><head>
+
+		<meta charset="UTF-8">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="renderer" content="webkit">
+	<!-- 	<link rel="stylesheet" href="__STATIC__/index/css/share/app.css"> -->
+		<title>乐分畅游</title>
+		<style type="text/css">
+			a {
+				color: #fff;
+				text-decoration: none;
+			}
+			
+			a:visited {
+				color: #fff;
+			}
+			
+			body {
+				background: url(__STATIC__/index/img/share/downBg.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.info {
+				margin: 113px auto 92px;
+				text-align: center;
+				vertical-align: middle;
+			}
+			
+			.appLogo {
+				width: 151px;
+				height: 195.5px;
+			}
+			
+			.download {
+				width: 164px;
+				height: 110px;
+				margin: 0 auto;
+			}
+			
+			.download-btn a {
+				display: inline-block;
+				height: 40px;
+				width: 164px;
+				border: 1px solid #fff;
+				text-align: center;
+				line-height: 40px;
+				border-radius: 5px;
+			}
+			
+			.download-btn a:first-child {
+				margin-bottom: 30px;
+			}
+			
+			.download-btn a img {
+				width: 17px;
+				height: 20px;
+				vertical-align: sub;
+				margin-right: 5px;
+			}
+			
+			#weixin-tip {
+				display: none;
+				position: fixed;
+				left: 0;
+				top: 0;
+				background: rgba(0, 0, 0, 0.8);
+				filter: alpha(opacity=80);
+				width: 100%;
+				height: 100%;
+				z-index: 100;
+			}
+			
+			#weixin-tip p {
+				text-align: center;
+				margin-top: 10%;
+				padding: 0 5%;
+				position: relative;
+			}
+			
+			#weixin-tip .close {
+				color: #fff;
+				padding: 5px;
+				font: bold 20px/20px simsun;
+				text-shadow: 0 1px 0 #ddd;
+				position: absolute;
+				top: 0;
+				left: 5%;
+			}
+			
+			.jtLogo {
+				width: 81px;
+				height: 113px;
+				position: absolute;
+				top: 0;
+				right: 47px;
+			}
+			
+			.tswz {
+				width: 262.5px;
+				height: 127.5px;
+				position: absolute;
+				top: 154px;
+				left: 50%;
+				margin-left: -131px;
+			}
+			
+			@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+				body {
+					background-size: 100vh 100vh;
+				}
+			}
+			
+			@media only screen and (device-width: 411px) and (device-height: 823px) {
+				body {
+					background-size: 100vh 100vh;
+				}
+			}
+		</style>
+
+	</head>
+
+	<body class="success">
+
+		<div class="page-wrap">
+
+			<div class="info">
+
+				<img src="__STATIC__/index/img/share/appLogo.png" alt="appLogo" class="appLogo">
+
+			</div>
+
+			<div class="download">
+				<div class="download-btn" >
+
+					<a href="http://game.koko360.com/lfcy.apk" id="J_weixin">
+
+						<img src="__STATIC__/index/img/share/anzhuoLogo.png"> Android下载
+					</a>
+
+					<a href="http://game.koko360.com/lfcy.apk" class="android-btn">
+
+						<img src="__STATIC__/index/img/share/iphoneLogo.png"> Ios下载
+					</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="weixin-tip" style="height: 667px; display: none;">
+
+			<p>
+
+				<span id="close" title="关闭" class="close">×</span>
+				<img src="__STATIC__/index/img/share/down_jt.png" class="jtLogo">
+				<img src="__STATIC__/index/img/share/down_tswz.png" class="tswz">
+			</p>
+
+		</div>
+
+		<script type="text/javascript">
+			var is_weixin = (function() {
+
+				var ua = navigator.userAgent.toLowerCase();
+
+				if(ua.match(/MicroMessenger/i) == "micromessenger") {
+
+					return true;
+
+				} else {
+
+					return false;
+
+				}
+
+			})();
+			window.onload = function() {
+
+				var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+
+				var btn = document.getElementById('J_weixin');
+
+				var tip = document.getElementById('weixin-tip');
+
+				var close = document.getElementById('close');
+
+				if(is_weixin) {
+
+					btn.onclick = function(e) {
+
+						tip.style.height = winHeight + 'px';
+
+						tip.style.display = 'block';
+
+						return false;
+
+					}
+
+					close.onclick = function() {
+
+						tip.style.display = 'none';
+
+					}
+
+				}
+
+			}
+		</script>
+
+	
+
+</body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>确认订单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<link rel="stylesheet" href="../../../css/commen.css" />
+		<link rel="stylesheet" href="../../../css/my/order/confirm_order.css" />
+	</head>
+
+	<body ng-controller="confirm_order_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">确认订单</h1>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="order_info">
+				<div class="order_mid mui-clearfix">
+					<div class="media_left mui-pull-left">
+						<img src="../../../img/my/gps.png" alt=""/>
+					</div>
+					<div class="media_mid mui-pull-left">
+						<p><span class="wh_text">张震</span><span class="wh_text">15515551555</span></p>
+						<p>地址：河南省郑州市管城回族区十八里河镇南小李庄村</p>
+					</div>
+					<div class="media_right mui-pull-left">
+						<i class="mui-icon mui-icon-arrowright"></i>
+					</div>
+				</div>
+			</div>
+			<div class="order_info">
+				<div class="order_mid mui-clearfix">
+					<div class="media_left media_left_1 mui-pull-left">
+						<img src="../../../img/gift/card.png" alt=""/>
+					</div>
+					<div class="media_mid media_mid_1 mui-pull-left">
+						<p><span class="wh_text">碎片兑换 中国石化100元加油卡 全国通用</span></p>
+						<p><img src="../../../img/gift/fragment.png" alt="" class="fragment_img" /><span class="or_text">1000</span><span class="mui-pull-right or_text" ng-bind="'x'+count_num"></span></p>
+						<p><span class="gray_text">该商品不支持退换货</span></p>
+					</div>
+				</div>
+				<div class="order_mid mui-clearfix">
+					<div class="media_left media_left_1 mui-pull-left">
+						<span class="wh_text">兑换数量</span>
+					</div>
+					<div class="media_right media_right_1 mui-pull-right mui-clearfix">
+						<span class="count_btn" ng-click="count_btn(1)">+</span>
+						<input type="text" class="count_num" ng-model="count_num"/>
+						<span class="count_btn" ng-click="count_btn(2)">-</span>
+					</div>
+				</div>
+				<div class="order_mid mui-clearfix">
+					<div class="media_left media_left_1 mui-pull-left">
+						<span class="wh_text">配送方式</span>
+					</div>
+					<div class="media_right media_right_1 mui-pull-right mui-clearfix">
+						<span class="wh_text">快递   免邮</span>
+					</div>
+				</div>
+				<div class="order_mid mui-clearfix">
+					<div class="media_right media_right_1 mui-pull-right mui-clearfix">
+						<p class="wh_text">
+							<span>共 <b ng-bind="count_num">1</b> 件商品</span>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span>小计：</span>
+							<img src="../../../img/gift/fragment.png" alt="" />
+							<span class="or_text" ng-bind="count_num*1000"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="bottom_content mui-clearfix">
+				<div class="sum_num mui-pull-left">
+					<p class="wh_text">
+						<span>合计：</span>
+						<img src="../../../img/gift/fragment.png" alt="" />
+						<span class="or_text" ng-bind="count_num*1000"></span>
+					</p>
+				</div>
+				<div class="submit_btn mui-pull-left">
+					提交订单
+				</div>
+			</div>
+		</div>
+		<!--<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        	<div class="pop_container">
+        		<img src="../../../img/my/machine.png" alt="" class="gift_box" />
+        		<h4>恭喜您，兑换成功</h4>
+        		<p>成功兑换100元中国石油加油卡</p>
+        		<button class="pop_btn" ng-click="close_pop()">设置我的收货地址</button>
+        	</div>
+        	<div class="close_container" ng-click="close_pop()">
+        		<i class="mui-icon mui-icon-close"></i>
+        	</div>
+        </div>-->
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/angular.min.js"></script>
+		<script src="../../../js/my/order/confirm_order.js"></script>
+	</body>
+
+</html>

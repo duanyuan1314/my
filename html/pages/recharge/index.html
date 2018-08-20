@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>充值</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/commen.css" />
+		<link rel="stylesheet" href="../../css/recharge/recharge.css" />
+	</head>
+	<body ng-controller="recharge_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">充值</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item" ng-click="goPage('../home/index.html')">
+				<img class="show_img" src="../../img/tab/home.png" alt="" />
+			</a>
+			<a class="mui-tab-item" ng-click="goPage('index.html')">
+				<img class="show_img" src="../../img/tab/recharge.gif" alt="" />
+			</a>
+			<a class="mui-tab-item"ng-click="goPage('../gift/index.html')">
+				<img class="show_img" src="../../img/tab/gift.png" alt="" />
+			</a>
+			<a class="mui-tab-item" ng-click="goPage('../my/index.html')">
+				<img class="show_img" src="../../img/tab/my.png" alt="" />
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="pullrefresh">
+				<div class="user_asset">
+		    		<div class="asset_bowl mui-clearfix">
+		    			<p><span ng-click="goPage('exchange.html')" >兑换</span></p>
+		    			<h3>0</h3>
+		    			<h4>账户余额</h4>
+		    		</div>
+		    	</div>
+		    	<div class="real_name mui-text-center" ng-click="goPage('real_name.html')" >
+		    		<img src="../../img/recharge/real_name.png" alt="" />
+		    	</div>
+		    	<div class="select_option mui-clearfix">
+		    		<div class="option" ng-class="{ active: user_size == '1' }" ng-click="select_size(1)">
+		    			<p>乐豆<span>10</span>个</p>
+		    			<p>售价:<span>10</span>元</p>
+		    		</div>
+		    		<div class="option" ng-class="{ active: user_size == '2' }"  ng-click="select_size(2)">
+		    			<p>乐豆<span>20</span>个</p>
+		    			<p>售价:<span>20</span>元</p>
+		    		</div>
+		    		<div class="option" ng-class="{ active: user_size == '3' }"  ng-click="select_size(3)">
+		    			<p>乐豆<span>30</span>个</p>
+		    			<p>售价:<span>30</span>元</p>
+		    		</div>
+		    		<div class="option" ng-class="{ active: user_size == '4' }"  ng-click="select_size(4)">
+		    			<p>乐豆<span>50</span>个</p>
+		    			<p>售价:<span>50</span>元</p>
+		    		</div>
+		    		<div class="option" ng-class="{ active: user_size == '5' }"  ng-click="select_size(5)">
+		    			<p>乐豆<span>100</span>个</p>
+		    			<p>售价:<span>100</span>元</p>
+		    		</div>
+		    		<div class="option" ng-click="other_option()">
+		    			<p class="other_option">其他面额</p>
+		    		</div>
+		    	</div>
+			</div>
+			<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+	        	<div class="pop_container">
+	        		<h4 class="pop_title">其他面额</h4>
+	        		<input type="text" placeholder="可填写0-1000的整数" maxlength="4" class="pop_input" ng-model="pop_info.into_value" />
+	        		<p class="pop_info">共计：<b ng-bind="pop_info.into_value==null?0:pop_info.into_value"></b>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;乐豆：<b ng-bind="pop_info.into_value==null?0:pop_info.into_value"></b>个</p>
+	        		<button class="pop_btn">确定充值</button>
+	        	</div>
+	        	<div class="close_container" ng-click="close_pop(1)">
+	        		<i class="mui-icon mui-icon-close"></i>
+	        	</div>
+	        </div>
+	        <div id="pop_type" class="mui-popover mui-popover-action mui-popover-bottom">
+	        	<div class="pop_container">
+	        		<h4 class="pop_title">选择支付方式 <i class="mui-icon mui-icon-closeempty mui-pull-right" ng-click="close_pop(2)"></i></h4>
+					<div class="mui-input-row mui-radio mui-right fx_container">
+						<label class="mui-text-left"><img src="../../img/recharge/wx.png" alt="" /><span>微信</span></label>
+						<input name="pay_type" class="pay_type" type="radio" value="1" checked="checked">
+					</div>
+					<div class="mui-input-row mui-radio mui-right fx_container">
+						<label class="mui-text-left"><img src="../../img/recharge/zfb.png" alt="" />支付宝</label>
+						<input name="pay_type" class="pay_type" type="radio"  value="2">
+					</div>
+					<div class="mui-input-row mui-radio mui-right fx_container">
+						<label class="mui-text-left"><img src="../../img/recharge/ylyj.png" alt="" />益联益家</label>
+						<input name="pay_type" class="pay_type" type="radio"  value="3">
+					</div>
+	        		<button class="pop_btn">立即支付</button>
+	        	</div>
+	        </div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/angular.min.js"></script>
+		<script src="../../js/recharge/recharge.js"></script>
+		<script>
+			function getRadioRes(className){
+			    var rdsObj = document.getElementsByClassName(className);
+			    var checkVal = null;
+			    for(i = 0; i < rdsObj.length; i++){
+			        if(rdsObj[i].checked){
+			        	checkVal = rdsObj[i].value;
+			        }
+			    }
+			    return checkVal;
+			}
+			$('.pop_btn').click(function(){
+				console.log(getRadioRes('pay_type'));
+			})
+		</script>
+	</body>
+
+</html>

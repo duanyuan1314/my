@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>个人信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/account/setting.css" />
+</head>
+
+<body ng-controller="setting_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">个人信息</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="user_content">
+            <div class="item_list">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell" ng-click="upload_photo()">
+                        <a class="">
+                            <div class="mui-pull-left">头像</div>
+                            <div class="mui-pull-right">
+                                <img src="__STATIC__/index/img/my/change_photo.png" alt="" class="user_photo" />
+                            </div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <a class="">
+                            昵称
+                            <div class="mui-pull-right">
+                                苏小帅
+                            </div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            称号级别
+                            <div class="mui-pull-right">
+                                <span class="gray_text">暂无称号级别</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell" ng-click="goPage('../address/admin_address.html')">
+                        <a class="mui-navigate-right">
+                            收货地址
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="item_list">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell" ng-click="goPage('safe.html')">
+                        <a class="mui-navigate-right">
+                            账户与安全
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="btn btn_orange">退出登录</button>
+        </div>
+    </div>
+    <div id="photo_menu" class="mui-popover mui-popover-bottom mui-popover-action ">
+        <!-- 可选择菜单 -->
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <p ng-click="galleryImg()" class="mui-text-center">从相册选一张</p>
+            </li>
+            <li class="mui-table-view-cell">
+                <p ng-click="getImage()" class="mui-text-center">自己拍一张</p>
+            </li>
+        </ul>
+        <!-- 取消菜单 -->
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <p ng-click="close_menu()" class="mui-text-center">取消</p>
+            </li>
+        </ul>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/my/account/setting.js"></script>
+</body>
+
+</html>

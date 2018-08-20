@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>选择收货地址</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<link rel="stylesheet" href="../../../css/commen.css" />
+		<link rel="stylesheet" href="../../../css/my/address/admin_address.css" />
+	</head>
+
+	<body ng-controller="admin_address_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">选择收货地址</h1>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="order_info">
+				<div class="order_mid mui-clearfix">
+					<div class="media_left mui-pull-left" ng-click="check_address(1)">
+						<img src="../../../img/my/check.png" alt="" ng-show="user_select == 1"/>
+					</div>
+					<div class="media_mid mui-pull-left" ng-click="check_address(1)">
+						<p><span class="wh_text">张震</span><span class="wh_text">15515551555</span></p>
+						<p><label for="" class="label_bg">默认</label><span class="gray_text">河南省郑州市管城回族区十八里河镇南小李庄村</span></p>
+					</div>
+					<div class="media_right mui-pull-left" ng-click="goPage('add_address.html')">
+						<img src="../../../img/my/edit.png" alt="" />
+					</div>
+				</div>
+				<div class="order_mid mui-clearfix">
+					<div class="media_left mui-pull-left" ng-click="check_address(2)">
+						<img src="../../../img/my/check.png" alt="" ng-show="user_select == 2" />
+					</div>
+					<div class="media_mid mui-pull-left" ng-click="check_address(2)">
+						<p><span class="wh_text">张震</span><span class="wh_text">15515551555</span></p>
+						<p><label for="" class="label_bg">默认</label><span class="gray_text">河南省郑州市管</span></p>
+					</div>
+					<div class="media_right mui-pull-left" ng-click="goPage('add_address.html')">
+						<img src="../../../img/my/edit.png" alt="" />
+					</div>
+				</div>
+			</div>
+			<button class="add_address_btn" ng-click="goPage('add_address.html')"><img src="../../../img/my/plus_tran.png" alt="" />添加收货地址</button>
+		</div>
+		<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        	<div class="pop_container">
+        		<img src="../../img/recharge/real_name_pass.png" alt="" class="gift_box" />
+        		<h4>恭喜您，提交成功</h4>
+        		<button class="pop_btn" ng-click="close_pop()">确定</button>
+        	</div>
+        	<div class="close_container" ng-click="close_pop()">
+        		<i class="mui-icon mui-icon-close"></i>
+        	</div>
+        </div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/angular.min.js"></script>
+		<script src="../../../js/my/address/admin_address.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>乐豆余额</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<link rel="stylesheet" href="../../../css/commen.css" />
+		<link rel="stylesheet" href="../../../css/my/assets/bean_balance.css" />
+	</head>
+
+	<body ng-controller="bean_balance_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">乐豆余额</h1>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="balance_box">
+				<h4>账户余额</h4>
+				<h4>100</h4>
+			</div>
+			<button class="btn btn_orange">充值</button>
+			<button class="btn btn_line" ng-click="goPage('bean_detail.html')">乐豆明细</button>
+			<div class="real_name_jump">
+				<img src="../../../img/recharge/real_name.png" alt=""  />
+			</div>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/angular.min.js"></script>
+		<script src="../../../js/my/assets/bean_balance.js"></script>
+	</body>
+
+</html>

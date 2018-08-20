@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的背包</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<style type="text/css">
+			body,
+			.mui-bar-nav,
+			.mui-content,
+			.useBtn,
+			.left_dot,
+			.right_dot {
+				background-color: #DD4D56;
+			}
+			
+			.infoBox {
+				background-color: #fff;
+				margin: 0 3%;
+				border-radius: 5px;
+				height: 460px;
+			}
+			
+			ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			
+			.infoTop {
+				padding: 30px 0;
+				border-bottom: 1px dashed #E7E7E7;
+				position: relative;
+			}
+			
+			.infoTop_ul,
+			.useBtn {
+				text-align: center;
+			}
+			
+			.infoTop_ul li {
+				margin-bottom: 25px;
+			}
+			
+			.infoTop_ul li:last-child {
+				margin-bottom: 0;
+			}
+			
+			.cardLogo {
+				width: 71px;
+			}
+			
+			.li_cardName {
+				color: #333;
+				font-size: 24px;
+			}
+			
+			.useBtn {
+				width: 175px;
+				height: 36px;
+				border-radius: 3px;
+				color: #fff;
+				line-height: 36px;
+				margin: auto;
+			}
+			
+			.infoBottom_ul {
+				margin: 40px 0;
+				padding: 0 18px;
+			}
+			
+			.li_sygz {
+				font-size: 16px;
+				color: #333;
+				margin-bottom: 14px;
+			}
+			
+			.li_gzsm {
+				color: #666;
+				font-size: 14px;
+			}
+			
+			.left_dot,
+			.right_dot {
+				display: inline-block;
+				height: 21px;
+				width: 21px;
+				border-radius: 50%;
+				position: absolute;
+				bottom: -10px;
+			}
+			
+			.left_dot {
+				left: -10px;
+			}
+			
+			.right_dot {
+				right: -10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h4 class="mui-title">我的背包</h4>
+		</header>
+		<div id="cardInfo" class="mui-content">
+			<div class="infoBox">
+				<div class="infoTop">
+					<ul class="infoTop_ul">
+						<li>
+							<img src="__STATIC__/index/img/my/yk.png" class="cardLogo" />
+						</li>
+						<li class="li_cardName">
+							无限制兑换礼品道具卡
+						</li>
+						<li>
+							<p class="useBtn" > 
+								立即使用
+							</p>
+						</li>
+					</ul>
+					<span class="left_dot"></span>
+					<span class="right_dot"></span>
+				</div>
+
+				<div class="infoBottom">
+					<ul class="infoBottom_ul">
+						<li class="li_sygz">使用规则：</li>
+						<li class="li_gzsm">
+							本道具在玩家等级和兑换次数未满足兑换要求，而玩 家有兑换礼品需求的状态下只可使用一次，如购买此 道具，玩家可在订单中做勾选使用
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+	</body>
+</html>
+<script src="__STATIC__/index/js/jquery.min.js"></script>
+<script>
+	$(function () {
+		$(".useBtn").click(function () {
+			var lc_url = "{:url('gift/index')}";
+			location.href = lc_url;
+		})
+	})
+</script>

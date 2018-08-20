@@ -1,0 +1,175 @@
+.order_info {
+	background: #2c313b;
+	margin-top: 10px
+}
+
+.order_mid {
+	border-bottom: 1px solid #23262e
+}
+
+.media_left {
+	width: 10%;
+	padding: 7% 10px 0 10px
+}
+
+.media_left_1 {
+	width: 25%;
+	margin-bottom: 10px
+}
+
+.media_left img {
+	width: 100%
+}
+
+.media_mid {
+	width: 75%;
+	padding: 10px
+}
+
+.media_mid p {
+	color: #fff;
+	padding: 5px 0
+}
+
+.media_mid p:last-child {
+	padding: 0
+}
+
+.media_mid p .wh_text {
+	margin: 0 10px;
+	font-size: 15px
+}
+
+.media_mid p .wh_text:first-child {
+	margin-left: 0
+}
+
+.media_mid_1 {
+	width: 75%
+}
+
+.fragment_img {
+	width: 15px;
+	margin-right: 10px
+}
+
+.media_right {
+	width: 15%;
+	padding: 7% 10px 0 10px;
+	text-align: right;
+	color: #fff
+}
+
+.count_btn {
+	background: #677091;
+	width: 20px;
+	height: 20px;
+	display: block;
+	text-align: center;
+	line-height: 18px;
+	float: right;
+	color: #23262e;
+	font-size: 24px!important
+}
+.mui-clearfix .count_btn:nth-child(1){
+	float: right;
+}
+.mui-clearfix .count_btn:nth-child(2){
+	float: left;
+}
+span.count_num {
+	display: inline-block;
+	border: 0;
+	background: transparent;
+	float: right;
+	width: 50px;
+	height: 20px;
+	line-height: 2px;
+	margin-bottom: 0;
+	text-align: center;
+	padding: 10px 0;
+	color: #fff;
+}
+
+.media_right_1 {
+	width: 70%;
+	margin-bottom: 10px
+}
+
+.media_right_1 img {
+	width: 18px;
+	margin: 0 5px;
+	vertical-align: sub
+}
+
+.bottom_content {
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	bottom: 0;
+	background: #2e323c;
+	-moz-box-shadow: 0 -1px 1px #131416;
+	-webkit-box-shadow: 0 -1px 1px #131416;
+	box-shadow: 0 -1px 1px #131416
+}
+
+.bottom_content .sum_num {
+	text-align: right;
+	width: 70%;
+	height: 100%;
+	line-height: 50px;
+	padding-right: 20px
+}
+
+.bottom_content .sum_num p span {
+	font-size: 16px
+}
+
+.bottom_content .sum_num img {
+	width: 18px;
+	margin: 0 5px;
+	vertical-align: sub
+}
+
+.bottom_content .submit_btn {
+	text-align: center;
+	width: 30%;
+	background: #f7561e;
+	height: 100%;
+	line-height: 50px;
+	color: #Fff;
+	font-weight: 600
+}
+
+#check .input_check {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	visibility: hidden;
+	background: #e92333
+}
+
+#check {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	vertical-align: middle
+}
+
+#check span {
+	position: relative
+}
+
+#check .input_check+label {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	border-radius: 3px;
+	background: url(../../../img/gift/checkedBg.png) no-repeat;
+	background-position: -31px -3px;
+	border: 1px solid #f7561e
+}
+
+#check .input_check:checked+label {
+	background-position: 2px 3px
+}

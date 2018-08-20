@@ -1,0 +1,78 @@
+{
+"fail":"tanhuang_eft.png",
+"mc":{
+	"eft":{
+		"frameRate":24,
+		"labels":[
+			{"name":"eft","frame":1,"end":10}
+			
+			],
+		"events":[
+			
+			],
+		"frames":[
+			
+			{
+			"res":"tanhaung_1",
+			"x":0,
+			"y":18
+			},
+			{
+			"res":"tanhaung_2",
+			"x":0,
+			"y":2
+			},
+			{
+			"res":"tanhaung_3",
+			"x":0,
+			"y":2
+			},
+			{
+			"res":"tanhaung_4",
+			"x":0,
+			"y":4
+			},
+			{
+			"res":"tanhaung_5",
+			"x":0,
+			"y":6
+			},
+			{
+			"res":"tanhaung_6",
+			"x":0,
+			"y":7
+			},
+			{
+			"res":"tanhaung_7",
+			"x":0,
+			"y":10
+			},
+			{
+			"res":"tanhaung_8",
+			"x":0,
+			"y":13
+			},
+			{
+			"res":"tanhaung_9",
+			"x":0,
+			"y":16
+			},
+			{
+			"res":"tanhaung_10",
+			"x":0,
+			"y":18
+			}
+			]
+}},
+	"res":{
+		"tanhaung_3":{"x":0,"y":89,"w":184,"h":87},
+		"tanhaung_2":{"x":0,"y":0,"w":184,"h":87},
+		"tanhaung_4":{"x":0,"y":178,"w":184,"h":85},
+		"tanhaung_10":{"x":186,"y":156,"w":184,"h":71},
+		"tanhaung_5":{"x":0,"y":265,"w":184,"h":83},
+		"tanhaung_8":{"x":0,"y":434,"w":184,"h":76},
+		"tanhaung_9":{"x":186,"y":81,"w":184,"h":73},
+		"tanhaung_7":{"x":186,"y":0,"w":184,"h":79},
+		"tanhaung_6":{"x":0,"y":350,"w":184,"h":82},
+		"tanhaung_1":{"x":186,"y":156,"w":184,"h":71}
+	}}

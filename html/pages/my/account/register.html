@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<link rel="stylesheet" href="../../../css/commen.css" />
+		<link rel="stylesheet" href="../../../css/my/account/register.css" />
+	</head>
+
+	<body ng-controller="register_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="account_container">
+				<h4 class="mui-text-center">注册</h4>
+				<div class="mui-clearfix phone_box form_line">
+					<input type="text" class="input_case" id="phone_input" name="phone_input" placeholder="请输入手机号" />
+					<button class="send_code" ng-click="getTestCode()">发送验证码</button>
+				</div>
+				<div class="mui-clearfix form_line">
+					<input type="text" class="input_case" name="pass_code" placeholder="请输入验证码" />
+				</div>
+				<div class="mui-clearfix form_line phone_box">
+					<p class="pop_msg">未注册手机验证后自动登录</p>
+					<input type="password" class="input_case" name="pass_word" placeholder="请设置登录密码" />
+				</div>
+				<button class="register_btn" ng-click="submit_form()">注册</button>
+				<div class="mui-clearfix checkbox_line mui-text-center">
+					<label for="agree_agreement" id="agreement_label">
+						<input type="checkbox" id="agree_agreement"/>
+						我已阅读并同意“用户协协议和隐私条款”
+					  	<div class="show-box" /> </div>
+					</label>
+				</div>
+				<div class="mui-clearfix checkbox_line mui-text-center">
+					<a href="" class="go_login or_text" ng-click="goPage('login.html')">账号密码登录</a>
+				</div>
+			</div>
+		</div>
+		<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="pop_container">
+				<img src="../../../img/my/register.png" alt="" class="gift_box" />
+				<h4>恭喜您，注册成功</h4>
+				<p class="go_home">即将跳转首页（3s）</p>
+				<button class="pop_btn" ng-click="goPage('../../recharge/real_name.html')">马上实名认证</button>
+			</div>
+			<div class="close_container" ng-click="close_pop()">
+				<i class="mui-icon mui-icon-close"></i>
+			</div>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/angular.min.js"></script>
+		<script src="../../../js/my/account/register.js"></script>
+	</body>
+
+</html>

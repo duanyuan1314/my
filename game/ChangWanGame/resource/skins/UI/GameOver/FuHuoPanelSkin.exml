@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="FuHuoPanelSkin" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="16530fd9020"/>
+	<e:Rect width="100%" height="100%" fillAlpha="0.7" verticalCenter="0" horizontalCenter="0"/>
+	<e:Group width="750" height="1209" horizontalCenter="0" verticalCenter="0">
+		<e:Image source="fuhuo_xin_png" x="126" y="309"/>
+		<e:Image id="btnfuhuo" source="fuhuo_btn_png" y="876" x="231"/>
+		<e:Label id="price" text="2乐豆" y="568" size="36" textAlign="center" x="329"/>
+		<e:Label id="tiaoguo" text="跳过(5秒)&gt;&gt;" y="1055" size="36" textAlign="center" x="278"/>
+	</e:Group>
+</e:Skin>

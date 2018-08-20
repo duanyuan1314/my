@@ -1,0 +1,144 @@
+#pullrefresh {
+	background: #2e313b;
+}
+
+.account_container {
+	width: 85%;
+	margin: 10px auto;
+	color: #Fff;
+}
+
+.account_container>h4 {
+	margin-bottom: 30px;
+}
+
+.phone_box {
+	position: relative;
+}
+
+
+/*
+				 * 输入框placeholder颜色
+				 */
+
+::-webkit-input-placeholder {
+	/* WebKit browsers */
+	color: #677091;
+}
+
+:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #677091;
+}
+
+::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #677091;
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10+ */
+	color: #677091;
+}
+
+.account_container input[type=text].input_case,
+.account_container input[type=password].input_case {
+	width: 100%;
+	height: 45px;
+	border: 1px solid #fff;
+	border-radius: 25px;
+	background: transparent;
+	font-size: 15px;
+	margin-bottom: 0;
+}
+
+#phone_input {
+	padding-right: 40%;
+}
+
+.form_line {
+	margin: 25px auto;
+}
+
+.send_code {
+	background: transparent;
+	color: #EB7433;
+	border: 0;
+	position: absolute;
+	right: 12px;
+	bottom: 7px;
+}
+
+.pop_msg {
+	position: absolute;
+	top: -22px;
+	text-align: center;
+	width: 100%;
+	color: #677091;
+}
+
+.register_btn {
+	width: 100%;
+	height: 42px;
+	border-radius: 20px;
+	border: 0;
+	background: #EB7433;
+	color: #Fff;
+	font-size: 16px;
+}
+
+#agree_agreement {
+	vertical-align: middle;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+#agreement_label {
+	position: relative;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+#agree_agreement:checked+.show-box {
+	background: #ec6337;
+}
+
+.show-box {
+	position: absolute;
+	top: 1px;
+	left: -2px;
+	width: 15px;
+	height: 15px;
+	border-radius: 2px;
+	background: white;
+}
+
+.show-box:before {
+	content: '';
+	position: absolute;
+	top: 1px;
+	left: 5px;
+	width: 3px;
+	height: 8px;
+	border: solid white;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+.checkbox_line {
+	margin: 10px auto;
+}
+
+.go_login {
+	font-size: 16px;
+	letter-spacing: 1px;
+}
+
+#pop_into .pop_container {
+	height: 260px;
+}
+
+#pop_into .gift_box {
+	width: 125px;
+	margin-top: 25px;
+}

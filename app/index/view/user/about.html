@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>关于畅玩</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<style type="text/css">
+			.mui-table-view{
+			     border-top: none;
+			}
+			.logoBox {
+				margin: 53px auto 40px;
+				text-align: center;
+			}
+			
+			.appLogo {
+				width: 84.5px;
+				margin-bottom: 15px;
+			}
+			
+			.appName {
+				color: #fff;
+				font-size: 16px;
+			}
+			
+			.mui-table-view {
+				padding: 0 15px;
+			}
+			
+			.mui-table-view-cell {
+				height: 53px;
+				line-height: 32px;
+				background-color: #2E323C;
+				margin-bottom: 16px;
+				border-radius: 8px;
+				font-size: 14px;
+			}
+			
+			.mui-navigate-right:after,
+			.mui-push-left:after,
+			.mui-push-right:after {
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body ng-controller="setting_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">关于畅玩</h1>
+		</header>
+		<div class="mui-content">
+			<div class="logoBox">
+				<img src="__STATIC__/index/img/my/about_appLogo.png" class="appLogo" />
+				<p class="appName">畅玩</p>
+			</div>
+
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-disabled">当前版本 <span class="mui-pull-right">1.0</span></li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right mui-disabled">检查更新：</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a  href="{:url('layer/agreement')}" class="mui-navigate-right mui-disabled">用户协议和隐私条款</a>
+				</li>
+			</ul>
+
+		</div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="RulePanelSkin" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect width="100%" height="100%" x="0" y="0" fillAlpha="0.6"/>
+	<e:Group id="group" width="750" height="1206" horizontalCenter="0" verticalCenter="0">
+		<e:Rect id="bg" width="614" height="1022" fillColor="0xffffff" x="68" y="92" scaleX="1" scaleY="1"/>
+		<e:Image id="top" source="rule_bg_png" x="167" y="131" scaleX="1" scaleY="1"/>
+		<e:Image id="btn" source="rule_btn_png" x="180" y="997" scaleX="1" scaleY="1"/>
+		<e:Label id="txtcontent" text="8个字母，将会获得区块奖励，奖励数额完全随 机，收集的字母可累计叠加，下局将全部作废， 需要从新开始收集。" textColor="0x666666" width="525" size="25" anchorOffsetX="0" anchorOffsetY="0" lineSpacing="16" fontFamily="Arial" x="113" y="657" scaleX="1" scaleY="1"/>
+	</e:Group>
+</e:Skin>

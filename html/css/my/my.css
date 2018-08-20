@@ -1,0 +1,227 @@
+#pullrefresh {
+	background: #2a2d36;
+}
+
+.user_photo {
+	width: 100%;
+	height: 250px;
+	background: rgba(0, 0, 0, .3);
+	background-image: url(../../img/my/info_bg.png);
+	background-size: cover;
+	border-top: 1px solid transparent;
+	position: relative;
+}
+
+.tab_container {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background: rgba(0, 0, 0, .2);
+}
+
+.tab_container ul {
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+	padding: 10px 0;
+}
+
+.tab_container ul li {
+	float: left;
+	width: 33%;
+	text-align: center;
+}
+
+.tab_container ul li+li {
+	border-left: 1px solid #677091;
+}
+
+.tab_container ul li .or_text {
+	font-size: 18px;
+}
+
+.tab_container ul li .or_text img {
+	width: 15px;
+}
+
+.tab_container ul li .wh_text {
+	font-size: 12px;
+}
+
+.item_list {
+	width: 100%;
+	margin: 10px auto;
+	background: #2E323C;
+}
+
+.mui-table-view-cell>a:not(.mui-btn).mui-active {
+	background: inherit;
+}
+
+.item_list .mui-table-view-cell+.mui-table-view-cell {
+	border-top: 1px solid #3E455C;
+}
+
+.item_list .mui-table-view-cell a {
+	font-size: 14px;
+}
+
+.item_list .mui-navigate-right:after,
+.item_list .mui-push-left:after,
+.item_list .mui-push-right:after {
+	color: #677091;
+	font-size: 26px;
+}
+
+.has_badge {
+	position: relative;
+}
+
+.has_badge:before {
+	content: " ";
+	border: 3px solid red;
+	border-radius: 3px;
+	position: absolute;
+	z-index: 1;
+	right: 0%;
+	margin-right: -6px;
+	margin-top: 1px;
+}
+
+.info_container {
+	width: 90%;
+	margin: 5px auto;
+	margin-top: 20px;
+}
+
+.photo_circle {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin: 5px auto;
+	position: relative;
+}
+
+.user_photo_img {
+	width: 66px;
+	position: absolute;
+	left: 7px;
+	top: 8px;
+}
+
+.photo_bg {
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	background-image: url(../../img/my/photo_bg.png);
+	background-size: cover;
+}
+
+.user_sign {
+	padding: 0 3px;
+	background: #F7561E;
+	border-radius: 2px;
+	color: #Fff;
+	font-size: 12px;
+	position: absolute;
+	bottom: -12px;
+	left: 18%;
+}
+
+.user_name {
+	padding: 5px;
+	padding-top: 10px;
+}
+
+.user_exp {
+	width: 60%;
+	margin: 0 auto;
+	font-size: 12px;
+}
+
+.user_exp>div {
+	width: 15%;
+}
+
+.user_exp>div.progress_bg {
+	width: 65%;
+	position: relative;
+	background: #677091;
+	height: 6px;
+	float: left;
+	border-radius: 5px;
+	margin-left: 2%;
+	margin-top: 8px;
+}
+
+.user_exp>div.progress_bg .progress_length {
+	width: 40%;
+	height: 100%;
+	background: #F7561E;
+	border-radius: 5px;
+}
+
+.user_exp>div.progress_bg .wh_text {
+	font-size: 12px;
+	text-align: center;
+}
+
+.user_exp>div.or_text img {
+	width: 12px;
+	vertical-align: middle;
+}
+
+.mui-bar-tab~.mui-content {
+	height: 100%;
+}
+
+#pop_type .pop_container {
+	height: 270px;
+}
+
+#pop_type .pop_container .close_title {
+	height: 20%;
+	font-size: 16px;
+	color: #333;
+	font-weight: 600;
+	padding-top: 17px;
+}
+
+.grid_container {
+	height: 80%;
+	width: 100%;
+	background: #f8f8f8;
+}
+
+.grid_container .mui-row {
+	height: 50%;
+}
+
+.grid_container .mui-row+.mui-row {
+	border-top: 1px solid #eee;
+}
+
+.grid_container .mui-col-sm-3 {
+	height: 100%;
+}
+
+.grid_container .mui-col-sm-3 .share_btn {
+	color: #333;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.grid_container .mui-col-sm-3 .logo_box {
+	width: 70px;
+	height: 70px;
+	margin: 0 auto;
+	margin-top: 10px;
+	background: #Fff;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.grid_container .mui-col-sm-3 .logo_box img {
+	width: 100%;
+}

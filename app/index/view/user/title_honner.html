@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>称号详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+</head>
+
+<body ng-controller="title_detail_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title"></h1>
+    </header>
+    <style>
+        #pullrefresh {
+            background: #2C313B!important;
+            height: auto;
+        }
+
+        .title_container {
+            color: #Fff;
+            text-align: center;
+        }
+
+        .title_container p {
+            color: #Fff;
+            padding: 5px;
+        }
+
+        .title_container h4,
+        .title_container h3 {
+            margin: 0;
+            padding: 15px;
+        }
+
+        .title_img {
+            text-align: center;
+        }
+
+        .title_img img {
+            width: 30%;
+        }
+
+        .get_btn {
+            border: 0;
+            background: #ff4c26;
+            width: 60%;
+            height: 40px;
+            border-radius: 20px;
+            color: #Fff;
+            font-size: 1rem;
+            margin: 20px auto;
+        }
+
+        #pop_into .pop_container {
+            height: 250px;
+        }
+
+        #pop_into .gift_box {
+            width: 40%;
+            margin-top: 20px;
+        }
+
+        #pop_into .pop_btn {
+            width: 40%;
+        }
+
+        #pop_into .cancle_btn {
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #333;
+            margin-right: 20px;
+        }
+
+        #pop_into h4 {
+            font-size: 0.9rem;
+            font-weight: 100;
+            padding: 20px 0;
+        }
+    </style>
+    <div id="pullrefresh" class="mui-content" style="height:100%;">
+        <div style="height: 20vw;"></div>
+        <div class="title_container">
+            <div class="title_img">
+                <img src="__STATIC__/index/img/my/title/title_active_{$title.id}.png" alt="" />
+            </div>
+            <h4>已获得</h4>
+            <h3>{$title.name}称号</h3>
+            <p>称号时长：
+                <span>{$title.limittime}天</span>
+            </p>
+           <!--   <p>随机掉落
+                <span>90-110</span>个碎片</p> -->
+            <div style="margin-top: 30vw;">
+                <p>已有{$count}+人获得</p>
+                <p>到期时间：{$datetime|date="Y-m-d",###}</p>
+            </div>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/layer/layer.js"></script>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('title_detail_controller', ['$scope', '$timeout', function ($scope, $timeout) {
+            $scope.goPage = function (path) {
+                mui.openWindow({
+                    url: path
+                });
+            }
+            $scope.get_btn = function () {
+                mui('#pop_into').popover('show');
+            }
+            $scope.close_pop = function () {
+                mui('#pop_into').popover('hide');
+            }
+            $scope.buy_btn = function () {
+                mui('#pop_type').popover('show');
+            }
+        }]);
+    </script>
+</body>
+
+</html>
+<script>
+    $('#submit_btn').click(function () {
+        var name = $('#name').val();
+        var pid = $('#pid').val();
+        var price = $('#price').val();
+        var limittime = $('#limittime').val();
+        var id = $('#id').val();
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "{:url('user/title_save')}",
+            data: { name: name, pid: pid, price: price, limittime: limittime },
+            success: function (re) {
+                if (re.code == 1) {
+                    layer.msg(re.msg, { time: 1000 }, function () {
+                        //操作事件
+                        location.href = "{:url('user/title')}?id=" + id;
+                    })
+                } else {
+                    layer.msg(re.msg, { time: 1000 }, function () {
+                        //操作事件
+                        location.href = "{:url('recharge/index')}";
+                    })
+                    /*  layer.msg(re.msg, { time: 2000 }); */
+                }
+            }
+        });
+
+    })
+</script>

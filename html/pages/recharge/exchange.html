@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>密钥兑换</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/commen.css" />
+		<link rel="stylesheet" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" href="../../css/recharge/exchange.css" />
+	</head>
+
+	<body ng-controller="exchange_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">密钥兑换</h1>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="user_asset">
+	    		<div class="asset_bowl">
+	    			<h3>密钥兑换</h3>
+	    			<p>密钥兑换可以立即获得乐豆</p>
+	    		</div>
+	    		<input type="text" placeholder="请输入密钥" id="user_key" ng-class="{wrong_input:wrong_flag}" ng-model="user_key" />
+	    		<button class="exchange_btn" ng-click="exchange_opro()">立即兑换</button>
+	    		<hr class="cut_line" />
+	    		<style>
+	    			#swiper-container {
+						width: 100%;
+						height: 150px;
+						padding:0 50px;
+						margin: 15px auto;
+					}
+					#swiper-container .swiper-slide {
+						color: #fff;
+						box-sizing: border-box;
+						border-radius: 5px;
+						text-align: center;
+						font-family: "微软雅黑";
+					}
+	    		</style>
+	    		<div class="swiper-container" id="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"data-swiper-autoplay="2000" style="background: #DD524D;">
+							1
+						</div>
+						<div class="swiper-slide"data-swiper-autoplay="2000" style="background: #35C6EB;">
+							2
+						</div>
+						<div class="swiper-slide"data-swiper-autoplay="2000" style="background: #C3CBEC;">
+							3
+						</div>
+						<div class="swiper-slide"data-swiper-autoplay="2000" style="background: #F3A122;">
+							4
+						</div>
+					</div>
+					<div class="swiper-pagination swiper-pagination-bullets"></div>
+				</div>
+	    		<div class="help_info">
+	    			<p><img src="../../img/recharge/gift_box.png" alt="" /></p>
+	    				<h4><span>-</span>什么是密钥<span>-</span></h4>
+	    			<p>密钥是乐分畅游新推出的兑换乐豆的方式，用户输入密钥，系统自动兑换成乐豆。</p>
+	    		</div>
+	    	</div>
+		</div>
+		<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        	<div class="pop_container">
+        		<img src="../../img/recharge/gift_box_b.png" alt="" class="gift_box" />
+        		<h4>恭喜您，兑换成功</h4>
+        		<p>成功兑换100欢乐豆</p>
+        		<button class="pop_btn">玩游戏</button>
+        	</div>
+        	<div class="close_container" ng-click="close_pop(1)">
+        		<i class="mui-icon mui-icon-close"></i>
+        	</div>
+        </div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/angular.min.js"></script>
+		<script src="../../js/recharge/exchange.js"></script>
+		<script src="../../js/swiper.min.js"></script>
+		<script>
+			$(function(){
+				var swiper = new Swiper('#swiper-container', {
+				  effect: 'coverflow',
+				  grabCursor: true,
+				  centeredSlides: true,
+				  slidesPerView: 'auto',
+				  loop:true,
+				  initialSlide:0,
+				  speed:300,
+				  coverflowEffect: {
+				    rotate: 50,
+				    stretch: 0,
+				    depth: 100,
+				    modifier: 1,
+				    slideShadows : true,
+				  },
+				  autoplay: false,
+				  pagination: {
+				    el: '.swiper-pagination',
+				  },
+				});
+				
+			})
+			
+  
+		</script>
+	</body>
+
+</html>

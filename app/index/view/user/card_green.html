@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的背包</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<style type="text/css">
+			body,
+			.mui-bar-nav,
+			.mui-content,
+			.useBtn,
+			.left_dot,
+			.right_dot {
+				background-color: #20BA44;
+			}
+			
+			.infoBox {
+				background-color: #fff;
+				margin: 0 3%;
+				border-radius: 5px;
+				height: 460px;
+			}
+			
+			ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			
+			.infoTop {
+				padding: 30px 0;
+				border-bottom: 1px dashed #E7E7E7;
+				position: relative;
+			}
+			
+			.infoTop_ul,
+			.useBtn {
+				text-align: center;
+			}
+			
+			.infoTop_ul li {
+				margin-bottom: 25px;
+			}
+			
+			.infoTop_ul li:last-child {
+				margin-bottom: 0;
+			}
+			
+			.cardLogo {
+				width: 71px;
+			}
+			
+			.li_cardName {
+				color: #333;
+				font-size: 24px;
+			}
+			
+			.useBtn {
+				width: 175px;
+				height: 36px;
+				border-radius: 3px;
+				color: #fff;
+				line-height: 36px;
+				margin: auto;
+			}
+			
+			.infoBottom_ul {
+				margin: 40px 0;
+				padding: 0 18px;
+			}
+			
+			.li_sygz {
+				font-size: 16px;
+				color: #333;
+				margin-bottom: 14px;
+			}
+			
+			.li_gzsm {
+				color: #666;
+				font-size: 14px;
+			}
+			
+			.left_dot,
+			.right_dot {
+				display: inline-block;
+				height: 21px;
+				width: 21px;
+				border-radius: 50%;
+				position: absolute;
+				bottom: -10px;
+			}
+			
+			.left_dot {
+				left: -10px;
+			}
+			
+			.right_dot {
+				right: -10px;
+			}
+			
+			.mui-popup-button:first-child {
+				color: #333 !important;
+				border-radius: 0 0 0 5px !important;
+			}
+			
+			.mui-popup-button:last-child {
+				border-radius: 0 0 5px !important;
+				background: #F7561E;
+				color: #FFF !important;
+			}
+			
+			.mui-popup-inner {
+				border-radius: 5px 5px 0 0 !important;
+			}
+			
+			.mui-popup {
+				border-radius: 0 !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h4 class="mui-title">我的背包</h4>
+		</header>
+		<div id="cardInfo" class="mui-content">
+			<div class="infoBox">
+				<div class="infoTop">
+					<ul class="infoTop_ul">
+						<li>
+							<img src="__STATIC__/index/img/my/jyk.png" class="cardLogo" />
+						</li>
+						<li class="li_cardName">
+							经验时间加倍卡
+						</li>
+						<li>
+							<p class="useBtn" data="{$arr.id}">
+								立即使用
+							</p>
+						</li>
+					</ul>
+					<span class="left_dot"></span>
+					<span class="right_dot"></span>
+				</div>
+				<div class="infoBottom">
+					<ul class="infoBottom_ul">
+						<li class="li_sygz">使用规则：</li>
+						<li class="li_gzsm">
+							本道具为一次性道具，有玩家支付乐豆购买。本道具 作用时间为一小时，在使用期间经验加倍。本道具功 能可以和称号叠加。
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+	</body>
+
+</html>
+<script src="__STATIC__/index/js/jquery.min.js"></script>
+<script src="__STATIC__/layer/layer.js"></script>
+<script>
+	$('.useBtn').click(function() {
+		var id = $(this).attr('data');
+		var btnArray = ['取消', '确定'];
+		mui.confirm('您确定立即使用吗？', '是否确认', btnArray, function(e) {
+			if(e.index == 1) {
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: "{:url('user/card_status')}",
+					data: {
+						id: id
+					},
+					success: function(re) {
+						if(re.code == 1) {
+							layer.msg(re.msg, {
+								time: 1000
+							}, function() {
+								//操作事件
+								location.href = "{:url('user/mypack')}";
+							})
+						} else {
+							layer.msg(re.msg, {
+								time: 1000
+							}, function() {
+
+							})
+						}
+					}
+				});
+			}
+		});
+	})
+</script>

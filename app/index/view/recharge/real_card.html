@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>实名认证</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+</head>
+<style>
+    #pullrefresh {
+        background: #2a2d36;
+    }
+    .mui-table-view {
+        margin-top: 0;
+    }
+
+    .mui-navigate-right .mui-pull-right {
+        margin-right: 25px;
+    }
+
+    .mui-table-view-cell>a .mui-pull-left {
+        line-height: 60px;
+    }
+
+    .item_list {
+        width: 100%;
+        margin: 0 auto;
+        background: #2E323C;
+    }
+
+    .mui-table-view-cell>a:not(.mui-btn).mui-active {
+        background: inherit;
+    }
+
+    .item_list .mui-table-view-cell+.mui-table-view-cell {
+        border-top: 1px solid #3E455C;
+    }
+
+    .item_list .mui-table-view-cell a {
+        font-size: 14px;
+    }
+
+    .item_list .mui-table-view-cell {
+        padding: 17px 15px;
+    }
+
+    .item_list .mui-navigate-right:after,
+    .item_list .mui-push-left:after,
+    .item_list .mui-push-right:after {
+        color: #677091;
+        font-size: 26px;
+    }
+
+    .user_prompt {
+        background-color: #2B7B8C;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+
+    .user_prompt>div {
+        margin: 0 auto;
+    }
+
+    .user_prompt img {
+        width: 5rem;
+        margin-bottom: 8px;
+    }
+   .none:after{
+   	font-size: 0 !important;
+   }
+   .shtg:after{
+   	   content: '' !important;
+   }
+   .shtg .mui-pull-right{
+   	margin-right: 0;
+   } 
+</style>
+
+<body ng-controller="real_name_info_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">实名认证</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="user_prompt">
+                <div>
+                    <img src="__STATIC__/index/img/recharge/upload/real_name_prompt.png" alt="" />
+                     {if  condition="$user.isCheck eq 1" }
+                        <p style="color: #Fff; font-size: .8rem;">证件信息未完善</p>
+                     {elseif condition="$user.isCheck eq 2" /}
+                        <p style="color: #Fff; font-size: .8rem;">证件信息正在审核中，请耐心等待！</p>
+                     {elseif condition="$user.isCheck eq 3" /}
+                        <p style="color: #Fff; font-size: .8rem;">您已通过实名认证！</p>
+                     {/if}
+                </div>
+        </div>
+        <div class="user_content">
+            <div class="item_list">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell">
+                        <a class="">
+                            真实姓名
+                            <div class="mui-pull-right">
+                                {$arr.real_name}
+                            </div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right none">
+                            身份证
+                            <div style="display: inline-block;float:right;margin-right: 5px;">
+                                <span class="userNum">{$arr.card}</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell"  >
+                        <a class="mui-navigate-right">
+                             证件信息
+                             {if  condition="$user.isCheck eq 1" }
+                                <div class="mui-pull-right" ng-click="goPage('{:url('recharge/real_up')}')" >
+                                    <span class="or_text">点击上传</span>
+                                </div>
+                             {elseif condition="$user.isCheck eq 2" /}
+                                <div class="mui-pull-right">
+                                    <span class="or_text">证件审核中</span>
+                                </div>
+                              {elseif condition="$user.isCheck eq 3" /}
+                                <div class="mui-pull-right">
+                                    <span class="or_text" style="color:#4cd964 !important" >审核通过</span>
+                                </div>
+                               {elseif condition="$user.isCheck eq 4" /}
+                                <div class="mui-pull-right" ng-click="goPage('{:url('recharge/real_refuse')}')" >
+                                    <span class="or_text">审核未通过</span>
+                                </div>
+                                {elseif condition="$user.isCheck eq 6" /}
+                                    <div class="mui-pull-right" ng-click="goPage('{:url('user/index')}')" >
+                                        <span class="or_text">证件重审中</span>
+                                    </div>
+                                {else /}
+                                <div class="mui-pull-right"  >
+                                    <span class="or_text">未实名认证</span>
+                                </div>
+                             {/if}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('real_name_info_controller', ['$scope', '$timeout', function ($scope, $timeout) {
+            $scope.goPage = function (path) {
+                mui.openWindow({
+                    url: path
+                });
+            }
+        }]);
+    </script>
+    <script type="text/javascript">
+    	if($('.or_text').html() == '审核通过'){
+    		$('.or_text').parent().parent().addClass('shtg');
+    	}
+    	
+    	 var subNum = $('.userNum').html().substring(1,$('.userNum').html().length - 1);
+    var reNum = $('.userNum').html().replace(subNum,'*************');
+    $('.userNum').html(reNum);
+    </script>
+</body>
+</html>

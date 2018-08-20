@@ -1,0 +1,67 @@
+#pullrefresh {
+	background: #2a2d36;
+}
+
+.user_photo{
+	width: 60px;
+}
+.mui-navigate-right .mui-pull-right{
+	margin-right: 25px;
+}
+
+.mui-table-view-cell>a .mui-pull-left{
+	line-height: 60px;
+}
+
+.item_list {
+	width: 100%;
+	margin: 10px auto;
+	background: #2E323C;
+}
+
+.mui-table-view-cell>a:not(.mui-btn).mui-active {
+	background: inherit;
+}
+
+.item_list .mui-table-view-cell+.mui-table-view-cell {
+	border-top: 1px solid #3E455C;
+}
+
+.item_list .mui-table-view-cell a {
+	font-size: 14px;
+}
+
+.item_list .mui-navigate-right:after,
+.item_list .mui-push-left:after,
+.item_list .mui-push-right:after {
+	color: #fff;
+	font-size: 26px;
+}
+.mui-navigate-right:after, .mui-push-right:after{
+	right: 8px;
+}
+.btn {
+	width: 90%;
+	margin: 30px auto;
+	border: 0;
+	font-size: 16px;
+	color: #fff;
+	margin-left: 5%;
+	border-radius: 20px;
+	height: 45px;
+}
+
+.btn_orange {
+	background: #EB7433;
+	background: -webkit-linear-gradient(right, #FF7748, #FF3413); /* Safari 5.1 - 6.0 */
+	background: linear-gradient( right, #FF7748, #FF3413); /* 标准的语法 */
+}
+
+#photo_menu .mui-table-view-cell p {
+	color: #333;
+	font-size: 18px;
+}.mui-table-view{	margin-top: 10px;}
+
+.mui-table-view-cell > a:not(.mui-btn){
+	white-space:normal !important;
+}

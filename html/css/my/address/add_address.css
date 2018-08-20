@@ -1,0 +1,106 @@
+.input_container {
+	background: #303540;
+	color: #677091;
+	padding: 0 10px;
+	margin-bottom: 10px;
+}
+
+.input_container .input_box {
+	line-height: 50px;
+}
+
+.input_container .input_box+.input_box {
+	border-top: 1px solid #22262F;
+}
+
+.input_container .input_box>div:first-child {
+	text-align: left;
+	font-size: 16px;
+}
+
+.input_container .input_box>div:last-child {
+	width: 68%;
+}
+
+.switch_box {
+	padding: 9px;
+}
+
+.input_container .input_box input {
+	background: transparent;
+	color: #fff;
+	font-size: 14px;
+	padding: 5px;
+	width: 100%;
+	border: 0;
+	margin: 0;
+}
+
+.input_container .verif_code input {
+	width: 50%;
+}
+
+.key_btn {
+	background: transparent;
+	color: #677091;
+	border: 1px solid #677091;
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+.submit_btn {
+	width: 90%;
+	background: #303540;
+	color: #677091;
+	font-size: 18px;
+	border: 0;
+	margin: 0 auto;
+	margin-left: 5%;
+	margin-top: 30px;
+	height: 45px;
+}
+.select_contacts{
+	position: absolute;
+    background: #303540;
+    right: 0;
+    top: 45px;
+    text-align: center;
+    border-left: 1px solid #22262f;
+    width: 100px;
+    height: 100px;
+}
+.select_contacts p{
+	color: #fff;
+	font-size: 16px;
+}
+.select_contacts img{
+	width: 35px;
+	margin-top: 20px;
+}
+.input_container .input_box>div.short_box{
+	width: 52%;
+}
+/*
+						 * 输入框placeholder颜色
+						 */
+
+::-webkit-input-placeholder {
+	/* WebKit browsers */
+	color: #677091;
+}
+
+:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #677091;
+}
+
+::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #677091;
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10+ */
+	color: #677091;
+}

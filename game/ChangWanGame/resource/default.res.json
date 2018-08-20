@@ -1,0 +1,704 @@
+{
+	"groups": [
+		{
+			"keys": "daojuItem_csv,csd_eft_png,shijie_eft_png,tanhuang_eft_png,tiao_eft_png,zou_eft_png,zou_eft_json,tiao_eft_json,shijie_eft_json,csd_eft_json,tanhuang_eft_json,csm_eft_png,csm_eft_json,kuang_eft_png,kuang_eft_json,TurntableRewardItem_csv,Shield_eft_png,chongci_eft_png,chongci_eft_json,Shield_eft_json,tiaodun_eft_png,tiaodun_eft_json,si_eft_png,si_eft_json,readygo_eft_png,readygo_eft_json,sound_bg_mp3,readygo_mp3,Prize_mp3,noPrize_mp3,fuhuo_eft_json,fuhuo_eft_png,xue_eft_png,xue_eft_json,hecheng10_eft_json,hecheng10_eft_png,hecheng1_eft_json,hecheng1_eft_png,hecheng2_eft_json,hecheng2_eft_png,hecheng3_eft_json,hecheng3_eft_png,hecheng4_eft_json,hecheng4_eft_png,hecheng5_eft_json,hecheng5_eft_png,hecheng6_eft_json,hecheng6_eft_png,hecheng7_eft_json,hecheng7_eft_png,hecheng8_eft_json,hecheng8_eft_png,hecheng9_eft_json,hecheng9_eft_png,tiao_mp3,dian_mp3,fly_mp3,chizimu_eft_png,chizimu_eft_json",
+			"name": "preload"
+		},
+		{
+			"keys": "rule_png,back_png",
+			"name": "public"
+		},
+		{
+			"keys": "login_btnStart_png,login_bg_png,login_title_png",
+			"name": "login"
+		},
+		{
+			"keys": "main_bg5_jpg,main_bg1_jpg,main_bg2_jpg,main_bg3_jpg,main_bg4_jpg,main_zimukuang_png,liang_W_png,liang_N_png,liang_H_png,liang_G_png,liang_C_png,liang_A_png,hui_W_png,hui_N_png,hui_H_png,hui_G_png,hui_C_png,hui_A_png,Shield_png,Aerocraft_png,Stand_png,taijie_png,dingzi_png,tanhaung_png,shijie_png,csd_png,A_png,C_png,G_png,H_png,N_png,W_png,progressMask_png,progressBg_png,progressBar_png,consci_png,Gold_png,btnInBag_png,Bubble_png,hong_png",
+			"name": "main"
+		},
+		{
+			"keys": "rule_btn_png,rule_bg_png",
+			"name": "rule"
+		},
+		{
+			"keys": "turntable_go_png,turntable_back_png,turntable_png,turntable_bg_png,light_png,turntable_Pointer_png,deng2_png,deng1_png,k_1_png,turntable_go1_png,turntable_stop1_png,turntable_stop_png,reward_Aerocraft_png,reward_box_png,reward_xin_png,reward_zimu_png,title1_png,reward_Shield_png,title2_png",
+			"name": "turntable"
+		},
+		{
+			"keys": "GameOver_png,gameOverBtn_png,gameOverBg_png,fuhuo_btn_png,fuhuo_xin_png",
+			"name": "gameOver"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/UI/public/loading_eft.json",
+			"type": "json",
+			"name": "loading_eft_json"
+		},
+		{
+			"url": "assets/UI/public/loading_eft.png",
+			"type": "image",
+			"name": "loading_eft_png"
+		},
+		{
+			"url": "assets/UI/public/rule.png",
+			"type": "image",
+			"name": "rule_png"
+		},
+		{
+			"url": "assets/UI/public/back.png",
+			"type": "image",
+			"name": "back_png"
+		},
+		{
+			"url": "assets/UI/login/login_btnStart.png",
+			"type": "image",
+			"name": "login_btnStart_png"
+		},
+		{
+			"url": "assets/UI/login/login_bg.png",
+			"type": "image",
+			"name": "login_bg_png"
+		},
+		{
+			"url": "assets/UI/main/main_bg5.jpg",
+			"type": "image",
+			"name": "main_bg5_jpg"
+		},
+		{
+			"url": "assets/UI/main/main_bg1.jpg",
+			"type": "image",
+			"name": "main_bg1_jpg"
+		},
+		{
+			"url": "assets/UI/main/main_bg2.jpg",
+			"type": "image",
+			"name": "main_bg2_jpg"
+		},
+		{
+			"url": "assets/UI/main/main_bg3.jpg",
+			"type": "image",
+			"name": "main_bg3_jpg"
+		},
+		{
+			"url": "assets/UI/main/main_bg4.jpg",
+			"type": "image",
+			"name": "main_bg4_jpg"
+		},
+		{
+			"url": "assets/UI/main/main_zimukuang.png",
+			"type": "image",
+			"name": "main_zimukuang_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/liang_A.png",
+			"type": "image",
+			"name": "liang_A_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/hui_W.png",
+			"type": "image",
+			"name": "hui_W_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/liang_G.png",
+			"type": "image",
+			"name": "liang_G_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/liang_H.png",
+			"type": "image",
+			"name": "liang_H_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/liang_N.png",
+			"type": "image",
+			"name": "liang_N_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/liang_W.png",
+			"type": "image",
+			"name": "liang_W_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/hui_A.png",
+			"type": "image",
+			"name": "hui_A_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/hui_C.png",
+			"type": "image",
+			"name": "hui_C_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/hui_G.png",
+			"type": "image",
+			"name": "hui_G_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/liang_C.png",
+			"type": "image",
+			"name": "liang_C_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/hui_H.png",
+			"type": "image",
+			"name": "hui_H_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/hui_N.png",
+			"type": "image",
+			"name": "hui_N_png"
+		},
+		{
+			"url": "assets/UI/main/daoju/Shield.png",
+			"type": "image",
+			"name": "Shield_png"
+		},
+		{
+			"url": "assets/UI/main/daoju/Aerocraft.png",
+			"type": "image",
+			"name": "Aerocraft_png"
+		},
+		{
+			"url": "config/daojuItem.csv",
+			"type": "text",
+			"name": "daojuItem_csv"
+		},
+		{
+			"url": "assets/UI/eft/csd_eft.png",
+			"type": "image",
+			"name": "csd_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/shijie_eft.png",
+			"type": "image",
+			"name": "shijie_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/tanhuang_eft.png",
+			"type": "image",
+			"name": "tanhuang_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/tiao_eft.png",
+			"type": "image",
+			"name": "tiao_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/zou_eft.png",
+			"type": "image",
+			"name": "zou_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/zou_eft.json",
+			"type": "json",
+			"name": "zou_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/tiao_eft.json",
+			"type": "json",
+			"name": "tiao_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/shijie_eft.json",
+			"type": "json",
+			"name": "shijie_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/csd_eft.json",
+			"type": "json",
+			"name": "csd_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/tanhuang_eft.json",
+			"type": "json",
+			"name": "tanhuang_eft_json"
+		},
+		{
+			"url": "assets/UI/main/Stand.png",
+			"type": "image",
+			"name": "Stand_png"
+		},
+		{
+			"url": "assets/UI/main/Obstacle/taijie.png",
+			"type": "image",
+			"name": "taijie_png"
+		},
+		{
+			"url": "assets/UI/main/Obstacle/dingzi.png",
+			"type": "image",
+			"name": "dingzi_png"
+		},
+		{
+			"url": "assets/UI/main/Obstacle/tanhaung.png",
+			"type": "image",
+			"name": "tanhaung_png"
+		},
+		{
+			"url": "assets/UI/main/Obstacle/shijie.png",
+			"type": "image",
+			"name": "shijie_png"
+		},
+		{
+			"url": "assets/UI/main/Obstacle/csd.png",
+			"type": "image",
+			"name": "csd_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/A.png",
+			"type": "image",
+			"name": "A_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/C.png",
+			"type": "image",
+			"name": "C_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/G.png",
+			"type": "image",
+			"name": "G_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/H.png",
+			"type": "image",
+			"name": "H_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/N.png",
+			"type": "image",
+			"name": "N_png"
+		},
+		{
+			"url": "assets/UI/main/zimu/W.png",
+			"type": "image",
+			"name": "W_png"
+		},
+		{
+			"url": "assets/UI/eft/JG_eft.png",
+			"type": "image",
+			"name": "JG_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/JG_eft.json",
+			"type": "json",
+			"name": "JG_eft_json"
+		},
+		{
+			"url": "assets/UI/main/progressMask.png",
+			"type": "image",
+			"name": "progressMask_png"
+		},
+		{
+			"url": "assets/UI/main/progressBg.png",
+			"type": "image",
+			"name": "progressBg_png"
+		},
+		{
+			"url": "assets/UI/main/progressBar.png",
+			"type": "image",
+			"name": "progressBar_png"
+		},
+		{
+			"url": "assets/UI/eft/csm_eft.png",
+			"type": "image",
+			"name": "csm_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/csm_eft.json",
+			"type": "json",
+			"name": "csm_eft_json"
+		},
+		{
+			"url": "assets/UI/rule/rule_btn.png",
+			"type": "image",
+			"name": "rule_btn_png"
+		},
+		{
+			"url": "assets/UI/rule/rule_bg.png",
+			"type": "image",
+			"name": "rule_bg_png"
+		},
+		{
+			"url": "assets/UI/turntable/turntable_go.png",
+			"type": "image",
+			"name": "turntable_go_png"
+		},
+		{
+			"url": "assets/UI/turntable/turntable_back.png",
+			"type": "image",
+			"name": "turntable_back_png"
+		},
+		{
+			"url": "assets/UI/turntable/turntable.png",
+			"type": "image",
+			"name": "turntable_png"
+		},
+		{
+			"url": "assets/UI/turntable/turntable_bg.png",
+			"type": "image",
+			"name": "turntable_bg_png"
+		},
+		{
+			"url": "assets/UI/turntable/light.png",
+			"type": "image",
+			"name": "light_png"
+		},
+		{
+			"url": "assets/UI/turntable/turntable_Pointer.png",
+			"type": "image",
+			"name": "turntable_Pointer_png"
+		},
+		{
+			"url": "assets/UI/eft/kuang_eft.png",
+			"type": "image",
+			"name": "kuang_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/kuang_eft.json",
+			"type": "json",
+			"name": "kuang_eft_json"
+		},
+		{
+			"url": "assets/UI/turntable/deng2.png",
+			"type": "image",
+			"name": "deng2_png"
+		},
+		{
+			"url": "assets/UI/turntable/deng1.png",
+			"type": "image",
+			"name": "deng1_png"
+		},
+		{
+			"url": "assets/UI/turntable/k_1.png",
+			"type": "image",
+			"name": "k_1_png"
+		},
+		{
+			"url": "assets/UI/turntable/turntable_go1.png",
+			"type": "image",
+			"name": "turntable_go1_png"
+		},
+		{
+			"url": "assets/UI/turntable/turntable_stop1.png",
+			"type": "image",
+			"name": "turntable_stop1_png"
+		},
+		{
+			"url": "assets/UI/turntable/turntable_stop.png",
+			"type": "image",
+			"name": "turntable_stop_png"
+		},
+		{
+			"url": "config/TurntableRewardItem.csv",
+			"type": "text",
+			"name": "TurntableRewardItem_csv"
+		},
+		{
+			"url": "assets/UI/turntable/reward/reward_Aerocraft.png",
+			"type": "image",
+			"name": "reward_Aerocraft_png"
+		},
+		{
+			"url": "assets/UI/turntable/reward/reward_box.png",
+			"type": "image",
+			"name": "reward_box_png"
+		},
+		{
+			"url": "assets/UI/turntable/reward/reward_xin.png",
+			"type": "image",
+			"name": "reward_xin_png"
+		},
+		{
+			"url": "assets/UI/turntable/reward/reward_zimu.png",
+			"type": "image",
+			"name": "reward_zimu_png"
+		},
+		{
+			"url": "assets/UI/turntable/reward/title1.png",
+			"type": "image",
+			"name": "title1_png"
+		},
+		{
+			"url": "assets/UI/turntable/reward/reward_Shield.png",
+			"type": "image",
+			"name": "reward_Shield_png"
+		},
+		{
+			"url": "assets/UI/turntable/reward/title2.png",
+			"type": "image",
+			"name": "title2_png"
+		},
+		{
+			"url": "assets/UI/eft/Shield_eft.png",
+			"type": "image",
+			"name": "Shield_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/chongci_eft.png",
+			"type": "image",
+			"name": "chongci_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/chongci_eft.json",
+			"type": "json",
+			"name": "chongci_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/Shield_eft.json",
+			"type": "json",
+			"name": "Shield_eft_json"
+		},
+		{
+			"url": "assets/UI/main/consci.png",
+			"type": "image",
+			"name": "consci_png"
+		},
+		{
+			"url": "assets/UI/eft/tiaodun_eft.png",
+			"type": "image",
+			"name": "tiaodun_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/tiaodun_eft.json",
+			"type": "json",
+			"name": "tiaodun_eft_json"
+		},
+		{
+			"url": "assets/UI/main/Gold.png",
+			"type": "image",
+			"name": "Gold_png"
+		},
+		{
+			"url": "assets/UI/gameOver/GameOver.png",
+			"type": "image",
+			"name": "GameOver_png"
+		},
+		{
+			"url": "assets/UI/gameOver/gameOverBtn.png",
+			"type": "image",
+			"name": "gameOverBtn_png"
+		},
+		{
+			"url": "assets/UI/gameOver/gameOverBg.png",
+			"type": "image",
+			"name": "gameOverBg_png"
+		},
+		{
+			"url": "assets/UI/gameOver/fuhuo_btn.png",
+			"type": "image",
+			"name": "fuhuo_btn_png"
+		},
+		{
+			"url": "assets/UI/gameOver/fuhuo_xin.png",
+			"type": "image",
+			"name": "fuhuo_xin_png"
+		},
+		{
+			"url": "assets/UI/login/login_title.png",
+			"type": "image",
+			"name": "login_title_png"
+		},
+		{
+			"url": "assets/UI/eft/si_eft.png",
+			"type": "image",
+			"name": "si_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/si_eft.json",
+			"type": "json",
+			"name": "si_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/readygo_eft.png",
+			"type": "image",
+			"name": "readygo_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/readygo_eft.json",
+			"type": "json",
+			"name": "readygo_eft_json"
+		},
+		{
+			"url": "assets/sound/sound_bg.mp3",
+			"type": "sound",
+			"name": "sound_bg_mp3"
+		},
+		{
+			"url": "assets/sound/readygo.mp3",
+			"type": "sound",
+			"name": "readygo_mp3"
+		},
+		{
+			"url": "assets/sound/Prize.mp3",
+			"type": "sound",
+			"name": "Prize_mp3"
+		},
+		{
+			"url": "assets/sound/noPrize.mp3",
+			"type": "sound",
+			"name": "noPrize_mp3"
+		},
+		{
+			"url": "assets/UI/main/btnInBag.png",
+			"type": "image",
+			"name": "btnInBag_png"
+		},
+		{
+			"url": "assets/UI/main/Bubble.png",
+			"type": "image",
+			"name": "Bubble_png"
+		},
+		{
+			"url": "assets/UI/eft/fuhuo_eft.json",
+			"type": "json",
+			"name": "fuhuo_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/fuhuo_eft.png",
+			"type": "image",
+			"name": "fuhuo_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/xue_eft.png",
+			"type": "image",
+			"name": "xue_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/xue_eft.json",
+			"type": "json",
+			"name": "xue_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng10_eft.json",
+			"type": "json",
+			"name": "hecheng10_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng10_eft.png",
+			"type": "image",
+			"name": "hecheng10_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng1_eft.json",
+			"type": "json",
+			"name": "hecheng1_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng1_eft.png",
+			"type": "image",
+			"name": "hecheng1_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng2_eft.json",
+			"type": "json",
+			"name": "hecheng2_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng2_eft.png",
+			"type": "image",
+			"name": "hecheng2_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng3_eft.json",
+			"type": "json",
+			"name": "hecheng3_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng3_eft.png",
+			"type": "image",
+			"name": "hecheng3_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng4_eft.json",
+			"type": "json",
+			"name": "hecheng4_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng4_eft.png",
+			"type": "image",
+			"name": "hecheng4_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng5_eft.json",
+			"type": "json",
+			"name": "hecheng5_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng5_eft.png",
+			"type": "image",
+			"name": "hecheng5_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng6_eft.json",
+			"type": "json",
+			"name": "hecheng6_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng6_eft.png",
+			"type": "image",
+			"name": "hecheng6_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng7_eft.json",
+			"type": "json",
+			"name": "hecheng7_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng7_eft.png",
+			"type": "image",
+			"name": "hecheng7_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng8_eft.json",
+			"type": "json",
+			"name": "hecheng8_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng8_eft.png",
+			"type": "image",
+			"name": "hecheng8_eft_png"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng9_eft.json",
+			"type": "json",
+			"name": "hecheng9_eft_json"
+		},
+		{
+			"url": "assets/UI/eft/hecheng/hecheng9_eft.png",
+			"type": "image",
+			"name": "hecheng9_eft_png"
+		},
+		{
+			"url": "assets/sound/tiao.mp3",
+			"type": "sound",
+			"name": "tiao_mp3"
+		},
+		{
+			"url": "assets/UI/main/hong.png",
+			"type": "image",
+			"name": "hong_png"
+		},
+		{
+			"name": "dian_mp3",
+			"type": "sound",
+			"url": "assets/sound/dian.mp3"
+		},
+		{
+			"name": "fly_mp3",
+			"type": "sound",
+			"url": "assets/sound/fly.mp3"
+		},
+		{
+			"name": "chizimu_eft_png",
+			"type": "image",
+			"url": "assets/UI/eft/chizimu_eft.png"
+		},
+		{
+			"name": "chizimu_eft_json",
+			"type": "json",
+			"url": "assets/UI/eft/chizimu_eft.json"
+		}
+	]
+}

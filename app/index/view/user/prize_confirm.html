@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>碎片余额</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/gift/history.css" />
+    <style type="text/css">
+    	#pop_into .pop_container {
+	height: 240px;
+	color: #333;
+}
+
+#pop_into .pop_container p {
+	color: #333;
+}
+
+#pop_into .gift_box {
+	width: 130px;
+	margin: 15px auto;
+}
+
+#pop_into .pop_btn {
+	width: 90%;
+	margin-top: 20px;
+}
+
+#pop_into_2 .pop_container {
+	height: 240px;
+	color: #333;
+}
+
+#pop_into_2 .pop_container p {
+	color: #333;
+}
+
+#pop_into_2 .gift_box {
+	width: 100px;
+	margin: 10px auto;
+}
+.mui-backdrop-action.mui-backdrop {
+	background-color: rgba(0, 0, 0, .8);
+}
+    </style>
+</head>
+
+<body ng-controller="history_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">确认订单</h1>
+    </header>
+    <div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="pop_container">
+				<img src="__STATIC__/index/img/gift/address.png" alt="" class="gift_box" />
+				<h4>您还未添加收货地址</h4>
+				<button class="pop_btn" onclick="goPage()">添加我的收货地址</button>
+			</div>
+			<div class="close_container" onclick="close_pop()">
+				<i class="mui-icon mui-icon-close"></i>
+			</div>
+		</div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script type="text/javascript">
+    		mui('#pop_into').popover('show');
+    		
+    	function goPage(){
+    		window.parent.location = "{:url('my/add_address','fromtype=1')}"
+    	}
+    	function close_pop(){
+    		location.href="{:url('gift/index')}";
+    	}
+    </script>
+</body>
+
+</html>

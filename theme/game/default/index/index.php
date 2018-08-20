@@ -1,0 +1,1 @@
+<?php defined("IN_SYSTEM") or die("Access Denied");/* 防止模板被盗 */?>

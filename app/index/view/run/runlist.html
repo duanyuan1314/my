@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>钱包地址管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<style type="text/css">
+			a {
+				color: #fff !important;
+			}
+			
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				margin: 15px;
+			}
+			
+			.coinNameBox {
+				padding: 20px 0 15px;
+				overflow: hidden;
+			}
+			
+			.coinName,
+			.deleImg,
+			.commonP {
+				color: #fff;
+			}
+			
+			.coinName {
+				width: 45%;
+				font-size: 18px;
+			}
+			
+			.deleBox {
+				width: 20%;
+				text-align: right;
+			}
+			
+			.deleImg {
+				width: 19px;
+				height: 21px;
+			}
+			
+			li {
+				height: 175px;
+				padding: 0 15px;
+				border-radius: 5px;
+				margin-bottom: 15px;
+				background-color: #2E323C;
+			}
+			
+			.commonP {
+				margin-bottom: 15px;
+				font-size: 14px;
+			}
+			
+			.mui-popup-button:first-child {
+				color: #333 !important;
+				border-radius: 0 0 0 5px !important;
+			}
+			
+			.mui-popup-button:last-child {
+				border-radius: 0 0 5px !important;
+				background: #F7561E;
+				color: #FFF !important;
+			}
+			
+			.mui-popup-inner {
+				border-radius: 5px 5px 0 0 !important;
+			}
+			
+			.mui-popup {
+				border-radius: 0 !important;
+			}
+			
+			.mui-popup-input input {
+				height: 35px !important;
+			}
+			
+			.noNewBox {
+				text-align: center;
+				display: none;
+				position: absolute;
+				top: 86px;
+				left: 50%;
+				margin-left: -69px;
+			}
+			
+			.zwxxImg {
+				width: 138px;
+				height: 128px;
+			}
+			
+			.noNewBox p {
+				margin-top: 12px;
+				text-align: center;
+				color: #677091;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href="{:url('run/index')}"></a>
+			<h4 class="mui-title">钱包地址管理</h4>
+			<a class="mui-btn-link mui-pull-right" href="addlist.html">添加</a>
+		</header>
+		<div id="addAddress" class="mui-content">
+
+			<div class="addressList">
+				<ul>
+					{volist name="data" id="vo" }
+					<li>
+						<div class="coinNameBox">
+							<p class="coinName mui-pull-left">RUN</p>
+							<p class="deleBox mui-pull-right" data="{$vo.id}">
+								<img src="__STATIC__/index/img/my/delete.png" class=" deleImg" />
+							</p>
+						</div>
+						<p class="commonP">钱包标识：{$vo.name}</p>
+						<p class="commonP">钱包地址：{$vo.runaddress}</p>
+						<p class="commonP">添加时间：{$vo.creat_time}</p>
+					</li>
+					{/volist}
+					<div class="noNewBox">
+						<img src="__STATIC__/index/img/home/zwxx.png" class="zwxxImg" />
+						<p>暂无数据</p>
+					</div>
+				</ul>
+			</div>
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+		<script src="__STATIC__/layer/layer.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//点击垃圾箱，删除该li标签;
+			mui('.coinNameBox').on('tap', '.deleBox', function() {
+				var $this = $(this);
+				var id = $(this).attr('data');
+				var btnArray = ['否', '是'];
+				mui.confirm('删除不可恢复，是否继续', '是否确认', btnArray, function(e) {
+					if(e.index == 1) {
+						mui.prompt('请输入交易密码', '请输入交易密码', ' ', function(e) {
+							if(e.index == 1) {
+								//获取弹框的input值；
+								var jiaoyi = $('.mui-popup-input input').val();
+								$.ajax({
+									type: 'POST',
+									dataType: "json",
+									url: "{:url('run/del_list')}",
+									data: {
+										id: id,
+										jiaoyi: jiaoyi
+									},
+									success: function(re) {
+										if(re.code == 1) {
+											//点击是删除
+											$this.parent().parent().remove();
+										} else {
+											layer.msg(re.msg, {
+												time: 2000
+											});
+										}
+									}
+								});
+							} else {
+								return false;
+							}
+						})
+					} else {
+						return false;
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

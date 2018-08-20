@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<link rel="stylesheet" href="../../../css/commen.css" />
+		<link rel="stylesheet" href="../../../css/my/account/login.css" />
+	</head>
+
+	<body ng-controller="register_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="account_container">
+				<h4 class="mui-text-center">账号密码登录</h4>
+				<div class="mui-clearfix form_line">
+					<input type="text" class="input_case" name="phone" ng-model="param.phone" placeholder="请输入手机号" />
+				</div>
+				<div class="mui-clearfix form_line phone_box">
+					<input type="password" class="input_case" name="pass_word"ng-model="param.password" id="password_input" placeholder="请输入密码" />
+				</div>
+				<button class="login_btn" ng-click="submit_form()">登录</button>
+				<button class="login_btn" ng-click="submit_form()">益联益家一键登录</button>
+				<div class="mui-clearfix checkbox_line mui-text-center">
+					<label for="agree_agreement" id="agreement_label">
+						<input type="checkbox" id="agree_agreement"/>
+						我已阅读并同意“用户协协议和隐私条款”
+					  	<div class="show-box" />  </div>
+					</label>
+				</div>
+				<div class="mui-clearfix checkbox_line mui-text-center">
+					<a href="" class="go_login or_text" ng-click="goPage('register.html')">还没有账号</a>
+				</div>
+			</div>
+		</div>
+		<p class="forget_password" ng-click="goPage('retrieve.html')">忘记密码?</p>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/angular.min.js"></script>
+		<script src="../../../js/my/account/login.js"></script>
+	</body>
+
+</html>

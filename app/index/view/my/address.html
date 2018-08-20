@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>选择收货地址</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/address/admin_address.css" />
+</head>
+
+<body ng-controller="admin_address_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">选择收货地址</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="order_info">
+
+            {volist name="list" id="row"}
+
+                <div class="order_mid mui-clearfix">
+                    <!--<div class="media_left mui-pull-left" >
+
+                        <img src="__STATIC__/index/img/my/check.png" alt="" ng-show="user_select == {$row.isSelect}" />
+
+                    </div>-->
+                    <div class="media_mid mui-pull-left"  >
+                        <p>
+                            <span class="wh_text">{$row.receiver}</span>
+                            <span class="wh_text">{$row.phone}</span>
+                        </p>
+                        <p>
+                            <!--{if condition="$row.isSelect eq 1" }
+
+                                <label for="" class="label_bg">默认</label>
+
+                            {/if}-->
+                            <span class="gray_text">{$row.city_ids}-{$row.address}</span>
+                        </p>
+                    </div>	
+                      
+                        <div class="opra_line mui-clearfix">
+                        {if condition="$row.isSelect eq 1" }
+                            <div class="mui-pull-left">							
+                                <img src="__STATIC__/index/img/my/check_checkbox.png" alt="" style="width: 15px;background-color: #fff;border-radius: 50%;vertical-align: sub;" />							
+                                <span>默认地址</span>						
+                            </div>
+                            {else /}
+                            <div class="mui-pull-left" >
+                                <span onclick="more_address({$row.id})" data="{$row.id}" style="border:1px solid #fff;border-radius: 50%;width: 15px;height: 15px;display: inline-block;vertical-align: sub;"></span>
+                                <span>设为默认</span>
+                            </div>
+                        {/if}
+                        <div class="mui-pull-right">							
+                                <span style="display: inline-block;padding: 0 5px;" class="j-tr-del" data="{$row.id}" >								
+                                    <i class="mui-icon mui-icon-trash"></i>	删除</span>							
+                                <span style="display: inline-block;padding: 0 5px;" ng-click="goPage2('edit_address',{$row.id})" >								
+                                <i class="mui-icon mui-icon-compose"></i>编辑</span>						
+                        </div>					
+                    </div>
+                    <!--<div class="media_right mui-pull-left" ng-click="goPage2('edit_address',{$row.id})">
+
+                        <img src="__STATIC__/index/img/my/edit.png" alt="" />
+
+                    </div>-->
+
+                </div>
+            {/volist}
+        </div>
+        <button class="add_address_btn" ng-click="goPage('add_address.html')">
+            <img src="__STATIC__/index/img/my/plus_tran.png" alt="" />添加收货地址</button>
+    </div>
+   <!--  <div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        <div class="pop_container">
+            <img src="../../img/recharge/real_name_pass.png" alt="" class="gift_box" />
+            <h4>恭喜您，提交成功</h4>
+            <button class="pop_btn" ng-click="close_pop()">确定</button>
+        </div>
+        <div class="close_container" ng-click="close_pop()">
+            <i class="mui-icon mui-icon-close"></i>
+        </div>
+    </div> -->
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/my/address/admin_address.js"></script>
+    <script src="__STATIC__/layer/layer.js"></script>
+</body>
+</html>
+<script>
+    $('.j-tr-del').click(function () {
+        var id = $(this).attr('data');
+        var btnArray = ['否', '是'];
+        mui.confirm('删除之后无法恢复，您确定要删除吗？', '是否确认',btnArray, function (e) {
+        	if (e.index == 1) {
+                $.post("{:url('my/del')}", { id: id },
+                    function (data) {
+                        if (data.code == 1) {
+                            layer.msg(data.msg, { time: 1000 }, function () {
+                                //操作事件
+                                location.reload();
+                            })
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    });
+            }
+        });
+    });
+    function more_address($id){
+    		var btnArray = ['否', '是'];
+            mui.confirm('是否设为默认地址', '是否确认',btnArray,function (e) {
+            	if (e.index == 1) {
+            		$.post("{:url('my/moren')}", {id: $id},
+            		    function (data) {
+            		        if (data.code == 1) {
+            		            layer.msg(data.msg, { time: 1000 }, function () {
+            		                //操作事件
+            		                location.reload();
+            		            })
+            		        } else {
+            		            layer.msg(data.msg);
+            		        }
+            		    });
+            	}
+            });
+    }
+</script>

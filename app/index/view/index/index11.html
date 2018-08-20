@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<title>首页</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+	<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+	<link rel="stylesheet" type="text/css" href="__STATIC__/index/css/home/home.css" />
+</head>
+<body ng-controller="home_controller">
+
+	<header class="mui-bar mui-bar-nav" style="display: block;"> 
+
+		<h1 class="mui-title">畅玩</h1>
+             <img src="__STATIC__/index/img/home/threeDot.png" class="mui-pull-right" id="b_select_btn" ng-click="pop_b_select()" style="width: 20px; height: 4px;margin-top: 20px;"/>
+	</header>
+    <div id="b_select_container" class="mui-popover">
+		<button><a href="{:url('user/news')}" class="infors">消息中心</a></button>
+		<button class="shareBtn">分享</button>
+    </div>
+	<nav class="mui-bar mui-bar-tab">
+  
+			<a class="mui-tab-item" href="{:url('index/index')}" >
+
+				<img class="show_img" src="__STATIC__/index/img/tab/home.gif" alt="" />
+
+			</a>
+
+			<a class="mui-tab-item" href="{:url('recharge/index')}">
+
+				<img class="show_img" src="__STATIC__/index/img/tab/recharge.png" alt="" />
+
+			</a>
+
+			<a class="mui-tab-item" href="{:url('gift/index')}">
+
+				<img class="show_img" src="__STATIC__/index/img/tab/gift.png" alt="" />
+
+			</a>
+
+			<a class="mui-tab-item" href="{:url('user/index')}">
+
+				<img class="show_img" src="__STATIC__/index/img/tab/my.png" alt="" />
+
+			</a>
+
+	</nav>
+
+	<div class="mui-content" id="quotation_container">
+
+		<div id="pullrefresh">
+
+			<div class="mui-scroll" style="position:initial;" >
+
+				<div class="mui-slider">
+
+					<div class="mui-slider-group mui-slider-loop">
+
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+
+							{volist name="brandListlast" id="vo"}
+                                                                                           
+							<div class="mui-slider-item mui-slider-item-duplicate" >
+
+								<a href="#">
+
+									<img src="{$vo['image']}">
+
+								</a>
+
+							</div>
+
+							{/volist}
+
+							{volist name="brandlist" id="vo"}
+
+								<div class="mui-slider-item">
+
+									<a href="#">
+
+										<img src="{$vo['image']}">
+
+									</a>
+
+								</div>
+
+							{/volist}
+
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+
+							{volist name="brandListfirst" id="vo"}
+
+								<div class="mui-slider-item mui-slider-item-duplicate">
+
+									<a href="#">
+
+										<img src="{$vo['image']}">
+
+									</a>
+
+								</div>
+
+							{/volist}
+
+					</div>
+
+					<div class="mui-slider-indicator">
+
+						<div class="mui-indicator mui-active"></div>
+
+						<div class="mui-indicator"></div>
+
+						<div class="mui-indicator"></div>
+
+						<div class="mui-indicator"></div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="luck_top">
+
+				<div class="luck_title mui-pull-left">
+
+					幸运榜
+
+				</div>
+
+				<div id="luck_detail">
+
+					<ul id="luck_list" ng-class="{anim:animate==true}">
+
+						<li ng-repeat='item in luck_list' ng-bind="item.msg" class="width_over"></li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="best_list">
+
+				<div class="btn_title">
+
+					<button class="more_btn" ng-click="goPage('{:url('index/rank')}')" >更多
+
+						<i class="mui-icon mui-icon-arrowright"></i>
+
+					</button>
+
+				</div>
+
+					<div class="best_rank mui-clearfix">
+
+						{empty name="toplisttwo"}
+
+								<div>
+
+									<div class="head_portrait"></div>
+
+									<div class="user_head" style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;">
+
+									</div>
+
+									<div class="user_info">
+
+										<p>虚位以待</p>
+
+										<p>
+
+											<span></span>乐豆</p>
+
+									</div>
+
+								</div>
+
+							{else /}
+
+							{volist name="toplisttwo" id="vo"}
+
+								<div>
+
+									<div class="head_portrait"></div>
+
+									<div class="user_head" {if condition="$vo.avatar eq ''" }style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;"
+
+									{else /}style="background-image: url({$vo.avatar});background-size:60px 60px;" {/if}>
+
+									</div>
+
+									<div class="user_info">
+
+										<p>{$vo['name']}</p>
+
+										<p>
+
+											<span>{$vo['sum']}</span>乐豆</p>
+
+									</div>
+
+								</div>
+
+							{/volist}
+
+						 {/empty}
+
+						{empty name="toplistone"}
+
+								<div class="star_bg">
+
+									<div class="head_portrait"></div>
+
+									<div class="user_head" style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;">
+
+									</div>
+
+									<div class="user_info">
+
+										<p>虚位以待</p>
+
+										<p>
+
+											<span></span>乐豆</p>
+
+									</div>
+
+								</div>
+
+							{else /}
+
+							{volist name="toplistone" id="vo"}
+
+								<div class="star_bg">
+
+									<div class="head_portrait"></div>
+
+									<div class="user_head" {if condition="$vo.avatar eq ''" }style="background-image: url({$Think.const.OSS_AVATAR});background-size:70px 70px;"
+
+									{else /}style="background-image: url({$vo.avatar});background-size:70px 70px;" {/if}>
+
+									</div>
+
+									<div class="user_info">
+
+										<p>{$vo.name}</p>
+
+										<p>
+
+											<span>{$vo['sum']}</span>乐豆</p>
+
+									</div>
+
+								</div>
+
+							{/volist} 
+
+						{/empty}
+
+						{empty name="toplistree"} 
+
+							   <div>
+
+									<div class="head_portrait"></div>
+
+									<div class="user_head" style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;" >
+
+									</div>
+
+									<div class="user_info">
+
+										<p>虚位以待</p>
+
+										<p>
+
+										<span></span>乐豆</p>
+
+									</div>
+
+							   </div> 
+
+							{else /}
+
+							{volist name="toplistree" id="vo"}
+
+								<div>
+
+									<div class="head_portrait"></div>
+
+									<div class="user_head" {if condition="$vo.avatar eq ''" }style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;"
+
+									{else /}style="background-image: url({$vo.avatar});background-size:60px 60px;" {/if}>
+
+									</div>
+
+									<div class="user_info">
+
+										<p>{$vo.name}</p>
+
+										<p>
+
+										<span>{$vo.sum}</span>乐豆</p>
+
+									</div>
+
+								</div>
+
+							{/volist}
+
+						 {/empty}
+
+					</div>
+			</div>
+
+			<div class="all_game">
+
+				{volist name="gameone" id="vo"}
+
+				<div class="game_rank" style="background-image: url({$vo.image})" >
+
+					<div class="rank_icon"></div>
+
+					<div class="opra_container">
+
+						<div class="game_icon">
+
+							<img  data-echo="{$vo.icon}" src="__STATIC__/index/img/home/loading.png" />
+
+						</div>
+
+						<p class="width_over">
+
+							<b>{$vo.name}</b>
+
+						</p>
+
+						<p class="width_over">{$vo.desc}</p>
+
+						<p class="getin_btn lc_url" data="{$vo.appurl}"></p>
+
+					</div>
+
+					<div class="mask_layer"></div>
+
+				</div>
+
+				{/volist} 
+
+				{volist name="gametwo" id="vo"}
+
+				<div class="game_rank special_style" style="background-image: url({$vo.image})">
+
+					<div class="rank_icon"></div>
+
+					<div class="opra_container">
+
+						<div class="media_div">
+
+							<div class="game_icon">
+
+								<img data-echo="{$vo.icon}" src="__STATIC__/index/img/home/loading.png"  class="img_special"/>
+
+							</div>
+
+						</div>
+
+						<div class="media_div">
+
+							<p class="width_over">
+
+								<b>{$vo.name}</b>
+
+							</p>
+
+							<p class="width_over">{$vo.desc}</p>
+
+						</div>
+
+						<div class="media_div">
+
+								<p class="getin_btn lc_url" data="{$vo.appurl}"></p>
+
+						</div>
+
+					</div>
+
+					<div class="mask_layer"></div>
+
+				</div>
+
+				{/volist}
+
+				{volist name="gametree" id="vo"}
+
+				<div class="game_rank special_style" style="background-image: url({$vo.image})">
+
+					<div class="rank_icon"></div>
+
+					<div class="opra_container specialStyle">
+
+						<div class="media_div">
+
+							<div class="game_icon">
+
+								<img src="__STATIC__/index/img/home/loading.png" data-echo="{$vo.icon}" class="img_special"/>
+
+							</div>
+
+						</div>
+
+						<div class="media_div">
+
+							<p class="width_over">
+
+								<b>{$vo.name}</b>
+
+							</p>
+
+							<p class="width_over">{$vo.desc}</p>
+
+						</div>
+
+						<div class="media_div">
+
+								<p class="getin_btn lc_url speial_show" data="{$vo.appurl}" ></p>
+
+						</div>
+
+					</div>
+
+					<div class="mask_layer"></div>
+
+				</div>
+
+				{/volist}
+				{volist name="gamelist" id="vo"}
+				
+				<div class="game_rank special_style" style="background-image: url({$vo.image})">
+				
+					<div class="opra_container specialStyle">
+				
+						<div class="media_div">
+				
+							<div class="game_icon">
+				
+								<img data-echo="{$vo.icon}" class="img_special" src="__STATIC__/index/img/home/loading.png"/>
+				
+							</div>
+				
+						</div>
+				
+						<div class="media_div">
+				
+							<p class="width_over">
+				
+								<b>{$vo.name}</b>
+				
+							</p>
+				
+							<p class="width_over">{$vo.desc}</p>
+				
+						</div>
+				
+						<div class="media_div">
+				
+							<p class="getin_btn lc_url speial_show" data="{$vo.appurl}"></p>
+				
+						</div>
+				
+					</div>
+				
+					<div class="mask_layer"></div>
+				
+				</div>
+				
+				{/volist}
+
+			</div>
+      <!--暂时隐藏掉全部游戏模块-->
+			<!--<div class="open_list">
+
+				<div class="game_list" ng-show="all_game==true">
+
+					{volist name="gamelist" id="vo"}
+
+					<div class="game_info lc_url" data="{$vo.appurl}" >
+
+						<div class="game_icon">
+
+							<img  data-echo="{$vo.icon}" src="__STATIC__/index/img/home/loading.png"/>
+
+						</div>
+
+						<p class="width_over">{$vo.name}</p>
+
+						<p class="width_over">{$vo.desc}</p>
+
+					</div>
+
+					{/volist}
+
+				</div>
+
+				<button class="more_btn" ng-click="show_all_game($event)">
+
+					全部游戏
+
+					<i class="mui-icon mui-icon-arrowdown"></i>
+
+				</button>
+
+			</div>-->
+		</div>
+		<input type="hidden"  id="appurl" value="{$url}" />
+
+	</div>
+	
+	 <!-- 公告弹窗-->
+    <div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+			<div class="pop_container">
+				<img src="__STATIC__/index/img/home/ggImg.png" alt="" class="gift_box" />
+				<h4>送你一个嗨宝</h4>
+				<ul class="wu_wz">
+					<li>狂欢双12，一起赢大奖</li>
+				</ul>
+				<a  href="{:url('user/news_detail')}" class="pop_btn">查看详情</a>
+			</div>
+			<div class="close_container" onclick="hide_pop()">
+				<i class="mui-icon mui-icon-close"></i>
+			</div>
+	</div>
+</body>
+
+<script src="__STATIC__/index/js/mui.min.js"></script>
+<script src="__STATIC__/index/js/jquery.min.js"></script>
+<script src="__STATIC__/index/js/angular.min.js"></script>
+<script src="__STATIC__/index/js/home/home.js"></script> 
+<script src="__STATIC__/index/js/config.js"></script>
+<script src="__STATIC__/layer/layer.js"></script>
+<script src="__STATIC__/index/js/home/echo.min.js"></script>
+<script type="text/javascript">
+	Echo.init({
+    offset: 0,
+    throttle: 0
+	});
+	/* 监听公告 */
+	$.ajax({
+		type: "post",
+		url: "{:url('index/checkinfo')}",
+		success: function (res) {
+				if (res.code == 1) {
+					var url ="{:url('user/news_detail')}?id="+ res.data.id
+					$(".pop_container>h4").text(res.data.title);
+					$(".wu_wz>li").text(res.data.description);
+					$(".pop_btn").attr('href',url);
+					if(sessionStorage.getItem('isShow') == '' || sessionStorage.getItem('isShow') == null){
+							mui('#pop_into').popover('show');
+					}
+				}
+			},
+		});
+		
+		mui('.opra_container').on("tap",".lc_url",function(){
+			lc_url =$(this).attr("data");
+			$.ajax({
+			   type: "post",
+			   url: "{:url('index/checklogin')}",
+				success: function (res) {
+				if (res.code == 1){
+				    location.href = lc_url+'?userid='+res.userid;
+				}else if(res.code == 0){
+					layer.msg(res.msg, { time: 1000 }, function () {
+								 //操作事件
+					window.parent.location = "{:url('login/index')}";
+				})
+				} else if (res.code == 3) {
+                    layer.msg(res.msg, { time: 1000 }, function () {
+                            })
+                } else{
+						layer.msg(res.msg, { time: 1000 }, function () {
+								//操作事件
+						window.parent.location = "{:url('recharge/index')}";
+							})
+						}
+					},
+				});
+			});
+			
+				
+		/* 监听文章状态 */
+		$.ajax({
+			type: "post",
+			url: "{:url('user/checkstatus')}",
+			success: function (res) {
+				if (res.code == 1) {
+					$('.infors').removeClass('redDot');
+				} else {
+					$('.infors').addClass('redDot');
+				}
+			},
+		});
+		//公告弹窗
+        function hide_pop(){
+    		mui('#pop_into').popover('hide');
+    		 sessionStorage.setItem('isShow','1');
+    	}
+		mui('#pop_into').on('tap','.pop_btn',function(){
+			sessionStorage.setItem('isShow','1');
+		});   
+</script>
+</html>

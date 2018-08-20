@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="StartMainPanelSkin" width="750" height="1334" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect width="750" height="100%" x="0" y="0" fillAlpha="0.5"/>
+	<e:Group width="750" height="1209" horizontalCenter="0" verticalCenter="0">
+		<e:Label id="skip" text="跳过&gt;&gt;" y="1043" scaleX="1" scaleY="1" size="32" anchorOffsetY="0" height="72" anchorOffsetX="0" width="233" textAlign="center" verticalAlign="middle" x="259"/>
+		<e:Label text="请选择您的开局道具，开局直接使用" size="36" y="116" scaleX="1" scaleY="1" anchorOffsetY="0" x="105"/>
+		<e:Image id="icon" source="Shield_png" x="34" y="294"/>
+		<e:Label id="Name" text="防护盾1" y="628" size="32" textAlign="right" horizontalCenter="-272.5" anchorOffsetX="0" width="195"/>
+		<e:Label id="Price" text="1 乐豆" y="628" size="32" textColor="0xF7561E" textAlign="left" anchorOffsetX="0" width="192" horizontalCenter="-69"/>
+		<e:Label id="describe" text="使用后可抵达一次伤害1" y="688" size="26" horizontalCenter="-169.5"/>
+		<e:Image id="icon1" source="Aerocraft_png" x="456" y="330"/>
+		<e:Label id="Name1" text="飞行器1" y="628" size="32" textAlign="right" horizontalCenter="75.5" anchorOffsetX="0" width="195"/>
+		<e:Label id="Price1" text="2 乐豆" y="628" size="32" textColor="0xF7561E" textAlign="left" anchorOffsetX="0" width="192" horizontalCenter="279"/>
+		<e:Label id="describe1" text="使用后无视障碍1，飞行3秒钟" y="688" size="26" horizontalCenter="178.5"/>
+		<e:Label id="txt" text="5" size="148" y="837" horizontalCenter="0.5"/>
+	</e:Group>
+</e:Skin>

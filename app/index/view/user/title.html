@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>我的称号</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" /> </head>
+		<style>
+			.mui-bar-nav{
+				background:#2a2d36;
+			}
+			.user_photo {
+				min-height: 200px;
+				background-color: #2a2d36;
+				display: flex;
+				align-items: center;
+				background-image: url(__STATIC__/index/img/my/title/photo_line.png);
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+			
+			.user_photo p>img {
+				width: 15px;
+				vertical-align: middle;
+				margin-right: 10px;
+			}
+			
+			.photo_bg {
+				width: 3.9rem;
+				height: 3.8rem;
+				margin: 0 auto;
+				padding: 5px;
+				border-radius: 50%;
+				background: #fff;
+				position: relative;
+				margin-bottom: 1rem;
+			}
+			
+			.photo_bg>div {
+				position: absolute;
+				width: 5.6rem;
+				height: 5.6rem;
+				background-image: url(__STATIC__/index/img/my/title/photo_bg.png);
+				background-size: contain;
+				background-repeat: no-repeat;
+				bottom: -17px;
+				left: -13px;
+			}
+			
+			.title_list {
+				min-height: 400px;
+				background-color: #fff;
+			}
+			
+			.title_list .mui-col-xs-6 {
+				padding: 10px;
+				text-align: center;
+			}
+			
+			.title_list .mui-col-xs-6 img {
+				width: 60%;
+				margin: 10px auto;
+			}
+			
+			.title_list .mui-col-xs-6 h5 {
+				margin: 0;
+				font-size: 1.2rem;
+				color: #444;
+				font-weight: 600;
+			}
+			
+			#pop_confirm .pop_contant {
+				height: 100vh;
+				background: rgba(0, 0, 0, 0.2);
+				background: url(__STATIC__/index/img/my/title/grainAnimate.gif);
+				background-repeat: no-repeat;
+				background-size: 100% 65%;
+				position: relative;
+			}
+			
+			.filter {
+				filter: blur(5px);
+			}
+			
+			.pop_close {
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				width: 25px;
+				height: 24px;
+				z-index: 100;
+			}
+			
+			.pop_hz {
+				width: 176px;
+				height: 292px;
+				margin: 50px auto;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -196px;
+				margin-left: -88px;
+			}
+			
+			.hz_title {
+				text-align: center;
+				color: #FFFFFF;
+				font-size: 24px;
+			}
+			
+			.pop_hzImg {
+				width: 176px;
+				height: 176px;
+				margin: 20px auto;
+			}
+			
+			.titleNmaeBox {
+				width: 176px;
+				height: 57px;
+				text-align: center;
+				line-height: 57px;
+				letter-spacing: 5px;
+				color: #FFFFFF;
+				font-size: 18px;
+				background: url(__STATIC__/index/img/my/title/title_name.png);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+			}
+			.mui-bar .mui-btn-link{
+				color: #fff;
+			}
+		</style>
+	<body ng-controller="title_list_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" ng-click="goPage('{:url('user/index')}')" ></a>
+			<h1 class="mui-title">我的称号</h1>
+			<a class="mui-btn-link mui-pull-right" href="javascript:;">规则</a>
+		</header>
+		<div id="pullrefresh" class="mui-content" >
+			<div class="user_photo">
+				 <div style="margin: 0 auto;" >
+					<div class="photo_bg" {if condition="$user.avatar eq ''" }style="background-image: url({$Think.const.OSS_AVATAR});background-size:60px 60px;" {else /}style="background-image: url({$user.avatar});background-size:60px 60px;" {/if} >
+						<div> </div>
+					</div>
+					<p class="mui-text-center" style="font-size: 1rem;color: #Fff;padding: 5px;">{$user.name}</p>
+					<p class="mui-text-center" style="font-size: 0.7rem;padding: 5px;">
+						<img src="__STATIC__/index/img/my/title/label.png" alt="" />
+						<span class="or_text" style="font-weight: 100;" >
+							 当前最高称号:
+							 {if condition="$user.title_top eq ''" } 暂无称号 {else /} {$user.title_top} {/if}
+						</span>
+					</p>
+				</div>
+			</div>
+			<img src="__STATIC__/index/img/recharge/upload/title_line.jpg" alt="" style="width:100%;display: block;" />
+			<div class="title_list">
+				<div class="mui-row"> {volist name="title1" id="vo" key="k" }
+					<div class="mui-col-xs-6"> {if condition ="$vo.state eq 1" }
+						<img src="__STATIC__/index/img/my/title/title_active_{$k}.png" alt="" ng-click="goPage('title_honner.html?id={$vo.id}')" /> {else /}
+						<img src="__STATIC__/index/img/my/title/title_{$k}.png" alt="" ng-click="goPage('title_detail.html?id={$vo.id}')" /> {/if}
+						<h5 class="mui-text-center">{$vo.name}</h5>
+					</div> {/volist} </div>
+				<div class="mui-row"> {volist name="title2" id="vo" key="k" }
+					<div class="mui-col-xs-6"> {if condition ="$vo.state eq 1" }
+						<img src="__STATIC__/index/img/my/title/title_active_{$k+2}.png" alt="" ng-click="goPage('title_honner.html?id={$vo.id}')" /> {else /}
+						<img src="__STATIC__/index/img/my/title/title_{$k+2}.png" alt="" ng-click="goPage('title_detail.html?id={$vo.id}')" /> {/if}
+						<h5 class="mui-text-center">{$vo.name}</h5>
+					</div> {/volist} </div>
+				<div class="mui-row"> {volist name="title3" id="vo" key="k" }
+					<div class="mui-col-xs-6"> {if condition ="$vo.state eq 1" }
+						<img src="__STATIC__/index/img/my/title/title_active_{$k+4}.png" alt=""  ng-click="goPage('title_honner.html?id={$vo.id}')" /> {else /}
+						<img src="__STATIC__/index/img/my/title/title_{$k+4}.png" alt="" ng-click="goPage('title_detail.html?id={$vo.id}')" /> {/if}
+						<h5 class="mui-text-center">{$vo.name}</h5>
+					</div> {/volist} </div>
+				<div class="mui-row"> {volist name="title4" id="vo" key="k" }
+					<div class="mui-col-xs-6"> 
+						{if condition ="$vo.state eq 1" }
+						<img src="__STATIC__/index/img/my/title/title_active_{$k+6}.png" alt="" ng-click="goPage('title_honner.html?id={$vo.id}')" />
+						 {else /}
+						<img src="__STATIC__/index/img/my/title/title_{$k+6}.png" alt="" ng-click="goPage('title_detail.html?id={$vo.id}')" /> 
+						{/if}
+						<h5 class="mui-text-center">{$vo.name}</h5>
+					</div>
+				 	 {/volist} 
+				</div>
+				<div class="mui-row"> {volist name="title5" id="vo" key="k" }
+					<div class="mui-col-xs-6"> 
+						{if condition ="$vo.state eq 1" }
+						<img src="__STATIC__/index/img/my/title/title_active_{$k+8}.png" alt="" ng-click="goPage('title_honner.html?id={$vo.id}')" />
+						 {else /}
+						<img src="__STATIC__/index/img/my/title/title_{$k+8}.png" alt="" ng-click="goPage('title_detail.html?id={$vo.id}')" />
+					    {/if}
+						<h5 class="mui-text-center">{$vo.name}</h5>
+					</div> {/volist} 
+				</div>
+			</div>
+		</div>
+		<!--新增的弹窗-->
+		<div id="pop_confirm" class="mui-popover mui-popover-action">
+			<div class="pop_contant">
+				<img src="__STATIC__/index/img/my/title/pop_close.png" onclick="pop_hide()" class="pop_close" />
+			</div>
+			<div class="pop_hz">
+				<p class="hz_title">恭喜您获得</p>
+				 {empty name="title"}
+				 	<input type="hidden" value='0' id="honer" />
+				 {else /}
+					<input type="hidden" value='1' id="honer" />
+					<img src="__STATIC__/index/img/my/title/title_active_{$title.id}.png" alt="" class="pop_hzImg" />
+					<p class="titleNmaeBox">
+						{$title.name}
+					</p>
+				 {/empty}
+			</div>
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+		<script src="__STATIC__/index/js/angular.min.js"></script>
+		<script type="text/javascript">
+			var p = 0;
+			var t = 0;
+			var honer =$("#honer").val();
+			$(window).scroll(function(e) {
+				p = $(this).scrollTop();
+				if(t <= p) {
+					 //下滚  
+					$("header").hide(); 
+				} else {
+					 //上滚  
+					$("header").show(); 
+				}
+				setTimeout(function() {
+					t = p;
+				}, 0);
+			});
+			//隐藏弹窗,点击×隐藏
+			function pop_hide() {
+				$('header').show();
+				//移除模糊效果
+				$('#pullrefresh').removeClass('filter');
+				//隐藏弹窗
+				mui('#pop_confirm').popover('hide');
+				//跳转页面,跳到我的称号页面;
+			}
+			//显示弹窗,自动运行
+			function pop_show() {
+				$('header').hide();
+				$('#pullrefresh').addClass('filter');
+				mui('#pop_confirm').popover('show');
+			}
+			if(honer ==1){
+				pop_show();
+			}
+		</script>
+		<script>
+			var app = angular.module('app', []);
+
+			app.controller('title_list_controller', ['$scope', '$timeout', function($scope, $timeout) {
+				$scope.goPage = function(path) {
+					mui.openWindow({
+						url: path
+					});
+				}
+
+			}]);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>实名认证</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/commen.css" />
+		<link rel="stylesheet" href="../../css/recharge/real_name.css" />
+	</head>
+
+	<body ng-controller="real_name_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">实名认证</h1>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="form_container">
+	    		<h4 class="form_title"><img src="../../img/recharge/v-card.png" alt="" />实名认证</h4>
+	    		<div class="input_container">
+	    			<div class="input_box mui-clearfix">
+	    				<div class="mui-pull-left">
+	    					真实姓名：
+	    				</div>
+	    				<div class="mui-pull-left">
+	    					<input type="text" placeholder="请填写真实信息，认证完成后不可修改" />
+	    				</div>
+	    			</div>
+	    			<div class="input_box mui-clearfix">
+	    				<div class="mui-pull-left">
+	    					身份证号：
+	    				</div>
+	    				<div class="mui-pull-left">
+	    					<input type="text" placeholder="请填写真实信息，认证完成后不可修改" />
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<div class="input_container">
+	    			<div class="input_box mui-clearfix">
+	    				<div class="mui-pull-left">
+	    					手机号码：
+	    				</div>
+	    				<div class="mui-pull-left">
+	    					<input type="text" placeholder="请填写真实信息，认证完成后不可修改" />
+	    				</div>
+	    			</div>
+	    			<div class="input_box mui-clearfix verif_code">
+	    				<div class="mui-pull-left">
+	    					验证码：
+	    				</div>
+	    				<div class="mui-pull-left">
+	    					<input type="text" placeholder="请输入验证码" />
+	    					<button class="key_btn mui-pull-right" ng-click="getTestCode()"ng-bind="description" ng-disabled="canClick"></button>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<button class="submit_btn" ng-click="submit_form()">提交</button>
+	    	</div>
+		</div>
+		<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        	<div class="pop_container">
+        		<img src="../../img/recharge/real_name_pass.png" alt="" class="gift_box" />
+        		<h4>恭喜您，提交成功</h4>
+        		<button class="pop_btn" ng-click="close_pop()">确定</button>
+        	</div>
+        	<div class="close_container" ng-click="close_pop()">
+        		<i class="mui-icon mui-icon-close"></i>
+        	</div>
+        </div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/angular.min.js"></script>
+		<script src="../../js/recharge/real_name.js"></script>
+	</body>
+
+</html>

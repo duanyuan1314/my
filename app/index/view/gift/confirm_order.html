@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title>确认订单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<link rel="stylesheet" href="__STATIC__/index/css/my/order/confirm_order.css" />
+	</head>
+	<style>		.order_mid .media_left_1 span,.order_mid .media_right_1 span{			font-size: 0.9rem;		}	</style>
+	<body ng-controller="confirm_order_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h1 class="mui-title">确认订单</h1>
+		</header>
+		<div id="pullrefresh" class="mui-content">
+			<div class="order_info">
+				<div class="order_mid mui-clearfix" id="addresslist">
+					<div class="media_left mui-pull-left">
+						<img src="__STATIC__/index/img/my/gps.png" alt="" />
+					</div>
+					<div class="media_mid mui-pull-left">
+						<p><span class="wh_text">{$address.receiver}</span><span class="wh_text">{$address.phone}</span></p>
+						
+						<input type="text" hidden class="addressid" value="{$address.id}">
+						<p>地址：{$address.city_ids}-{$address.address}</p>
+					</div>
+					<div class="media_right mui-pull-left">
+						<i class="mui-icon mui-icon-arrowright"></i>
+					</div>
+				</div>
+			</div>
+			<div class="order_info">
+				<div class="order_mid mui-clearfix">
+					<div class="media_left media_left_1 mui-pull-left">
+						<img {if condition="$cardet.image eq ''" }src="__STATIC__/index/img/gift/card.png"{else /}src="{$cardet.image}"{/if} alt="" />  
+					</div>
+					<div class="media_mid media_mid_1 mui-pull-left">
+						<p><span class="wh_text">{$cardet.name}</span></p>
+						<span hidden class="cardid">{$cardet.id}</span>
+						<p><img src="__STATIC__/index/img/gift/fragment.png" alt="" class="fragment_img" /><span class="or_text">{$cardet.examout}</span><span class="mui-pull-right or_text" ng-bind="'x'+count_num"></span></p>
+						<p><span class="gray_text">该商品不支持退换货</span></p>
+					</div>
+				</div>
+				<div class="order_mid mui-clearfix">
+					<div class="media_left media_left_1 mui-pull-left">
+						<span class="wh_text">兑换数量</span>
+					</div>
+					<div class="media_right media_right_1 mui-pull-right mui-clearfix">
+						<span class="count_btn float" ng-click="count_btn(1)">+</span>
+						<span ng-bind="count_num" class="count_num float">1</span>
+						<span class="count_btn float" ng-click="count_btn(2)">-</span>
+					</div>
+				</div>
+				<div class="order_mid mui-clearfix">
+					<div class="media_left media_left_1 mui-pull-left">
+						<span class="wh_text">配送方式</span>
+					</div>
+					<div class="media_right media_right_1 mui-pull-right mui-clearfix">
+						<span class="wh_text">快递   免邮</span>
+					</div>
+				</div>
+				<div class="order_mid mui-clearfix">
+					<div class="media_left media_left_1 mui-pull-left">
+						<span class="wh_text">道具卡</span>
+					</div>
+					<div class="media_right media_right_1 mui-pull-right mui-clearfix checkedBox">
+						<span class="wh_text checked">礼品兑换卡</span>
+						<div id="check">
+							<input type="checkbox" class="input_check" value="1" id="check1" ><label for="check1"></label>
+						</div>
+					</div>
+				</div>
+				<div class="order_mid mui-clearfix">
+					<div class="media_right media_right_1 mui-pull-right mui-clearfix">
+						<p class="wh_text" style="font-size: 0.7rem;">
+							<span style="font-size: 0.7rem;">共 <b ng-bind="count_num" class="cardnum">1</b> 件商品</span>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="font-size: 0.7rem;">小计：</span>
+							<img src="__STATIC__/index/img/gift/fragment.png" alt="" />
+							<span class="or_text" ng-bind="count_num*{$cardet.examout}" style="font-size: 0.7rem;"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="bottom_content mui-clearfix">
+				<div class="sum_num mui-pull-left">
+					<p class="wh_text">
+						<span>合计：</span>
+						<img src="__STATIC__/index/img/gift/fragment.png" alt="" />
+						<span class="or_text money" ng-bind="count_num*{$cardet.examout}"></span>
+					</p>
+				</div>
+				<div class="submit_btn mui-pull-left" id="confirmSave" >
+					 提交订单
+				</div>
+			</div>
+		</div>
+		<div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        	<div class="pop_container" style="background: #2e323c;height:230px;" >
+        		<img src="__STATIC__/index/img/my/machine.png" alt="" class="gift_box" style="width:110px;margin-top:5px;margin-bottom:5px; " />
+        		<h4 style="color:#fff;" >恭喜您，兑换成功</h4>
+				<p style="color:#fff;" >成功兑换{$cardet.name}</p>
+				<button class="pop_btn" ng-click="goPage('{:url('gift/index')}')">再逛逛</button>
+        	</div>
+        	<div class="close_container" ng-click="close_pop()" >
+        	</div> 
+        </div>
+        <script src="__STATIC__/index/js/mui.min.js"></script>
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+		<script src="__STATIC__/index/js/angular.min.js"></script>
+		<script src="__STATIC__/index/js/gift/confirm_order.js"></script>
+		<script src="__STATIC__/layer/layer.js"></script>
+		<script type="text/javascript">
+	      $(document).ready(function(){ 
+            mui(".mui-clearfix").on('tap','#confirmSave',function() { 
+         		var money = $(".money").text();
+         		var cardnum = $(".cardnum").text();
+         		var cardid = $(".cardid").text();
+         		var addressid = $(".addressid").val();
+				var flag = $("#check1").is(':checked');
+				if(flag){
+					tools =1;
+				}else{
+					tools = 0;
+				}
+         		if(money>0 &&cardnum>0 &&cardid !=''){
+         			$.post("{:url('gift/confirmSave')}", { money: money ,cardnum:cardnum,cardid:cardid ,addressid:addressid,tools:tools},
+		                function (data) {
+		                    if (data.code == 1) {
+								layer.msg(data.msg);
+							} else if (data.code == 2) {
+								loading();
+							} else if (data.code == 3) {
+								layer.msg('兑换次数已用完');
+							} else if (data.code == 4) {
+								layer.msg('当前的等级不足,请前去升级');
+							} else if (data.code == 5) {
+								layer.msg('认证信息正在审核中，请耐心等待！');
+							} else if (data.code == 6) {
+								layer.msg('碎片不足');
+							} else if (data.code == 7) {
+								layer.msg('您还没有道具可以使用噢！');
+							}
+		                });
+         		}
+
+            }); 
+
+            mui('.order_info').on('tap','#addresslist',function() {
+            	var cardid = $(".cardid").text();
+            	location.href="{:url('/index/my/address')}?fromtype=2&cardid="+cardid;
+            });
+
+        }); 
+		function loading(url) {
+				mui('#pop_into').popover('show');
+				var home_second = 1;
+				var homeTimer;
+				var homeTimer = setInterval(function () {
+					home_second--;
+					if (home_second <= 0) {
+						window.clearInterval(homeTimer);
+						//执行跳转操作
+						location.href = "{:url('gift/index')}";
+					}
+				}, 1000)
+		}
+		//点击礼品兑换卡，让单选框被选中;
+		mui('.checkedBox').on('tap','.checked',function(){
+			if(!($('.input_check').prop('checked'))){
+				$('.input_check').prop('checked',true);
+			}else{
+				$('.input_check').prop('checked',false);
+			}
+		})
+</script>
+	</body>
+</html>

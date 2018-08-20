@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/account/login.css" />
+</head>
+<script src="__STATIC__/index/js/mui.min.js"></script>
+<script src="__STATIC__/index/js/jquery.min.js"></script>
+<script src="__STATIC__/index/js/angular.min.js"></script>
+<script src="__STATIC__/index/js/my/account/login.js"></script>
+<script src="__STATIC__/layer/layer.js"></script>
+<script type="text/javascript">
+    function clickk() {
+        var xieyi = $("#agree_agreement").val();
+        if (xieyi == 0) {
+            layer.msg('未同意用户协议和隐私条款');
+            return false;
+        } else {
+            var phone = $("#phone").val();
+            var password = $('#password').val();
+            $.post("{:url('/index/login/loginin')}", { phone: phone, password: password },
+                function (data) {
+                    if (data.code == 1) {
+                        layer.msg(data.msg, { time: 1000 }, function () {
+                            //操作事件
+                            location.href = "{:url('index/index')}";
+                        })
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                });
+        }
+    }
+</script>
+
+<body ng-controller="register_controller">
+    <header class="mui-bar mui-bar-nav" style="background:#32353d;">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+    </header>
+    <div id="pullrefresh" class="mui-content" style="position:relative;">
+        <div class="account_container">
+            <h4 class="mui-text-center">账号密码登录</h4>
+            <div class="mui-clearfix form_line">
+                <input type="text" id="phone" class="input_case" name="phone" ng-model="param.phone" placeholder="请输入手机号" />
+            </div>
+            <div class="mui-clearfix form_line phone_box">
+                <input type="password" id="password" class="input_case" name="pass_word" ng-model="param.password" id="password_input" placeholder="请输入密码"
+                />
+            </div>
+
+            <button class="login_btn" onclick="clickk()">登录</button>
+            <!-- <button class="login_btn"  ng-click="goPage('{$Think.const.YILIAN_ALL}')"  >益联益家一键登录</button> -->
+            <div class="mui-clearfix checkbox_line mui-text-center">
+                <label for="agree_agreement" id="agreement_label">
+                    <input type="checkbox" value="1" checked="checked" name="xieyi" id="agree_agreement" />
+                    <div class="show-box" /> </div>
+                </label>
+                <a style="font-size: 12px;color:#fff;" href="{:url('layer/agreement')}">我已阅读并同意“用户协协议和隐私条款”</a>
+            </div>
+        </div>
+
+        <div class="mui-clearfix checkbox_line mui-text-center">
+            <a href="" class="go_login or_text" ng-click="goPage('register.html')">还没有账号</a>
+        </div>
+    </div>
+    <p class="forget_password" ng-click="goPage('repass.html')">忘记密码?</p>
+    </div>
+
+
+    <script type="text/javascript">    	
+          var init_h = $('#pullrefresh').css('height'); 
+          $('#pullrefresh').css('height', init_h); 
+          $(document).ready(function () {
+            $("#agree_agreement").change(function () {
+                var xieyi = $("#agree_agreement").val();
+                if (xieyi == 1) {
+                    $("#agree_agreement").val("0");
+                } else {
+                    $("#agree_agreement").val("1");
+                }
+
+            });
+            $('.input_case').on('focus', function () {
+                if ($('.input_case').val() != '') {
+                    $('.login_btn').addClass('changeColor');
+                }
+            });
+            $('.input_case').on('blur', function () {
+                if ($('#phone').val() != '' && $('#password').val() != '') {
+                    return false;
+                }
+                $('.login_btn').removeClass('changeColor');
+            })
+
+        });
+
+
+    </script>
+</body>
+
+</html>

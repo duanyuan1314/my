@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="__ADMIN_JS__/layui/css/layui.css?v={:config('hisiphp.version')}">
+</head>
+<body>
+    <div class="layui-tab-item layui-show" style="margin-top:5%;" >
+        <form class="layui-form layui-form-pane"  method="post" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">回帖内容</label>
+                <div class="layui-input-inline" style="width:83%;">
+                    <textarea rows="10" class="layui-textarea" name="huitie" autocomplete="off" placeholder="请填回帖内容">{$data['huitie']}</textarea>
+                </div>
+            </div>
+            <input type="hidden" class="field-id" name="id" value="{$data['id']}" >
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn" lay-submit="" lay-filter="formSubmit" >提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+<script src="__STATIC__/index/js/jquery.min.js"></script>
+<script src="__STATIC__/layer/layer.js"></script>
+<script>
+    $('.layui-btn').click(function () {
+            var id = $(".field-id").val();
+            var huitie = $(".layui-textarea").val();
+            $.ajax({
+                    type: 'POST',
+                    dataType: "json",
+                    url: "{:url('layer/huitie')}",
+                    data: { id: id, huitie: huitie },
+                    success: function (re) {
+                        if (re.code == 1) {
+                            layer.msg(re.msg, { time: 1000 }, function () {
+                                //操作事件
+                                  //  parent.location.reload();
+                                    var index = parent.layer.getFrameIndex(window.name);
+                                    parent.layer.close(index);
+                                    //alert(index);
+                                 /*  layer.close(layer.index);
+                                  window.parent.location.reload(); */
+                            })
+                        } else {
+                             layer.msg(re.msg, { time: 2000 });
+                        }
+                    }
+            });
+     })
+</script>

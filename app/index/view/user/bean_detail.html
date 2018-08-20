@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>乐豆明细</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<link rel="stylesheet" href="__STATIC__/index/css/my/assets/bean_detail.css" />
+	</head>
+
+	<body ng-controller="bean_detail_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="history.back(-1);"></a>
+			<h1 class="mui-title">乐豆明细</h1>
+		</header>
+		<style>
+			.mui-table-view .mui-media-object {
+				max-width: none;
+			}
+		</style>
+		<div id="pullrefresh" class="mui-content">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-table-view-chevron">
+				        <div class="noNewBox">
+
+                        <img src="__STATIC__/index/img/home/zwxx.png" class="zwxxImg" />
+                         <p>暂无数据</p>
+                    </div> 
+				</ul>
+			</div>
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+		<script src="__STATIC__/index/js/jquery.min.js"></script>
+		<script src="__STATIC__/index/js/angular.min.js"></script>
+		<script src="__STATIC__/index/js/my/assets/bean_detail.js"></script>
+		<script type="text/javascript">
+			$(window).scroll(function() {
+				if($(window).scrollTop() <= 200) {
+					$("header").fadeIn(1000); // 开始淡入
+				} else {
+					$("header").stop(true, true).fadeOut(1000); // 如果小于等于 200 淡出
+				}
+			});
+			//下拉加载更多
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						auto: false,
+						contentrefresh: '正在加载...',
+						callback: function() {
+							setTimeout(function() {
+								getData();
+							}, 1500);
+						}
+					}
+				}
+			});
+
+			var page = 1,
+				imore;
+			function listTempleate(data) {
+				if(imore || data.length > 0) {
+
+					for(var i = 0; i < data.length; i++) {
+
+						var gameName = data[i].gamename, //游戏名字
+							creatTime = data[i].creat_time, //时间
+							state = data[i].state,
+							states = data[i].type, //消费类型
+							li = document.createElement('li'),
+							jifen,
+							consumeStyle;
+
+						li.className = 'mui-table-view-cell mui-media mui-disabled';
+						//判断乐豆消费类型;
+						if(states == 0) {
+							consumeStyle = gameName + '-消费乐豆';
+							jifen = "<span class='or_text'>-" + data[i].jifen + "</span>";
+						} else if(states == 1) {
+							consumeStyle = gameName + '-获取乐豆';
+							jifen = "<span class='wh_text'>+" + data[i].jifen + "</span>";
+						} else if(states == 2) {
+							if(state == 1) {
+								consumeStyle = '乐豆充值-微信';
+								jifen = "<span class='wh_text'>+" + data[i].jifen + "</span>";
+							} else {
+								consumeStyle = '乐豆充值-支付宝';
+								jifen = "<span class='wh_text'>+" + data[i].jifen + "</span>";
+							}
+						} else if(states == 3) {
+							consumeStyle = '乐豆充值-密钥兑换';
+							jifen = "<span class='wh_text'>+" + data[i].jifen + "</span>";
+						} else if(states == 4) {
+							consumeStyle = '乐豆消耗-购买称号';
+							jifen = "<span class='or_text'>-" + data[i].jifen + "</span>";
+						} else {
+							consumeStyle = '乐豆消耗-购买道具';
+							jifen = "<span class='or_text'>-" + data[i].jifen + "</span>";
+						}
+
+						li.innerHTML = "<a href='javascript:;'><div class='mui-media-object mui-pull-right'>" +
+							jifen + "</div><div class='mui-media-body'><span>" +
+							consumeStyle + "</span><p class='mui-ellipsis'>" +
+							creatTime + "</p></div></a>";
+
+						 $(".mui-table-view").append(li);
+					}
+				}
+				page++;
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(!imore);
+			}
+
+			function getData() {
+				$.ajax({
+					type: "post",
+					url: "http://game.koko360.com/index/share/bean_detail.html?page=" + page,
+					dataType: 'json',
+					success: function(data) {
+						imore = data.imore;
+						var $data = data.data;
+						if($data.length <= 0){
+							$('.noNewBox').show();
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(!imore);
+						}else{
+							listTempleate($data);
+						}
+						
+					}
+				})
+			};
+			getData();
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="BackPanelSkin" width="750" height="88" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Label text="捉住吴小贱" x="-1" y="0" width="100%" height="88" textAlign="center" verticalAlign="middle" backgroundColor="0x2c313b" background="true" size="36" textColor="0xffffff"/>
+	<e:Image id="ImgBack" source="BtnBack_png" anchorOffsetY="0" verticalCenter="0" left="30"/>
+	<e:Rect id="btnBack" width="88" height="88" fillAlpha="0" left="0" verticalCenter="0"/>
+</e:Skin>

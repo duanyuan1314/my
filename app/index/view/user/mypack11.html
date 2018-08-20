@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的背包</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+		<link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+		<style type="text/css">
+			.mui-media-body {
+				font-size: 14px;
+			}
+			
+			.mui-media-body .bigFont {
+				font-size: 22px;
+				color: #FFFFFF;
+				padding: 10px 5px;
+				padding-left: 0;
+			}
+			
+			.mui-table-view-cell {
+				height: 105px;
+				padding: 0px 15px 43px !important;
+				margin-bottom: 20px;
+			}
+			
+			.jykA,
+			.dhlpA {
+				background-size: 100%;
+				margin: 0 !important;
+				position: relative;
+				border-bottom-right-radius: 8px;
+				border-bottom-left-radius: 8px;
+			}
+			
+			.jykA {
+				background-image: url(__STATIC__/index/img/my/greenBg.png);
+			}
+			
+			.dhlpA {
+				background-image: url(__STATIC__/index/img/my/redBg.png);
+			}
+			
+			.cardLogo {
+				display: inline-block;
+				width: 55px !important;
+				height: 54px !important;
+				margin-top: 5px;
+				max-width: 55px !important;
+			}
+			
+			.cardStates {
+				position: absolute;
+				top: 5px;
+				left: 0;
+				right: 0;
+				text-align: right;
+				font-size: 12px;
+				padding-right: 11px;
+			}
+			
+			@media only screen and (min-device-width:320px) and (max-device-width:359px) {
+				.jykA, .dhlpA {
+				padding:7px 15px !important;
+			}
+			}
+			@media only screen and (min-device-width:360px) and (max-device-width:374px) {
+				.jykA, .dhlpA {
+				padding:15px 15px !important;
+			}
+			}
+			@media only screen and (min-device-width:375px) and (max-device-width:411px) {
+				.jykA, .dhlpA {
+				padding:17px 15px !important;
+			}
+			}
+			@media only screen and (min-device-width:412px) and (max-device-width:414px) {
+				.jykA, .dhlpA {
+				padding:21px 15px !important;
+			}
+			}
+			
+		</style>
+	</head>
+
+	<body ng-controller="myBackpack_controller">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+			<h4 class="mui-title">我的背包</h4>
+		</header>
+		<div id="myBackpack" class="mui-content">
+			<ul class="mui-table-view">
+				 {volist name="arr" id="vo" }
+					 {switch name='$vo.type'}
+						 {case value="1"}
+						    {if condition="$vo.status eq 0" }
+								<li class="mui-table-view-cell mui-media mui-disabled">
+									<a href="javascript:;" class="jykA">
+										<img class="mui-media-object mui-pull-left cardLogo" src="__STATIC__/index/img/my/jyk.png">
+										<span class="cardStates">未使用</span>
+										<div class="mui-media-body">
+											双倍经验卡
+											<p class='mui-ellipsis bigFont'>游戏结算双倍经验值</p>
+										</div>
+									</a>
+								</li>
+								{elseif condition="$vo.status eq 1" /}
+								<li class="mui-table-view-cell mui-media mui-disabled">
+									<a href="javascript:;" class="jykA">
+										<img class="mui-media-object mui-pull-left cardLogo" src="__STATIC__/index/img/my/jyk.png">
+										<span class="cardStates">使用中</span>
+										<div class="mui-media-body">
+											双倍经验卡
+											<p class='mui-ellipsis bigFont'>游戏结算双倍经验值</p>
+										</div>
+									</a>
+								</li>
+								{else /}
+								<li class="mui-table-view-cell mui-media mui-disabled">
+									<a href="javascript:;" class="jykA">
+										<img class="mui-media-object mui-pull-left cardLogo" src="__STATIC__/index/img/my/jyk.png">
+										<span class="cardStates">已失效</span>
+										<div class="mui-media-body">
+											双倍经验卡
+											<p class='mui-ellipsis bigFont'>游戏结算双倍经验值</p>
+										</div>
+									</a>
+								</li>
+							 {/if}
+						  {/case}
+						  {case value="2" }
+						 	 {if condition="$vo.status eq 0" }
+								<li class="mui-table-view-cell mui-media mui-disabled">
+									<a href="javascript:;" class="dhlpA">
+										<img class="mui-media-object mui-pull-left cardLogo" src="__STATIC__/index/img/my/yk.png">
+										<span class="cardStates">未使用</span>
+										<div class="mui-media-body" >
+											礼品兑换卡
+											<p class='mui-ellipsis bigFont'>无限制兑换礼品道具卡</p>
+										</div>
+									</a>
+								</li>
+							 {/if}
+						 {/case}
+					 {/switch}
+				 {/volist}
+				<!-- <li class="mui-table-view-cell mui-media mui-disabled">
+					<a href="javascript:;" class="dhlpA">
+						<img class="mui-media-object mui-pull-left cardLogo" src="__STATIC__/index/img/my/yk.png">
+						<span class="cardStates">使用中</span>
+						<div class="mui-media-body">
+							礼品兑换卡
+							<p class='mui-ellipsis bigFont'>无限制兑换礼品道具卡</p>
+						</div>
+					</a>
+				</li> -->
+			</ul>
+		</div>
+		<script src="__STATIC__/index/js/mui.min.js"></script>
+	</body>
+
+</html>

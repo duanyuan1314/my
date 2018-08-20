@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>更换手机号</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/my/account/change_phone_2.css" />
+</head>
+
+<body ng-controller="change_phone_2_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">更换手机号</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="change_password">
+            <p class="into_title">请输入{$change_phone}收到的短信验证码</p>
+            <input type="hidden" id="phone_input"  value="{$change_phone}" />
+            <div class="mui-clearfix">
+                <span class="wh_text mui-pull-left">验证码</span>
+                <input type="text" class="init_input mui-pull-left" placeholder="输入验证码" id="code"  />
+                <button class="send_code" onclick="getCode()"  >发送验证码</button>
+            </div>
+            <button class="btn btn_orange" onclick="cclick()"  >确定</button>
+        </div>
+    </div>
+    <div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        <div class="pop_container">
+            <img src="__STATIC__/index/img/my/success.png" alt="" class="gift_box" />
+            <h4>更换成功</h4>
+            <p style="padding: 10px 0;">请使用新手机号+新登录密码登录</p>
+        </div>
+        <div class="close_container" ng-click="close_pop()">
+            <i class="mui-icon mui-icon-close"></i>
+        </div>
+    </div>
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/my/account/change_phone_2.js"></script>
+    <script src="__STATIC__/layer/layer.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    function getCode() {
+         var phone = $("#phone_input").val();
+         $.post("{:url('recharge/sendCode')}", { phone: phone },
+            function (data) {
+                if (data.code == 1) {
+                    layer.msg(data.msg, { time: 1000 }, function () {
+                        //操作事件
+                        send_timer();
+                    })
+                } else {
+                    layer.msg(data.msg);
+                }
+         });
+    }
+    function send_timer() {
+        $('.send_code').text("59s后重试").attr('disabled', 'disabled');
+        var code_second = 58;
+        var timerHandler;
+        timerHandler = setInterval(function () {
+            if (code_second <= 0) {
+                window.clearInterval(timerHandler); //当执行的时间59s,结束时，取消定时器    
+                code_second = 58;
+                $('.send_code').text('发送验证码').removeAttr('disabled');
+            } else {
+                $('.send_code').text(code_second + "s后重试").attr('disabled', 'disabled');
+                code_second--;
+            }
+        }, 1000)
+    }
+    function cclick() {
+        var phone = $("#phone_input").val();
+        var code = $("#code").val();
+        $.post("{:url('user/change_save')}", { code: code, phone: phone},
+            function (data) {
+                if (data.code == 1) {
+                    loading();
+                } else {
+                    layer.msg(data.msg);
+                }
+            });
+    }
+     function loading() {
+            mui('#pop_into').popover('show');
+            var home_second = 2;
+            var homeTimer;
+            var homeTimer = setInterval(function () {
+                home_second--;
+                if (home_second <= 0) {
+                    window.clearInterval(homeTimer);
+                    //执行跳转操作
+                    location.href = "{:url('login/index')}";
+                }
+            }, 1000)
+        }
+</script>

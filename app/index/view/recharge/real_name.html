@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <title>实名认证</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__STATIC__/index/css/mui.min.css">
+    <link rel="stylesheet" href="__STATIC__/index/css/commen.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/recharge/real_name.css" />
+</head>
+
+<body ng-controller="real_name_controller">
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="javascript :history.back(-1);"></a>
+        <h1 class="mui-title">实名认证</h1>
+    </header>
+    <div id="pullrefresh" class="mui-content">
+        <div class="form_container">
+            <h4 class="form_title">
+                <img src="__STATIC__/index/img/recharge/v-card.png" alt="" />实名认证</h4>
+            <div class="input_container">
+                <div class="input_box mui-clearfix">
+                    <div class="mui-pull-left">
+                        真实姓名：
+                    </div>
+                    <div class="mui-pull-left">
+                        <input type="text" placeholder="请填写真实信息，认证完成后不可修改" id="real_name" />
+                    </div>
+                </div>
+                <div class="input_box mui-clearfix">
+                    <div class="mui-pull-left">
+                        身份证号：
+                    </div>
+                    <div class="mui-pull-left">
+                        <input type="text" placeholder="请填写真实信息，认证完成后不可修改" id="card" />
+                    </div>
+                </div>
+            </div>
+            <div class="input_container">
+                <div class="input_box mui-clearfix">
+                    <div class="mui-pull-left">
+                        手机号码：
+                    </div>
+                    <div class="mui-pull-left">
+                        <input type="text" placeholder="请填写真实信息，认证完成后不可修改" id="phone" />
+                    </div>
+                </div>
+                <div class="input_box mui-clearfix verif_code">
+                    <div class="mui-pull-left">
+                        验证码：
+                    </div>
+                    <div class="mui-pull-left">
+                        <input type="text" placeholder="请输入验证码" id="code"  />
+                        <button class="key_btn mui-pull-right" onclick="getCode()"  >发送验证码</button>
+                    </div>
+                </div>
+            </div>
+            <button class="submit_btn" onclick="btnok()" >下一步</button>
+        </div>
+    </div>
+   <!--  <div id="pop_into" class="mui-popover mui-popover-action mui-popover-bottom">
+        <div class="pop_container">
+            <img src="__STATIC__/index/img/recharge/real_name_pass.png" alt="" class="gift_box" />
+            <h4>恭喜您，提交成功</h4>
+            <button class="pop_btn" ng-click="close_pop()">确定</button>
+        </div>
+        <div class="close_container" ng-click="close_pop()">
+            <i class="mui-icon mui-icon-close"></i>
+        </div>
+    </div> -->
+    <script src="__STATIC__/index/js/mui.min.js"></script>
+    <script src="__STATIC__/index/js/jquery.min.js"></script>
+    <script src="__STATIC__/index/js/angular.min.js"></script>
+    <script src="__STATIC__/index/js/recharge/real_name.js"></script>
+    <script src="__STATIC__/layer/layer.js"></script>
+</body>
+
+</html>
+<script>
+     function getCode() {
+            var reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+            var phone = $("#phone").val();
+            var flag = reg.test(phone);
+            if (flag) {
+                  $.post("{:url('recharge/sendCode')}", { phone: phone },
+                    function (data) {
+                        if (data.code == 1) {
+                            layer.msg(data.msg, { time: 1000 }, function () {
+                                //操作事件
+                                send_timer();
+                            })
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    });
+            } else {
+                layer.msg('请输入有效的手机号码!');
+            }
+     }
+    function send_timer() {
+            $('.key_btn').text("59s后重试").attr('disabled', 'disabled');
+            var code_second = 58;
+            var timerHandler;
+            timerHandler = setInterval(function () {
+                if (code_second <= 0) {
+                    window.clearInterval(timerHandler); //当执行的时间59s,结束时，取消定时器    
+                    code_second = 58;
+                    $('.key_btn').text('发送验证码').removeAttr('disabled');
+                } else {
+                    $('.key_btn').text(code_second + "s后重试").attr('disabled', 'disabled');
+                    code_second--;
+                }
+            }, 1000)
+        }
+        function btnok() {
+                var reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+                var pattern = /^[\u4E00-\u9FA5]{1,6}$/;
+                var regx = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; //身份证
+                var phone = $.trim($("#phone").val());
+                var card = $("#card").val();
+                var real_name = $.trim($("#real_name").val());
+                var code = $("#code").val();
+                var flag = reg.test(phone);
+                if(!pattern.test(real_name)){
+                    layer.msg('名字不合法!');
+                }else if(!regx.test(card)){
+                    layer.msg('身份证号不合法!');
+                }else if(!flag){
+                    layer.msg('请输入有效的手机号码!');
+                }else{
+                     $.post("{:url('recharge/save')}", { phone: phone, card: card, real_name: real_name, code: code },
+                        function (data) {
+                            if (data.code == 1) {
+                                location.href = "{:url('recharge/real_up')}";
+                                //loading();
+                            } else {
+                                layer.msg(data.msg);
+                            }
+                     });
+                 }
+         }
+         function loading() {
+                mui('#pop_into').popover('show');
+                var home_second = 3;
+                var homeTimer;
+                var homeTimer = setInterval(function () {
+                    home_second--;
+                    $('.go_home').text("即将跳转首页（" + home_second + "s）");
+                    if (home_second <= 0) {
+                        window.clearInterval(homeTimer);
+                        //执行跳转操作
+                        location.href = "{:url('index/index')}";
+                    }
+                }, 1000)
+         }
+</script>
